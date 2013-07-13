@@ -100,6 +100,13 @@ void RenderWindow::handleEvent(sf::Event& event)
 	if(event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 		window->close();
 
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	{
+		sf::View view = window->getView();
+		view.move(32,0);
+		window->setView(view);
+	}
+
 	CEGUI::GUIContext& context = CEGUI::System::getSingleton().getDefaultGUIContext();
 	sf::Vector2i mousep = sf::Mouse::getPosition(*window);
 	if(event.type == sf::Event::MouseLeft)

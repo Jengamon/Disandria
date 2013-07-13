@@ -10,7 +10,6 @@ void MapManager::setRenderWindow(RenderWindow* _win)
 	win = _win;
 }
 
-// TODO: Fix it up to become even faster
 void MapManager::bakeMap()
 {
 	if(currentMap != MapParser::getCurrentMap())
@@ -86,9 +85,9 @@ void MapManager::bakeMap()
 		}
 	}
 }
-			
+		
 void MapManager::renderMap()
-{
+{ 
 	bakeMap();
 	sf::Sprite spr;
 	sf::Texture tex;
