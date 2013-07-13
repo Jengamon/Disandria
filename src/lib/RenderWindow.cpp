@@ -1,0 +1,162 @@
+#include "RenderWindow.h"
+RenderWindow::RenderWindow(int width, int height, std::string name)
+{
+	window = new sf::RenderWindow(sf::VideoMode(width, height), name, sf::Style::Close | sf::Style::Titlebar);
+	elapsedclock = new sf::Clock;
+	glEnable(GL_TEXTURE_2D);
+	CEGUI::OpenGLRenderer& renderer = CEGUI::OpenGLRenderer::bootstrapSystem();
+	window->setVerticalSyncEnabled(true);
+	window->setFramerateLimit(60);
+
+	CEGUI::DefaultResourceProvider* rp = static_cast<CEGUI::DefaultResourceProvider*>(CEGUI::System::getSingleton().getResourceProvider());
+
+	rp->setResourceGroupDirectory("schemes", "disandria/gui/schemes/");
+	rp->setResourceGroupDirectory("imagesets", "disandria/gui/imagesets/");
+	rp->setResourceGroupDirectory("fonts", "disandria/gui/fonts/");
+	rp->setResourceGroupDirectory("layouts", "disandria/gui/layouts/");
+	rp->setResourceGroupDirectory("looknfeels", "disandria/gui/looknfeel/");
+	rp->setResourceGroupDirectory("lua_scripts", "disandria/gui/lua_scripts/");
+	rp->setResourceGroupDirectory("schemas", "disandria/gui/xml_schemas/");
+
+	CEGUI::ImageManager::setImagesetDefaultResourceGroup("imagesets");
+	CEGUI::Font::setDefaultResourceGroup("fonts");
+	CEGUI::Scheme::setDefaultResourceGroup("schemes");
+	CEGUI::WidgetLookManager::setDefaultResourceGroup("looknfeels");
+	CEGUI::WindowManager::setDefaultResourceGroup("layouts");
+	CEGUI::ScriptModule::setDefaultResourceGroup("lua_scripts");
+
+	CEGUI::XMLParser* parser = CEGUI::System::getSingleton().getXMLParser();
+	if (parser->isPropertyPresent("SchemaDefaultResourceGroup"))
+		parser->setProperty("SchemaDefaultResourceGroup", "schemas");
+
+	loadScheme("TaharezLook");
+	loadFont("DejaVuSans-14");
+	setArrowandTooltipScheme("TaharezLook");
+}
+
+sf::Vector2u RenderWindow::getSize()
+{
+	return window->getSize();
+}
+
+sf::View RenderWindow::getWindowView()
+{
+	return window->getView();
+}
+
+sf::View RenderWindow::getDefaultWindowView()
+{
+	return window->getDefaultView();
+}
+
+void RenderWindow::setWindowView(sf::View view)
+{
+	window->setView(view);
+}
+
+void RenderWindow::startRendering()
+{
+	window->pushGLStates();
+}
+
+void RenderWindow::render(sf::Sprite& spr, sf::Shader* shd)
+{
+	window->draw(spr, shd);
+}
+
+void RenderWindow::display()
+{
+	window->display();
+}
+
+void RenderWindow::renderGUI()
+{
+	window->popGLStates();
+	CEGUI::System::getSingleton().renderAllGUIContexts();
+}
+
+CEGUI::Window* RenderWindow::renderLayout(std::string lyout)
+{
+	return CEGUI::WindowManager::getSingleton().loadLayoutFromFile(lyout);
+}
+
+bool RenderWindow::isOpen()
+{
+	return window->isOpen();
+}
+
+void RenderWindow::displayWindow(CEGUI::Window* win)
+{
+	CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(win);
+}
+
+bool RenderWindow::pollEvent(sf::Event& event)
+{
+	return window->pollEvent(event);
+}
+
+void RenderWindow::handleEvent(sf::Event& event)
+{
+	if(event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+		window->close();
+
+	CEGUI::GUIContext& context = CEGUI::System::getSingleton().getDefaultGUIContext();
+	sf::Vector2i mousep = sf::Mouse::getPosition(*window);
+	if(event.type == sf::Event::MouseLeft)
+		context.injectMouseLeaves();
+	context.injectMousePosition(mousep.x, mousep.y);
+	if(event.type == sf::Event::MouseButtonPressed)
+		context.injectMouseButtonDown(CEGUI::MouseButton(event.mouseButton.button));
+	if(event.type == sf::Event::MouseButtonReleased)
+		context.injectMouseButtonUp(CEGUI::MouseButton(event.mouseButton.button));
+	if(event.type == sf::Event::KeyPressed)
+		context.injectKeyDown(convertKey(event.key.code));
+	if(event.type == sf::Event::KeyReleased)
+		context.injectKeyUp(convertKey(event.key.code));
+	if(event.type == sf::Event::TextEntered)
+		context.injectChar(event.text.unicode);
+	if(event.type == sf::Event::MouseWheelMoved)
+		context.injectMouseWheelChange(event.mouseWheel.delta);
+	float elapsedTime = elapsedclock->restart().asSeconds();
+	CEGUI::System::getSingleton().injectTimePulse(elapsedTime);
+	context.injectTimePulse(elapsedTime);
+}
+
+RenderWindow::~RenderWindow()
+{
+	delete window;
+	delete elapsedclock;
+	window = NULL;
+	elapsedclock = NULL;
+}
+
+void RenderWindow::clear()
+{
+	window->clear(sf::Color::Black);
+}
+
+void RenderWindow::loadScheme(std::string str)
+{
+	CEGUI::SchemeManager::getSingleton().createFromFile((str + ".scheme").c_str());
+}
+
+void RenderWindow::loadFont(std::string str)
+{
+	CEGUI::FontManager::getSingleton().createFromFile((str + ".font").c_str());
+}
+
+void RenderWindow::setArrowandTooltipScheme(std::string str)
+{
+	setArrowScheme(str);
+	setTooltipScheme(str);
+}
+
+void RenderWindow::setArrowScheme(std::string str)
+{
+	CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setDefaultImage((str + "/MouseArrow").c_str());
+}
+
+void RenderWindow::setTooltipScheme(std::string str)
+{
+	CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultTooltipType((str + "/Tooltip").c_str());
+}

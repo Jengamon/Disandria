@@ -1,0 +1,40 @@
+solution "Disandria"
+	location "build"
+	configurations { "Debug", "Release" }
+	
+	configuration  "Debug"
+		flags { "Symbols" }
+		defines { "DEBUG" }
+
+	configuration "Release"
+		flags { "Symbols" }
+		defines { "NDEBUG" }
+
+	project "miniLOGlib"
+		kind "SharedLib"
+		language "C++"
+		files { "src/helplib/**.cpp", "src/helplib/**.h" }
+		links { "PocoUtil", "PocoFoundation" }
+	
+	project "pugixml"
+		kind "SharedLib"
+		language "C++"
+		files { "src/pugixml/**.cpp", "src/pugixml/**.h" }
+	
+	project "pugitmx"
+		kind "SharedLib"
+		language "C++"
+		files { "src/pugitmx/**.cpp", "src/pugitmx/**.h" }
+		links { "pugixml", "miniLOGlib" }
+
+	project "DisandriaLib"
+		kind "SharedLib"
+		language "C++"
+		files { "src/lib/**.cpp", "src/lib/**.h" }
+		links { "miniLOGlib", "pugitmx", "CEGUIBase-0", "CEGUIOpenGLRenderer-0", "sfml-graphics", "sfml-window", "sfml-audio", "sfml-system", "PocoUtil", "PocoFoundation" }
+
+	project "disandria-game"
+		kind "ConsoleApp"
+		language "C++"
+		files { "src/main.cpp" }
+		links { "miniLOGlib", "DisandriaLib", "pugitmx", "pugixml" }
