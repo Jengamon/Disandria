@@ -1,9 +1,7 @@
 # Welcome to Disandria!
 
-Disandria is an RPG game, whose storyline I will soon develop, and, once finished, I will release on RMN (rpgmaker.net).
-
-This repository is simply the engine, also referred to as Disandria.
-
+Disandria is an RPG game, whose storyline I will soon develop, and, once finished, I will release on RMN (rpgmaker.net).  
+This repository is simply the engine, also referred to as Disandria.  
 To build Disandria, you will need:
 
 *  [The SFML library](http://www.sfml-dev.org "SFML")
