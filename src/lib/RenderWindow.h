@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/OpenGL.hpp>
+#include <Thor/Graphics.hpp>
 #include <CEGUI/CEGUI.h>
 #include <CEGUI/RendererModules/OpenGL/GLRenderer.h>
 #include "../helplib/stringh.h"
@@ -18,6 +19,7 @@ class RenderWindow
 		void resetView();
 		void startRendering();
 		void render(sf::Sprite&, sf::Shader* = NULL);
+		void render(thor::BigSprite&, sf::Shader* = NULL);
 		void renderGUI();
 		CEGUI::Window* renderLayout(std::string);
 		void displayWindow(CEGUI::Window*);

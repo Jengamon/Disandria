@@ -1,0 +1,83 @@
+<h1>Welcome to Disandria!</h1>
+
+<p>Disandria is an RPG game, whose storyline I will soon develop, and, once finished, I will release on RMN (rpgmaker.net). <br />
+This repository is simply the engine, also referred to as Disandria. <br />
+To build Disandria, you will need:</p>
+
+<ul>
+<li><a href="http://www.sfml-dev.org" title="SFML">The SFML library</a></li>
+<li><a href="http://www.pocoproject.org" title="Poco">The Poco C++ library</a></li>
+<li><a href="http://www.cegui.org.uk" title="CEGUI-mk2 (0.8+)">The CEGUI-mk2 library (v0.8+)</a></li>
+<li>(TBI) <a href="http://www.bromeon.ch/libraries/thor/index.html" title="Thor 2.0">The Thor library (2.0)</a></li>
+<li>(TBI) <a href="http://www.libsdl.org" title="SDL">The SDL library</a></li>
+</ul>
+
+<p>PugiXML is used in this project. I do not own nor do I hold any rights over PugiXML. <br />
+For more information on this project, look over here: <a href="http://www.pugixml.org" title="PugiXML">The PugiXML library</a>.</p>
+
+<p>There are a few limitations to the engine:</p>
+
+<h3>Map-related</h3>
+
+<ul>
+<li>You can only use Tiled TMX maps in their <em>XML</em> format. <br />
+This is different from the default settings. In order to change this, you must
+open the Tiled Map Editor, then go to Edit->Preferences, then click the item box beside
+"Store tile layer data as:", then choose "XML".</li>
+<li>The engine currently does <em>not</em> support TMX terrains. <br />
+PugiTMX cannot currently parse TMX terrains, and I don't know what they do, so no terrains right now.</li>
+<li>The engine currently does <em>not</em> support TMX image layers.
+PugiTMX cannot currently parse TMX image layers, and I don't know what they do, so no image layers either.</li>
+<li>The engine can <em>only</em> use tilesets with the same tile width and tile height as the map they are used on.
+This is due to the algorithim it uses to calculate where to render the tiles.</li>
+<li>Maps <em>must</em> be orthagonal.
+I've never used an isometric map. I don't know if my renderer can handle isometric maps.</li>
+<li>Maps <em>must</em> be in a folder with the <em>exact</em> filename of the map.
+This is so the engine can find them, and so that when I add scripting, everything is all in the same folder.</li>
+</ul>
+
+<h3>Sound-related</h3>
+
+<ul>
+<li><p>The audio formats the engine supports are:</p>
+
+<pre><code>- ogg 
+- wav
+- flac
+- aiff
+- au
+- raw
+- paf
+- svx
+- nist
+- voc
+- ircam
+- w64
+- mat4
+- mat5 pvf
+- htk
+- sds
+- avr
+- sd2
+- caf
+- wve
+- mpc2k
+- rf64
+</code></pre></li>
+</ul>
+
+<h3>Scripting-related</h3>
+
+<ul>
+<li>The scripting language will be JavaScript, through Mozilla's SpiderMonkey 24.</li>
+</ul>
+
+<h3>Image-related</h3>
+
+<ul>
+<li>Images must be RGBA-8. No RGB-32 or CMYK stuff.</li>
+</ul>
+
+<p>Thank you for your interest in Disandria!</p>
+
+<p><strong>Bob Hostern</strong></p>

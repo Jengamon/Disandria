@@ -99,8 +99,8 @@ void MapManager::bakeMap()
 void MapManager::renderMap()
 { 
 	bakeMap();
-	sf::Sprite spr;
-	sf::Texture tex;
+	thor::BigSprite spr;
+	thor::BigTexture tex;
 	tex.loadFromImage(im);
 	tex.setSmooth(true);
 	spr.setTexture(tex);

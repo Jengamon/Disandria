@@ -19,13 +19,20 @@ There are a few limitations to the engine:
 
 ### Map-related
 
-* You can only use Tiled TMX maps in their *XML* format.
-* The engine currently does *not* support TMX terrains.
+* You can only use Tiled TMX maps in their *XML* format.  
+  This is different from the default settings. In order to change this, you must
+  open the Tiled Map Editor, then go to Edit->Preferences, then click the item box beside
+  "Store tile layer data as:", then choose "XML".
+* The engine currently does *not* support TMX terrains.  
+  PugiTMX cannot currently parse TMX terrains, and I don't know what they do, so no terrains right now.
+* The engine currently does *not* support TMX image layers.
+  PugiTMX cannot currently parse TMX image layers, and I don't know what they do, so no image layers either.
 * The engine can *only* use tilesets with the same tile width and tile height as the map they are used on.
   This is due to the algorithim it uses to calculate where to render the tiles.
 * Maps *must* be orthagonal.
+  I've never used an isometric map. I don't know if my renderer can handle isometric maps.
 * Maps *must* be in a folder with the *exact* filename of the map.
-* The engine does *not* support image layers.
+  This is so the engine can find them, and so that when I add scripting, everything is all in the same folder.
 
 ### Sound-related
 
@@ -53,6 +60,14 @@ There are a few limitations to the engine:
 		- wve
 		- mpc2k
 		- rf64
+
+### Scripting-related
+
+* The scripting language will be JavaScript, through Mozilla's SpiderMonkey 24.
+
+### Image-related
+
+* Images must be RGBA-8. No RGB-32 or CMYK stuff.
 
 Thank you for your interest in Disandria!
 

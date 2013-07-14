@@ -2,6 +2,7 @@
 #define MAPMANAGER_H
 
 #include <SFML/Graphics.hpp>
+#include <Thor/Graphics.hpp>
 #include "MapParser.h"
 #include "RenderWindow.h"
 #include "../helplib/stringh.h"
