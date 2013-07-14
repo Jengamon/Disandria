@@ -60,20 +60,20 @@ void MapManager::bakeMap()
 				int picture_y = 0;
 				if(tile->getGid() > 0)
 				{
-					for(int i = 0; i < (tile->getGid() - (tlst->firstgid)); i++)
+					for(int il = 0; il < (tile->getGid() - (tlst->firstgid)); il++)
 					{
-						picture_x += currentMap->getTileWidth();
-						if(picture_x > (iter->getWidth() * currentMap->getTileWidth()))
+						picture_x++;
+						if(picture_x >= (int(tlst->img->getSize().x) / tlst->tilewidth))
 						{
 							picture_x = 0;
-							picture_y += currentMap->getTileHeight();
-							if(picture_y > (iter->getHeight() * currentMap->getTileHeight()))
+							picture_y++;
+							if(picture_y >= (int(tlst->img->getSize().y) / tlst->tileheight))
 							{
 								break;
 							}
 						}
 					}
-					im.copy(*tlst->img, image_x, image_y, sf::IntRect(picture_x, picture_y, tlst->tilewidth, tlst->tileheight));
+					im.copy(*tlst->img, image_x, image_y, sf::IntRect(picture_x * currentMap->getTileWidth(), picture_y * currentMap->getTileHeight(), tlst->tilewidth, tlst->tileheight));
 				}
 				else
 				{
