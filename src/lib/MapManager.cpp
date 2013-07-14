@@ -47,7 +47,7 @@ void MapManager::bakeMap()
 			for(int i = 0; i < ((width / currentMap->getTileWidth()) * (height / currentMap->getTileHeight())); i++)
 			{
 				pugitmx::Tile* tile = iter->findTileByLocation(i);
-				disandria::Tileset* tlst;
+				disandria::Tileset* tlst = NULL;
 				for(std::list<disandria::Tileset*>::iterator tlsts = tilesets.begin(); tlsts != tilesets.end(); tlsts++)
 				{
 					if((*tlsts)->firstgid > tile->getGid())
@@ -58,20 +58,29 @@ void MapManager::bakeMap()
 				}
 				int picture_x = 0;
 				int picture_y = 0;
-				for(int i = 0; i < (tile->getGid() - (tlst->firstgid)); i++)
+				if(tile->getGid() > 0)
 				{
-					picture_x += currentMap->getTileWidth();
-					if(picture_x > (iter->getWidth() * currentMap->getTileWidth()))
+					for(int i = 0; i < (tile->getGid() - (tlst->firstgid)); i++)
 					{
-						picture_x = 0;
-						picture_y += currentMap->getTileHeight();
-						if(picture_y > (iter->getHeight() * currentMap->getTileHeight()))
+						picture_x += currentMap->getTileWidth();
+						if(picture_x > (iter->getWidth() * currentMap->getTileWidth()))
 						{
-							break;
+							picture_x = 0;
+							picture_y += currentMap->getTileHeight();
+							if(picture_y > (iter->getHeight() * currentMap->getTileHeight()))
+							{
+								break;
+							}
 						}
 					}
+					im.copy(*tlst->img, image_x, image_y, sf::IntRect(picture_x, picture_y, tlst->tilewidth, tlst->tileheight));
 				}
-				im.copy(*tlst->img, image_x, image_y, sf::IntRect(picture_x, picture_y, tlst->tilewidth, tlst->tileheight));
+				else
+				{
+					tlst = new disandria::Tileset;
+					tlst->tilewidth = currentMap->getTileWidth();
+					tlst->tileheight = currentMap->getTileHeight();
+				}
 				image_x += tlst->tilewidth;
 				if(width <= image_x)
 				{

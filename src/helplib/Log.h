@@ -5,7 +5,6 @@
 #include <Poco/ConsoleChannel.h>
 #include <Poco/FileChannel.h>
 #include <Poco/SplitterChannel.h>
-#include <falcon/engine.h>
 
 namespace PE
 {
