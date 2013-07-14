@@ -32,6 +32,7 @@ class ImageManager
 		static void setRenderWindow(RenderWindow*);
 		static void renderImage(std::string, disandria::Image);
 		static void renders();
+		static sf::Sprite* getImage(std::string);
 		static void deleteImage(std::string);
 	private:
 		static RenderWindow* rwindow;

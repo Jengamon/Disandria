@@ -1,4 +1,5 @@
 #include "MapManager.h"
+#include "GameManager.h"
 #include "../helplib/Log.h"
 
 sf::Image MapManager::im;
@@ -26,7 +27,7 @@ void MapManager::bakeMap()
 			tlst->tilewidth = iter->getTileWidth();
 			tlst->tileheight = iter->getTileHeight();
 			sf::Image* imx = new sf::Image;
-			imx->loadFromFile("disandria/maps/" + MapParser::getMapName() + "/" + im.getSourceString());
+			imx->loadFromFile(GameManager::getGameFolderName() + "maps/" + MapParser::getMapName() + "/" + im.getSourceString());
 			std::string color = im.getTrans();
 			if(color != "")
 			{

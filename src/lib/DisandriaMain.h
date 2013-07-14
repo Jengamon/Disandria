@@ -19,7 +19,6 @@ class Disandria
 	private:
 		int onCleanup();
 		RenderWindow* rwin;
-		GameManager* gameMan;
 		Poco::AutoPtr<Poco::Util::XMLConfiguration> xmlConf;
 };
 

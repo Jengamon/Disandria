@@ -1,4 +1,5 @@
 #include "RenderWindow.h"
+#include "GameManager.h"
 RenderWindow::RenderWindow(int width, int height, std::string name)
 {
 	window = new sf::RenderWindow(sf::VideoMode(width, height), name, sf::Style::Close | sf::Style::Titlebar);
@@ -10,13 +11,13 @@ RenderWindow::RenderWindow(int width, int height, std::string name)
 
 	CEGUI::DefaultResourceProvider* rp = static_cast<CEGUI::DefaultResourceProvider*>(CEGUI::System::getSingleton().getResourceProvider());
 
-	rp->setResourceGroupDirectory("schemes", "disandria/gui/schemes/");
-	rp->setResourceGroupDirectory("imagesets", "disandria/gui/imagesets/");
-	rp->setResourceGroupDirectory("fonts", "disandria/gui/fonts/");
-	rp->setResourceGroupDirectory("layouts", "disandria/gui/layouts/");
-	rp->setResourceGroupDirectory("looknfeels", "disandria/gui/looknfeel/");
-	rp->setResourceGroupDirectory("lua_scripts", "disandria/gui/lua_scripts/");
-	rp->setResourceGroupDirectory("schemas", "disandria/gui/xml_schemas/");
+	rp->setResourceGroupDirectory("schemes", GameManager::getGameFolderName() + "gui/schemes/");
+	rp->setResourceGroupDirectory("imagesets", GameManager::getGameFolderName() + "gui/imagesets/");
+	rp->setResourceGroupDirectory("fonts", GameManager::getGameFolderName() + "gui/fonts/");
+	rp->setResourceGroupDirectory("layouts", GameManager::getGameFolderName() + "gui/layouts/");
+	rp->setResourceGroupDirectory("looknfeels", GameManager::getGameFolderName() + "gui/looknfeel/");
+	rp->setResourceGroupDirectory("lua_scripts", GameManager::getGameFolderName() + "gui/lua_scripts/");
+	rp->setResourceGroupDirectory("schemas", GameManager::getGameFolderName() + "gui/xml_schemas/");
 
 	CEGUI::ImageManager::setImagesetDefaultResourceGroup("imagesets");
 	CEGUI::Font::setDefaultResourceGroup("fonts");
@@ -52,6 +53,12 @@ sf::View RenderWindow::getDefaultWindowView()
 void RenderWindow::setWindowView(sf::View view)
 {
 	window->setView(view);
+}
+
+void RenderWindow::resetView()
+{
+	sf::View dview = window->getDefaultView();
+	window->setView(dview);
 }
 
 void RenderWindow::startRendering()
@@ -99,13 +106,6 @@ void RenderWindow::handleEvent(sf::Event& event)
 {
 	if(event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 		window->close();
-
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-	{
-		sf::View view = window->getView();
-		view.move(32,0);
-		window->setView(view);
-	}
 
 	CEGUI::GUIContext& context = CEGUI::System::getSingleton().getDefaultGUIContext();
 	sf::Vector2i mousep = sf::Mouse::getPosition(*window);

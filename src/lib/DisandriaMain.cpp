@@ -1,16 +1,32 @@
 #include "DisandriaMain.h"
+#include <fstream>
 #include "../helplib/Log.h"
 
 bool Disandria::onInit()
 {
 	try
 	{
-		xmlConf = new Poco::Util::XMLConfiguration("disandria/project.proj");
+		Poco::AutoPtr<Poco::Util::XMLConfiguration> gConf(new Poco::Util::XMLConfiguration("./conf.xml"));
+		GameManager::setGameName(gConf->getString("game[@name]"));
+	}
+	catch(...)
+	{
+		Poco::AutoPtr<Poco::Util::XMLConfiguration> gConf(new Poco::Util::XMLConfiguration);
+		gConf->loadEmpty("config");
+		gConf->setString("game[@name]", "disandria");
+		gConf->save("./conf.xml");
+		Log::log(PE::Logging::WARNING, "conf.xml was produced. Please adjust before rerunning this program.");
+		return false;
+	}
+
+	try
+	{
+		xmlConf = new Poco::Util::XMLConfiguration(GameManager::getGameFolderName() + "project.proj");
 		rwin = new RenderWindow(xmlConf->getInt("project.window.width[@value]"),
 					xmlConf->getInt("project.window.height[@value]"),
 					xmlConf->getString("project[@name]"));
-		gameMan = new GameManager;
-		MusicManager::createMusic("menuMusic", "disandria/" + xmlConf->getString("project.mainmenu.music[@name]"));
+		GameManager::setRenderWindow(rwin);
+		MusicManager::createMusic("menuMusic", GameManager::getGameFolderName() + xmlConf->getString("project.mainmenu.music[@name]"));
 	}
 	catch(...)
 	{
@@ -22,7 +38,7 @@ bool Disandria::onInit()
 		xmlConf->setString("project.mainmenu.image[@name]", "<insert-image-name-here>");
 		xmlConf->setString("project.mainmenu.music[@name]", "<insert-music-name-here>");
 		xmlConf->setString("project.common.button[@name]", "<insert-sound-name-here>");
-		xmlConf->save("disandria/project.proj");
+		xmlConf->save(GameManager::getGameFolderName() + "project.proj");
 		Log::log(PE::Logging::WARNING, "project.proj was produced. Please configure it before running this program again.");
 		return false;
 	}
@@ -32,7 +48,7 @@ bool Disandria::onInit()
 	msc->play();
 	rwin->displayWindow(MenuManager::registerMainMenu(rwin->renderLayout("MainMenu/gui.layout")));
 	ImageManager::setRenderWindow(rwin);
-	ImageManager::renderImage("mainMenu", disandria::Image::createImage(SpriteFactory::createTexture("disandria/" + xmlConf->getString("project.mainmenu.image[@name]")), -1));
+	ImageManager::renderImage("mainMenu", disandria::Image::createImage(SpriteFactory::createTexture(GameManager::getGameFolderName() + xmlConf->getString("project.mainmenu.image[@name]")), -1));
 	MapManager::setRenderWindow(rwin);
 	return true;
 }
@@ -60,8 +76,6 @@ int Disandria::run()
 int Disandria::onCleanup()
 {
 	delete rwin;
-	delete gameMan;
-	gameMan = NULL;
 	rwin = NULL;
 	return 0;
 }

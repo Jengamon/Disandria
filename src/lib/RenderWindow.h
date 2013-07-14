@@ -15,6 +15,7 @@ class RenderWindow
 		sf::View getWindowView();
 		sf::View getDefaultWindowView();
 		void setWindowView(sf::View);
+		void resetView();
 		void startRendering();
 		void render(sf::Sprite&, sf::Shader* = NULL);
 		void renderGUI();

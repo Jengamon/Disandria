@@ -40,6 +40,18 @@ void ImageManager::renders()
 	}
 }
 
+sf::Sprite* ImageManager::getImage(std::string image)
+{
+	if(images.find(image) != images.end())
+	{
+		return &images.find(image)->second.spr;
+	}
+	else
+	{
+		return NULL;
+	}
+}
+
 void ImageManager::deleteImage(std::string str)
 {
 	if(images.find(str) != images.end())
