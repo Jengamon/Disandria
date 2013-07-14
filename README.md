@@ -11,7 +11,7 @@ To build Disandria, you will need:
 *  (TBI) [The SDL library](http://www.libsdl.org "SDL")
 
 PugiXML is used in this project. I do not own nor do I hold any rights over PugiXML.  
-For more information on this project, look over here: [PugiXML library][pxml].
+For more information on this project, look over here: [The PugiXML library][pxml].
 
 [pxml]: http://www.pugixml.org "PugiXML"
 
@@ -20,11 +20,39 @@ There are a few limitations to the engine:
 ### Map-related
 
 * You can only use Tiled TMX maps in their *XML* format.
-* The engine does *not* support TMX terrains.
-* The engine can *only* use 32 x 32 tiles. No more, no less.  
+* The engine currently does *not* support TMX terrains.
+* The engine can *only* use tilesets with the same tile width and tile height as the map they are used on.
   This is due to the algorithim it uses to calculate where to render the tiles.
 * Maps *must* be orthagonal.
 * Maps *must* be in a folder with the *exact* filename of the map.
+* The engine does *not* support image layers.
+
+### Sound-related
+
+* The audio formats the engine supports are:
+
+		- ogg 
+		- wav
+		- flac
+		- aiff
+		- au
+		- raw
+		- paf
+		- svx
+		- nist
+		- voc
+		- ircam
+		- w64
+		- mat4
+		- mat5 pvf
+		- htk
+		- sds
+		- avr
+		- sd2
+		- caf
+		- wve
+		- mpc2k
+		- rf64
 
 Thank you for your interest in Disandria!
 
