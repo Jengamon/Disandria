@@ -1,13 +1,14 @@
 solution "Disandria"
 	location "build"
 	configurations { "Debug", "Release" }
+	buildoptions "-std=c++11"
 	
 	configuration  "Debug"
 		flags { "Symbols" }
 		defines { "DEBUG" }
 
 	configuration "Release"
-		flags { "Symbols" }
+		flags { "Optimize" }
 		defines { "NDEBUG" }
 
 	project "miniLOGlib"

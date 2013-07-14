@@ -33,6 +33,7 @@ RenderWindow::RenderWindow(int width, int height, std::string name)
 	loadScheme("TaharezLook");
 	loadFont("DejaVuSans-14");
 	setArrowandTooltipScheme("TaharezLook");
+	setupMap();
 }
 
 sf::Vector2u RenderWindow::getSize()
@@ -107,10 +108,24 @@ bool RenderWindow::pollEvent(sf::Event& event)
 	return window->pollEvent(event);
 }
 
+void RenderWindow::setupMap()
+{
+	actionMap["quit"] = thor::Action(sf::Event::Closed) || thor::Action(sf::Keyboard::Escape, thor::Action::PressOnce);
+}
+
+void RenderWindow::addWindowCallback(std::string evtnm, thor::Action act, thor::ActionCallback func)
+{
+	actionMap[evtnm] = act;
+	callbackSystem.connect(evtnm, func);
+}
+
 void RenderWindow::handleEvent(sf::Event& event)
 {
-	if(event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+	actionMap.pushEvent(event);
+	if(actionMap.isActive("quit"))
 		window->close();
+
+	actionMap.invokeCallbacks(callbackSystem, window);
 
 	CEGUI::GUIContext& context = CEGUI::System::getSingleton().getDefaultGUIContext();
 	sf::Vector2i mousep = sf::Mouse::getPosition(*window);
