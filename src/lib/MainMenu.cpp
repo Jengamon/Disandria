@@ -1,23 +1,13 @@
 #include "Menus.h"
-#include "ImageManager.h"
 #include "MapParser.h"
-#include "MusicManager.h"
 #include "GameManager.h"
+#include "StateManager.h"
 #include <cstdlib>
 
 bool MAINMENU_startButton(const CEGUI::EventArgs&)
 {
-	CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(NULL);
-	if(ImageManager::getImage("mainMenu") != NULL)
-	{
-		ImageManager::deleteImage("mainMenu");
-	}
+	StateManager::setCurrentState(disandria::States::VOID);
 	MapParser::loadCurrentMap("testmap");
-	if(MusicManager::getMusicPointer("menuMusic") != NULL)
-	{
-		MusicManager::getMusicPointer("menuMusic")->stop();
-		MusicManager::deleteMusic("menuMusic");
-	}
 	GameManager::getRenderWindow()->resetView();
 }
 

@@ -8,7 +8,7 @@
 #include "MusicManager.h"
 #include "MenuManager.h"
 #include "ImageManager.h"
-#include "SpriteFactory.h"
+#include "StatesManager.h"
 #include "MapManager.h"
 
 class Disandria

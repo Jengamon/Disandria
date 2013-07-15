@@ -26,7 +26,6 @@ bool Disandria::onInit()
 					xmlConf->getInt("project.window.height[@value]"),
 					xmlConf->getString("project[@name]"));
 		GameManager::setRenderWindow(rwin);
-		MusicManager::createMusic("menuMusic", GameManager::getGameFolderName() + xmlConf->getString("project.mainmenu.music[@name]"));
 	}
 	catch(...)
 	{
@@ -42,14 +41,9 @@ bool Disandria::onInit()
 		Log::log(PE::Logging::WARNING, "project.proj was produced. Please configure it before running this program again.");
 		return false;
 	}
-	sf::Music* msc = MusicManager::getMusicPointer("menuMusic");
-	msc->setLoop(true);
-	msc->setVolume(100);
-	msc->play();
-	rwin->displayWindow(MenuManager::registerMainMenu(rwin->renderLayout("MainMenu/gui.layout")));
 	ImageManager::setRenderWindow(rwin);
-	ImageManager::renderImage("mainMenu", disandria::Image::createImage(SpriteFactory::createTexture(GameManager::getGameFolderName() + xmlConf->getString("project.mainmenu.image[@name]")), -1));
 	MapManager::setRenderWindow(rwin);
+	StateManager::setCurrentState(disandria::States::MAINMENU);
 	return true;
 }
 
@@ -64,6 +58,8 @@ int Disandria::run()
 		}
 		rwin->clear();
 		rwin->startRendering();
+		StatesManager::checkCurrentState(rwin);
+		StatesManager::renderCurrentState(rwin);
 		if(MapParser::getMapName() != "")
 			MapManager::renderMap();
 		ImageManager::renders();
