@@ -3,7 +3,7 @@
 #include "../GameManager.h"
 #include "../StateManager.h"
 
-void cleanup(thor::ActionContext<std::string>)
+void cleanup(thor::ActionContext<std::string> context)
 {
 	StateManager::setCurrentState(disandria::States::MAINMENU);
 }
@@ -21,7 +21,7 @@ void MainGameState::setCurrentMap(std::string map)
 bool MainGameState::onInit(RenderWindow* window)
 {
 	setCurrentMap("testmap");
-	window->addActionCallback("exit_game", thor::Action(sf::Keyboard::Q, thor::Action::PressOnce), cleanup);
+	window->addActionCallback("exit_game", thor::Action(sf::Keyboard::Q, thor::Action::Hold), cleanup);
 }
 
 void MainGameState::onRender(RenderWindow*)
@@ -30,7 +30,7 @@ void MainGameState::onRender(RenderWindow*)
 
 void MainGameState::onCleanup(RenderWindow* window)
 {
-	setCurrentMap("");
 	GameManager::getRenderWindow()->resetView();
+	setCurrentMap("");
 	window->removeActionCallback("exit_game");
 }

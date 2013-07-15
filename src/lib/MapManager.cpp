@@ -16,6 +16,8 @@ void MapManager::bakeMap()
 	if(currentMap != MapParser::getCurrentMap())
 	{
 		std::list<disandria::Tileset*> tilesets;
+		thor::ResourceCache<sf::Image> imageLoader;
+		imageLoader.setReleaseStrategy(thor::Resources::AutoRelease);
 		currentMap = MapParser::getCurrentMap();
 		im.create(currentMap->getWidth() * currentMap->getTileWidth(),
 				currentMap->getHeight() * currentMap->getTileHeight());
@@ -26,16 +28,14 @@ void MapManager::bakeMap()
 			tlst->firstgid = iter->getFirstGid();
 			tlst->tilewidth = iter->getTileWidth();
 			tlst->tileheight = iter->getTileHeight();
-			sf::Image* imx = new sf::Image;
-			imx->loadFromFile(GameManager::getGameFolderName() + "maps/" + MapParser::getMapName() + "/" + im.getSourceString());
+			tlst->img = imageLoader.acquire(thor::Resources::fromFile<sf::Image>(GameManager::getGameFolderName() + "maps/" + MapParser::getMapName() + "/" + im.getSourceString()));
 			std::string color = im.getTrans();
 			if(color != "")
 			{
-				imx->createMaskFromColor(sf::Color(NString::fromHex(color.substr(0,2)),
+				tlst->img->createMaskFromColor(sf::Color(NString::fromHex(color.substr(0,2)),
 							NString::fromHex(color.substr(2,2)),
 							NString::fromHex(color.substr(4,2))));
 			}
-			tlst->img = imx;
 			tilesets.push_back(tlst);
 		}
 		for(std::list<pugitmx::TileLayer>::iterator iter = currentMap->returnTileLayersIteratorB(); iter != currentMap->returnTileLayersIteratorE(); iter++)

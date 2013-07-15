@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <Thor/Graphics.hpp>
+#include <Thor/Resources.hpp>
 #include "MapParser.h"
 #include "RenderWindow.h"
 #include "../helplib/stringh.h"
@@ -14,7 +15,7 @@ namespace disandria
 		unsigned int firstgid;
 		unsigned int tilewidth;
 		unsigned int tileheight;
-		sf::Image* img;
+		std::shared_ptr<sf::Image> img;
 	};
 };
 
