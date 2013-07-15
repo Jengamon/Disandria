@@ -14,7 +14,7 @@ class StateBase
 		virtual std::string name() = 0;
 		virtual bool onInit(RenderWindow*) = 0;
 		virtual void onRender(RenderWindow*) = 0;
-		virtual void onCleanup() = 0;
+		virtual void onCleanup(RenderWindow*) = 0;
 };
 
 #endif // STATEBASE_H

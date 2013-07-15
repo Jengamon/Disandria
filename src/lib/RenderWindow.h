@@ -1,7 +1,6 @@
 #ifndef RENDERWINDOW_H
 #define RENDERWINDOW_H
 
-#include <functional>
 #include <SFML/Graphics.hpp>
 #include <SFML/OpenGL.hpp>
 #include <Thor/Graphics.hpp>
@@ -22,7 +21,9 @@ class RenderWindow
 		sf::Vector2u getSize();
 		sf::View getWindowView();
 		sf::View getDefaultWindowView();
-		void addWindowCallback(std::string, thor::Action, thor::ActionCallback);
+		void addActionCallback(std::string, thor::Action, thor::ActionCallback);
+		void removeActionCallback(std::string);
+		void removeAllActionCallbacks();
 		void setWindowView(sf::View);
 		void resetView();
 		void startRendering();

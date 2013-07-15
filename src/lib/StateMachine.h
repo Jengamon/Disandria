@@ -11,7 +11,7 @@ class StateMachine
 		static std::string getName(StateBase*);
 		static bool initState(StateBase*, RenderWindow*);
 		static void renderState(StateBase*, RenderWindow*);
-		static void cleanupState(StateBase*);
+		static void cleanupState(StateBase*, RenderWindow*);
 };
 
 #endif // STATEMACHINE_H

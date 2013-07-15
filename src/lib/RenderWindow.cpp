@@ -110,19 +110,38 @@ bool RenderWindow::pollEvent(sf::Event& event)
 
 void RenderWindow::setupMap()
 {
-	actionMap["quit"] = thor::Action(sf::Event::Closed) || thor::Action(sf::Keyboard::Escape, thor::Action::PressOnce);
+	actionMap["QUIT"] = thor::Action(sf::Event::Closed) || thor::Action(sf::Keyboard::Escape, thor::Action::PressOnce);
 }
 
-void RenderWindow::addWindowCallback(std::string evtnm, thor::Action act, thor::ActionCallback func)
+void RenderWindow::addActionCallback(std::string evtnm, thor::Action act, thor::ActionCallback func)
 {
-	actionMap[evtnm] = act;
-	callbackSystem.connect(evtnm, func);
+	if(evtnm != "QUIT")
+	{
+		actionMap[evtnm] = act;
+		callbackSystem.connect(evtnm, func);
+	}
+}
+
+void RenderWindow::removeActionCallback(std::string id)
+{
+	if(id != "QUIT")
+	{
+		actionMap.removeAction(id);
+		callbackSystem.clearConnections(id);
+	}
+}
+
+void RenderWindow::removeAllActionCallbacks()
+{
+	actionMap.clearActions();
+	callbackSystem.clearAllConnections();
+	setupMap();
 }
 
 void RenderWindow::handleEvent(sf::Event& event)
 {
 	actionMap.pushEvent(event);
-	if(actionMap.isActive("quit"))
+	if(actionMap.isActive("QUIT"))
 		window->close();
 
 	actionMap.invokeCallbacks(callbackSystem, window);

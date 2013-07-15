@@ -22,11 +22,11 @@ void StateMachine::renderState(StateBase* state, RenderWindow* window)
 		state->onRender(window);
 }
 
-void StateMachine::cleanupState(StateBase* state)
+void StateMachine::cleanupState(StateBase* state, RenderWindow* window)
 {
 	if(state != NULL)
 	{
-		state->onCleanup();
+		state->onCleanup(window);
 		delete state;
 	}
 }

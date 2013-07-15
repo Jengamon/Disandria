@@ -8,7 +8,8 @@ namespace disandria
 		enum State
 		{
 			VOID,
-			MAINMENU
+			MAINMENU,
+			MAINGAME
 		};
 	};
 };

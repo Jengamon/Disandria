@@ -28,7 +28,7 @@ void MainMenuState::onRender(RenderWindow* win)
 {
 }
 
-void MainMenuState::onCleanup()
+void MainMenuState::onCleanup(RenderWindow* win)
 {
 	CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(NULL);
 	ImageManager::deleteImage("mainMenu");

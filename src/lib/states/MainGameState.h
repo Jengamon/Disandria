@@ -1,10 +1,12 @@
-#ifndef MAINMENU_STATES_H
-#define MAINMENU_STATES_H
+#ifndef MAINGAMESTATE_H
+#define MAINGAMESTATE_H
 
 #include "../StateBase.h"
 
-class MainMenuState : public StateBase
+class MainGameState : public StateBase
 {
+	public:
+		void setCurrentMap(std::string);
 	private:
 		std::string name();
 		bool onInit(RenderWindow*);
@@ -12,4 +14,4 @@ class MainMenuState : public StateBase
 		void onCleanup(RenderWindow*);
 };
 
-#endif // MAINMENU_STATES_H
+#endif // MAINGAMESTATE_H

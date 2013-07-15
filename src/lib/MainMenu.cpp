@@ -6,9 +6,7 @@
 
 bool MAINMENU_startButton(const CEGUI::EventArgs&)
 {
-	StateManager::setCurrentState(disandria::States::VOID);
-	MapParser::loadCurrentMap("testmap");
-	GameManager::getRenderWindow()->resetView();
+	StateManager::setCurrentState(disandria::States::MAINGAME);
 }
 
 bool MAINMENU_loadButton(const CEGUI::EventArgs&)
