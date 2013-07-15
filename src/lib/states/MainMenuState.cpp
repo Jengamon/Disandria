@@ -6,7 +6,6 @@
 #include "../GameManager.h"
 #include <Poco/AutoPtr.h>
 #include <Poco/Util/XMLConfiguration.h>
-#include <Thor/Animation.hpp>
 
 std::string MainMenuState::name()
 {
@@ -32,7 +31,7 @@ void MainMenuState::onRender(RenderWindow* win)
 void MainMenuState::onCleanup(RenderWindow* win)
 {
 	win->displayWindow(NULL);
-	ImageManager::deleteImage("mainMenu");
 	MusicManager::getMusicPointer("menuMusic")->stop();
 	MusicManager::deleteMusic("menuMusic");
+	ImageManager::deleteImage("mainMenu");
 }

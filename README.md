@@ -7,15 +7,14 @@ To build Disandria, you will need:
 *  [The SFML library](http://www.sfml-dev.org "SFML")
 *  [The Poco C++ library](http://www.pocoproject.org "Poco")
 *  [The CEGUI-mk2 library (v0.8+)](http://www.cegui.org.uk "CEGUI-mk2 (0.8+)")
-*  (TBI) [The Thor library (2.0)](http://www.bromeon.ch/libraries/thor/index.html "Thor 2.0")
-*  (TBI) [The SDL library](http://www.libsdl.org "SDL")
+*  [The Thor library (2.0)](http://www.bromeon.ch/libraries/thor/index.html "Thor 2.0")
 
 PugiXML is used in this project. I do not own nor do I hold any rights over PugiXML.  
 For more information on this project, look over here: [The PugiXML library][pxml].
 
 [pxml]: http://www.pugixml.org "PugiXML"
 
-There are a few limitations to the engine:
+There are some limitations to the engine:
 
 ### Map-related
 
@@ -63,11 +62,12 @@ There are a few limitations to the engine:
 
 ### Scripting-related
 
-* The scripting language will be JavaScript, through Mozilla's SpiderMonkey 24.
+* The scripting language will be JavaScript, through Mozilla's SpiderMonkey 24.  
+  ...which is expected to be released November 2013. So you see why there is no scripting engine right now.
 
 ### Image-related
 
-* Images must be RGBA-8. No RGB-32 or CMYK stuff.
+* Images must be RGBA-8. No CMYK stuff.
 
 Thank you for your interest in Disandria!
 

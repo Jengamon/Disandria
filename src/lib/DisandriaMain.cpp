@@ -31,12 +31,12 @@ bool Disandria::onInit()
 	{
 		xmlConf = new Poco::Util::XMLConfiguration;
 		xmlConf->loadEmpty("config");
-		xmlConf->setString("project[@name]", "<insert-name-here>");
+		xmlConf->setString("project[@name]", "|insert-name-here|");
 		xmlConf->setInt("project.window.width[@value]", 800);
 		xmlConf->setInt("project.window.height[@value]", 600);
-		xmlConf->setString("project.mainmenu.image[@name]", "<insert-image-name-here>");
-		xmlConf->setString("project.mainmenu.music[@name]", "<insert-music-name-here>");
-		xmlConf->setString("project.common.button[@name]", "<insert-sound-name-here>");
+		xmlConf->setString("project.mainmenu.image[@name]", "|insert-image-name-here|");
+		xmlConf->setString("project.mainmenu.music[@name]", "|insert-music-name-here|");
+		xmlConf->setString("project.common.button[@name]", "|insert-sound-name-here|");
 		xmlConf->save(GameManager::getGameFolderName() + "project.proj");
 		Log::log(PE::Logging::WARNING, "project.proj was produced. Please configure it before running this program again.");
 		return false;
