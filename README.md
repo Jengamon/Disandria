@@ -69,6 +69,19 @@ There are some limitations to the engine:
 
 * Images must be RGBA-8. No CMYK stuff.
 
-Thank you for your interest in Disandria!
+## A bit of Information on the Projects inside the Project
 
-**Bob Hostern**
+### PugiTMX
+
+PugiTMX is a TMX map parser, written in C++ (obviously), based on the PugiXML parser.  
+I wrote it to see if I could.
+
+### RPGeom
+
+This is a geometry/collision library specifically tailored toward RPGs.  
+The reasoning behind this is... nothing. A simple test to see if I could.
+
+
+**Thank you for your interest in Disandria!**
+
+*~~ Bob Hostern*

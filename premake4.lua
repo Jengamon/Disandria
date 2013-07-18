@@ -28,11 +28,16 @@ solution "Disandria"
 		files { "src/pugitmx/**.cpp", "src/pugitmx/**.h" }
 		links { "pugixml", "miniLOGlib" }
 
+	project "RPGeom"
+		kind "SharedLib"
+		language "C++"
+		files { "src/rpgeom/**.cpp", "src/rpgeom/**.h" }
+
 	project "DisandriaLib"
 		kind "SharedLib"
 		language "C++"
 		files { "src/lib/**.cpp", "src/lib/**.h" }
-		links { "miniLOGlib", "pugitmx", "CEGUIBase-0", "CEGUIOpenGLRenderer-0", "sfml-graphics", "sfml-window", "sfml-audio", "sfml-system", "PocoUtil", "PocoFoundation", "thor" }
+		links { "miniLOGlib", "pugitmx", "CEGUIBase-0", "CEGUIOpenGLRenderer-0", "sfml-graphics", "sfml-window", "sfml-audio", "sfml-system", "PocoUtil", "PocoFoundation", "thor", "RPGeom" }
 
 	project "disandria-game"
 		kind "ConsoleApp"
