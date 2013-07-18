@@ -10,6 +10,8 @@
 #include "ImageManager.h"
 #include "StatesManager.h"
 #include "MapManager.h"
+#include "FontManager.h"
+#include "GameTimer.h"
 
 class Disandria
 {

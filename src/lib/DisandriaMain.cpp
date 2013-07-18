@@ -22,10 +22,6 @@ bool Disandria::onInit()
 	try
 	{
 		xmlConf = new Poco::Util::XMLConfiguration(GameManager::getGameFolderName() + "project.proj");
-		rwin = new RenderWindow(xmlConf->getInt("project.window.width[@value]"),
-					xmlConf->getInt("project.window.height[@value]"),
-					xmlConf->getString("project[@name]"));
-		GameManager::setRenderWindow(rwin);
 	}
 	catch(...)
 	{
@@ -37,13 +33,19 @@ bool Disandria::onInit()
 		xmlConf->setString("project.mainmenu.image[@name]", "|insert-image-name-here|");
 		xmlConf->setString("project.mainmenu.music[@name]", "|insert-music-name-here|");
 		xmlConf->setString("project.common.button[@name]", "|insert-sound-name-here|");
+		xmlConf->setString("project.common.font[@name]", "|insert-font-name-here|");
 		xmlConf->save(GameManager::getGameFolderName() + "project.proj");
 		Log::log(PE::Logging::WARNING, "project.proj was produced. Please configure it before running this program again.");
 		return false;
 	}
+	rwin = new RenderWindow(xmlConf->getInt("project.window.width[@value]"),
+					xmlConf->getInt("project.window.height[@value]"),
+					xmlConf->getString("project[@name]"));
+	GameManager::setRenderWindow(rwin);
 	ImageManager::setRenderWindow(rwin);
 	MapManager::setRenderWindow(rwin);
 	StateManager::setCurrentState(disandria::States::MAINMENU);
+	FontManager::setDefaultFont(xmlConf->getString("project.common.font[@name]"));
 	return true;
 }
 
@@ -63,6 +65,9 @@ int Disandria::run()
 		if(MapParser::getMapName() != "")
 			MapManager::renderMap();
 		ImageManager::renders();
+		if(GameTimer::isRunning())
+			GameTimer::renderTime(rwin);
+		GameTimer::update();
 		rwin->renderGUI();
 		rwin->display();
 	}

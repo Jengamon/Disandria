@@ -28,6 +28,7 @@ class RenderWindow
 		void resetView();
 		void startRendering();
 		void render(sf::Sprite&, sf::Shader* = NULL);
+		void render(sf::Text&, sf::Shader* = NULL);
 		void render(thor::BigSprite&, sf::Shader* = NULL);
 		void renderGUI();
 		CEGUI::Window* renderLayout(std::string);
