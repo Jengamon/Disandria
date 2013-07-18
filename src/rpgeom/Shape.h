@@ -1,21 +1,21 @@
-#ifndef _RPGEOM_TILE_H
-#define _RPGEOM_TILE_H
+#ifndef _RPGEOM_SHAPE_H
+#define _RPGEOM_SHAPE_H
 
 #include <vector>
 #include "Point.h"
-#include "TileData.h"
+#include "ShapeData.h"
 
 namespace rpgeom
 {
-	class Tile
+	class Shape
 	{
 		public:
-			Tile(std::vector<Point>&);
-			Tile(Point[], int);
+			Shape(std::vector<Point>&);
+			Shape(Point[], int);
 			int getPointCount() const;
 			void addPoint(Point&);
 			void clearPoints();
-			TileData getPoints();
+			ShapeData getPoints();
 			Point* operator[] (int index);
 			Point* getPoint(int index);
 		private:
@@ -23,4 +23,4 @@ namespace rpgeom
 	};
 };
 
-#endif // _RPGEOM_TILE_H
+#endif // _RPGEOM_SHAPE_H

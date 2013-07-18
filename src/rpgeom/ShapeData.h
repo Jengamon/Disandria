@@ -3,9 +3,9 @@
 
 namespace rpgeom
 {
-	class TileData
+	class ShapeData
 	{
-		friend class Tile;
+		friend class Shape;
 		public:
 			Point* operator[] (int where)
 			{

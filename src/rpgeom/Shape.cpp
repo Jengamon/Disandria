@@ -1,7 +1,7 @@
-#include "Tile.h"
+#include "Shape.h"
 using namespace rpgeom;
 
-Tile::Tile(std::vector<Point>& pointList)
+Shape::Shape(std::vector<Point>& pointList)
 {
 	for(int i = 0; i < pointList.size(); i++)
 	{
@@ -9,7 +9,7 @@ Tile::Tile(std::vector<Point>& pointList)
 	}
 }
 
-Tile::Tile(Point* pointList, int numberOfPoints)
+Shape::Shape(Point* pointList, int numberOfPoints)
 {
 	for(int i = 0; i < numberOfPoints; i++)
 	{
@@ -17,35 +17,35 @@ Tile::Tile(Point* pointList, int numberOfPoints)
 	}
 }
 
-int Tile::getPointCount() const
+int Shape::getPointCount() const
 {
 	return points.size();
 }
 
-void Tile::addPoint(Point& point)
+void Shape::addPoint(Point& point)
 {
 	points.push_back(point);
 }
 
-void Tile::clearPoints()
+void Shape::clearPoints()
 {
 	points.clear();
 }
 
-TileData Tile::getPoints()
+ShapeData Shape::getPoints()
 {
-	TileData data;
+	ShapeData data;
 	data.totalPoints = getPointCount();
 	data.data = points.data();
 	return data;
 }
 
-Point* Tile::operator[] (int index)
+Point* Shape::operator[] (int index)
 {
 	return getPoint(index);
 }
 
-Point* Tile::getPoint(int index)
+Point* Shape::getPoint(int index)
 {
 	return &points[index];
 }
