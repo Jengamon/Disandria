@@ -72,6 +72,11 @@ void RenderWindow::render(sf::Sprite& spr, sf::Shader* shd)
 	window->draw(spr, shd);
 }
 
+void RenderWindow::render(sf::Text& txt, sf::Shader* shd)
+{
+	window->draw(txt, shd);
+}
+
 void RenderWindow::render(thor::BigSprite& spr, sf::Shader* shd)
 {
 	window->draw(spr, shd);
