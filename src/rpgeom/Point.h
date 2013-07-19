@@ -14,6 +14,66 @@ namespace rpgeom
 			xy.y = y;
 			return xy;
 		}
+
+		bool operator==(const Point& point)
+		{
+			if(this->x == point.x)
+			{
+				if(this->y == point.y)
+				{
+					return true;
+				}
+			}
+			return false;
+		}
+		
+		bool operator>(const Point& point)
+		{
+			if(this->x > point.x)
+			{
+				if(this->y > point.y)
+				{
+					return true;
+				}
+			}
+			return false;
+		}
+
+		bool operator<(const Point& point)
+		{
+			if(this->x < point.x)
+			{
+				if(this->y < point.y)
+				{
+					return true;
+				}
+			}
+			return false;
+		}
+		
+		bool operator>=(const Point& point)
+		{
+			if(this->x >= point.x)
+			{
+				if(this->y >= point.y)
+				{
+					return true;
+				}
+			}
+			return false;
+		}
+
+		bool operator<=(const Point& point)
+		{
+			if(this->x <= point.x)
+			{
+				if(this->y <= point.y)
+				{
+					return true;
+				}
+			}
+			return false;
+		}
 	};
 };
 

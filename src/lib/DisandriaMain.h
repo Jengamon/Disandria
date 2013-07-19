@@ -12,6 +12,7 @@
 #include "MapManager.h"
 #include "FontManager.h"
 #include "GameTimer.h"
+#include "LObjectManager.h"
 
 class Disandria
 {

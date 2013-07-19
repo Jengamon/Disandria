@@ -63,7 +63,10 @@ int Disandria::run()
 		StatesManager::checkCurrentState(rwin);
 		StatesManager::renderCurrentState(rwin);
 		if(MapParser::getMapName() != "")
+		{
 			MapManager::renderMap();
+			LObjectManager::update();
+		}
 		ImageManager::renders();
 		if(GameTimer::isRunning())
 			GameTimer::renderTime(rwin);

@@ -175,6 +175,7 @@ void RenderWindow::handleEvent(sf::Event& event)
 
 RenderWindow::~RenderWindow()
 {
+	CEGUI::OpenGLRenderer::destroySystem();
 	delete window;
 	delete elapsedclock;
 	window = NULL;
