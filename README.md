@@ -80,6 +80,7 @@ I wrote it to see if I could.
 
 This is a geometry/collision library specifically tailored toward RPGs.  
 The reasoning behind this is... nothing. A simple test to see if I could.
+By the way, RPGeom uses the [Cartesian coordinate system](http://en.wikipedia.org/wiki/Cartesian_coordinate_system "Cartesian coordinate system") with the topleft corner being (0,0).
 
 
 **Thank you for your interest in Disandria!**
