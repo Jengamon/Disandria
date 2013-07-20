@@ -11,6 +11,7 @@ class GameManager
 		static std::string getGameFolderName();
 		static void setRenderWindow(RenderWindow*);
 		static RenderWindow* getRenderWindow();
+		static double getEngineVersion();
 	private:
 		static std::string gameName;
 		static RenderWindow* window;

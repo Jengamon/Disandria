@@ -25,3 +25,8 @@ RenderWindow* GameManager::getRenderWindow()
 {
 	return window;
 }
+
+double GameManager::getEngineVersion()
+{
+	return 0.02;
+}
