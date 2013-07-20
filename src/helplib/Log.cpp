@@ -13,10 +13,10 @@ void Log::setup()
 {
 	if(!stp)
 	{
-		fChan->setProperty("path", "./log.txt");
+		fChan->setProperty("path", "./Disandria.log");
 		fChan->setProperty("compress", "true");
 		fChan->setProperty("archive", "number");
-		fChan->setProperty("purgeCount", "5");
+		fChan->setProperty("purgeCount", "50");
 		fChan->setProperty("rotation", "2000 K");
 
 		sChan->addChannel(fChan);
@@ -24,7 +24,7 @@ void Log::setup()
 	
 		Logger::root().setLevel("trace");
 		Logger::root().setChannel(fChan);
-		Logger::root().information("---Loaded logging...---\nDisandria -- Version 0.01\n--------------------");
+		Logger::root().information("---Loaded logging...---\nDisandria Logger -- Version 0.02\n--------------------");
 		Logger::root().setChannel(sChan);
 		stp = true;
 	}
