@@ -29,9 +29,9 @@ There are some limitations to the engine:
 * The engine can *only* use tilesets with the same tile width and tile height as the map they are used on.
   This is due to the algorithim it uses to calculate where to render the tiles.
 * Maps *must* be orthagonal.
-  I've never used an isometric map. I don't know if my renderer can handle isometric maps.
+  I've never used an isometric map. I don't know if my renderer can handle isometric maps, but try at your own downfall...
 * Maps *must* be in a folder with the *exact* filename of the map.
-  This is so the engine can find them, and so that when I add scripting, everything is all in the same folder.
+  This is so the engine can find them, and so that when I add scripting, everything is all in the same folder, and everything won't be mixed with each other.
 
 ### Sound-related
 
