@@ -44,6 +44,7 @@ class RenderWindow
 		void setArrowScheme(std::string);
 		void setTooltipScheme(std::string);
 		void display();
+		void close();
 		virtual ~RenderWindow();
 	private:
 		void setupMap();

@@ -2,6 +2,13 @@ solution "Disandria"
 	location "build"
 	configurations { "Debug", "Release" }
 	buildoptions "-std=c++11"
+	newoption { 
+		trigger="ruby-module", 
+		description="Build for ruby module" 
+	}
+	
+	configuration "ruby-module"
+		defines { "RUBY_MODULE" }
 	
 	configuration  "Debug"
 		flags { "Symbols" }

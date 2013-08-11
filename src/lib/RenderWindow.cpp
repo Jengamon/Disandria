@@ -30,9 +30,11 @@ RenderWindow::RenderWindow(int width, int height, std::string name)
 	if (parser->isPropertyPresent("SchemaDefaultResourceGroup"))
 		parser->setProperty("SchemaDefaultResourceGroup", "schemas");
 
+	// Remove and put to script ASAP
 	loadScheme("TaharezLook");
 	loadFont("DejaVuSans-14");
 	setArrowandTooltipScheme("TaharezLook");
+	// --END--
 	setupMap();
 }
 
@@ -174,6 +176,11 @@ void RenderWindow::handleEvent(sf::Event& event)
 }
 
 RenderWindow::~RenderWindow()
+{
+	close();
+}
+
+void RenderWindow::close()
 {
 	CEGUI::OpenGLRenderer::destroySystem();
 	delete window;
