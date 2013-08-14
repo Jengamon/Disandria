@@ -8,6 +8,7 @@ AutoPtr<FileChannel> Log::fChan = new FileChannel;
 AutoPtr<ConsoleChannel> Log::conChan = new ConsoleChannel;
 AutoPtr<SplitterChannel> Log::sChan = new SplitterChannel;
 bool Log::stp = false;
+std::map<int,std::string> Log::ids;
 
 void Log::setup()
 {
@@ -24,31 +25,37 @@ void Log::setup()
 	
 		Logger::root().setLevel("trace");
 		Logger::root().setChannel(fChan);
-		Logger::root().information("---Loaded logging...---\nDisandria Logger -- Version 0.02\n--------------------");
+		Logger::root().information("---Loaded logging...---\nDisandria Logger -- Version 0.1\n--------------------");
 		Logger::root().setChannel(sChan);
 		stp = true;
 	}
 }
 
-void Log::log(PE::Logging::Levels lv, std::string str)
+void Log::log(PE::Logging::Levels lv, std::string str, int id)
 {
 	setup();
+	std::string prefix = "[] ";
+	if(id != 0)
+	{
+		if(ids.find(id) != ids.end())
+			prefix = "[" + ids.find(id)->second + "] ";
+	}
 	switch(lv)
 	{
 		case PE::Logging::INFORMATION:
-			str = "INFORMATION: " + str;
+			str = "INFORMATION: " + prefix + str;
 			Logger::root().information(str.c_str());
 			break;
 		case PE::Logging::NOTICE:
-			str = "NOTICE: " + str;
+			str = "NOTICE: " + prefix + str;
 			Logger::root().information(str.c_str());
 			break;
 		case PE::Logging::WARNING:
-			str = "WARNING: " + str;
+			str = "WARNING: " + prefix + str;
 			Logger::root().warning(str.c_str());
 			break;
 		case PE::Logging::ERROR:
-			str = "ERROR: " + str;
+			str = "ERROR: " + prefix + str;
 			Logger::root().error(str.c_str());
 			exit(-1);
 		case PE::Logging::VOID:
@@ -57,10 +64,24 @@ void Log::log(PE::Logging::Levels lv, std::string str)
 	}
 }
 
-void Log::log(std::string str)
+void Log::log(std::string str, int id)
 {
 	setup();
-	str = "ERROR: " + str;
+	std::string prefix = "[] ";
+	if(id != 0)
+	{
+		if(ids.find(id) != ids.end())
+			prefix = "[" + ids.find(id)->second + "] ";
+	}
+	str = "ERROR: " + prefix + str;
 	Logger::root().error(str.c_str());
 	exit(-1);
+}
+
+int Log::registerId(std::string id)
+{
+	static int idNum = 1;
+	ids[idNum] = id;
+	idNum++;
+	return idNum;
 }

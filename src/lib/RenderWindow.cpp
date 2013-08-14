@@ -1,13 +1,12 @@
 #include "RenderWindow.h"
 #include "GameManager.h"
-RenderWindow::RenderWindow(int width, int height, std::string name)
+RenderWindow::RenderWindow(int width, int height, std::string name) : sf::RenderWindow(sf::VideoMode(width, height), name, sf::Style::Close | sf::Style::Titlebar)
 {
-	window = new sf::RenderWindow(sf::VideoMode(width, height), name, sf::Style::Close | sf::Style::Titlebar);
 	elapsedclock = new sf::Clock;
 	glEnable(GL_TEXTURE_2D);
 	CEGUI::OpenGLRenderer& renderer = CEGUI::OpenGLRenderer::bootstrapSystem();
-	window->setVerticalSyncEnabled(true);
-	window->setFramerateLimit(60);
+	this->setVerticalSyncEnabled(true);
+	this->setFramerateLimit(60);
 
 	CEGUI::DefaultResourceProvider* rp = static_cast<CEGUI::DefaultResourceProvider*>(CEGUI::System::getSingleton().getResourceProvider());
 
@@ -38,60 +37,20 @@ RenderWindow::RenderWindow(int width, int height, std::string name)
 	setupMap();
 }
 
-sf::Vector2u RenderWindow::getSize()
-{
-	return window->getSize();
-}
-
-sf::View RenderWindow::getWindowView()
-{
-	return window->getView();
-}
-
-sf::View RenderWindow::getDefaultWindowView()
-{
-	return window->getDefaultView();
-}
-
-void RenderWindow::setWindowView(sf::View view)
-{
-	window->setView(view);
-}
-
 void RenderWindow::resetView()
 {
-	sf::View dview = window->getDefaultView();
-	window->setView(dview);
+	sf::View dview = this->getDefaultView();
+	this->setView(dview);
 }
 
 void RenderWindow::startRendering()
 {
-	window->pushGLStates();
-}
-
-void RenderWindow::render(sf::Sprite& spr, sf::Shader* shd)
-{
-	window->draw(spr, shd);
-}
-
-void RenderWindow::render(sf::Text& txt, sf::Shader* shd)
-{
-	window->draw(txt, shd);
-}
-
-void RenderWindow::render(thor::BigSprite& spr, sf::Shader* shd)
-{
-	window->draw(spr, shd);
-}
-
-void RenderWindow::display()
-{
-	window->display();
+	this->pushGLStates();
 }
 
 void RenderWindow::renderGUI()
 {
-	window->popGLStates();
+	this->popGLStates();
 	CEGUI::System::getSingleton().renderAllGUIContexts();
 }
 
@@ -100,19 +59,9 @@ CEGUI::Window* RenderWindow::renderLayout(std::string lyout)
 	return CEGUI::WindowManager::getSingleton().loadLayoutFromFile(lyout);
 }
 
-bool RenderWindow::isOpen()
-{
-	return window->isOpen();
-}
-
 void RenderWindow::displayWindow(CEGUI::Window* win)
 {
 	CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(win);
-}
-
-bool RenderWindow::pollEvent(sf::Event& event)
-{
-	return window->pollEvent(event);
 }
 
 void RenderWindow::setupMap()
@@ -149,12 +98,12 @@ void RenderWindow::handleEvent(sf::Event& event)
 {
 	actionMap.pushEvent(event);
 	if(actionMap.isActive("QUIT"))
-		window->close();
+		this->close();
 
-	actionMap.invokeCallbacks(callbackSystem, window);
+	actionMap.invokeCallbacks(callbackSystem, this);
 
 	CEGUI::GUIContext& context = CEGUI::System::getSingleton().getDefaultGUIContext();
-	sf::Vector2i mousep = sf::Mouse::getPosition(*window);
+	sf::Vector2i mousep = sf::Mouse::getPosition(*this);
 	if(event.type == sf::Event::MouseLeft)
 		context.injectMouseLeaves();
 	context.injectMousePosition(mousep.x, mousep.y);
@@ -177,21 +126,14 @@ void RenderWindow::handleEvent(sf::Event& event)
 
 RenderWindow::~RenderWindow()
 {
-	close();
-}
-
-void RenderWindow::close()
-{
 	CEGUI::OpenGLRenderer::destroySystem();
-	delete window;
 	delete elapsedclock;
-	window = NULL;
 	elapsedclock = NULL;
 }
 
-void RenderWindow::clear()
+void RenderWindow::clearWindow()
 {
-	window->clear(sf::Color::Black);
+	this->clear(sf::Color::Black);
 }
 
 void RenderWindow::loadScheme(std::string str)

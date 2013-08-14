@@ -64,5 +64,5 @@ void GameTimer::renderTime(RenderWindow* window)
 	int window_y = window->getSize().y / DIV_CONSTANT;
 	#undef DIV_CONSTANT
 	time.setPosition(window_x, window_y);
-	window->render(time);
+	window->draw(time);
 }

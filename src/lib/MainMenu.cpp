@@ -1,6 +1,4 @@
 #include "Menus.h"
-#include "MapParser.h"
-#include "GameManager.h"
 #include "StateManager.h"
 #include <cstdlib>
 

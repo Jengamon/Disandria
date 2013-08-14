@@ -26,7 +26,7 @@ void ImageManager::renders()
 		disandria::InternalImage& img(iter->second);
 		if(img.renderFrames > 0)
 		{
-			rwindow->render(img.spr);
+			rwindow->draw(img.spr);
 			img.renderFrames -= 1;
 		}
 		else if(img.renderFrames == 0)
@@ -35,7 +35,7 @@ void ImageManager::renders()
 		}
 		else
 		{
-			rwindow->render(img.spr);
+			rwindow->draw(img.spr);
 		}
 	}
 }

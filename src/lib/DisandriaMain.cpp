@@ -46,6 +46,13 @@ bool Disandria::onInit()
 	MapManager::setRenderWindow(rwin);
 	StateManager::setCurrentState(disandria::States::MAINMENU);
 	FontManager::setDefaultFont(xmlConf->getString("project.common.font[@name]"));
+	sengine = new FalconSAPI();
+	sengine->createRuntime();
+	sengine->loadFile("main");
+	sengine->createVM();
+	sengine->loadCoreModule();
+	sengine->loadExternalModule(createAppModule());
+	sengine->linkRuntime();
 	return true;
 }
 
@@ -53,20 +60,17 @@ int Disandria::run()
 {
 	while(rwin->isOpen())
 	{
+		sengine->launch();
 		sf::Event event;
 		while(rwin->pollEvent(event))
 		{
 			rwin->handleEvent(event);
 		}
-		rwin->clear();
+		rwin->clearWindow();
 		rwin->startRendering();
 		StatesManager::checkCurrentState(rwin);
 		StatesManager::renderCurrentState(rwin);
-		if(MapParser::getMapName() != "")
-		{
-			MapManager::renderMap();
-			LObjectManager::update();
-		}
+		MapManager::renderMap();
 		ImageManager::renders();
 		if(GameTimer::isRunning())
 			GameTimer::renderTime(rwin);

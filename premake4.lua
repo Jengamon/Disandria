@@ -2,13 +2,6 @@ solution "Disandria"
 	location "build"
 	configurations { "Debug", "Release" }
 	buildoptions "-std=c++11"
-	newoption { 
-		trigger="ruby-module", 
-		description="Build for ruby module" 
-	}
-	
-	configuration "ruby-module"
-		defines { "RUBY_MODULE" }
 	
 	configuration  "Debug"
 		flags { "Symbols" }
@@ -35,16 +28,11 @@ solution "Disandria"
 		files { "src/pugitmx/**.cpp", "src/pugitmx/**.h" }
 		links { "pugixml", "miniLOGlib" }
 
-	project "RPGeom"
-		kind "SharedLib"
-		language "C++"
-		files { "src/rpgeom/**.cpp", "src/rpgeom/**.h" }
-
 	project "DisandriaLib"
 		kind "SharedLib"
 		language "C++"
 		files { "src/lib/**.cpp", "src/lib/**.h" }
-		links { "miniLOGlib", "pugitmx", "CEGUIBase-0", "CEGUIOpenGLRenderer-0", "sfml-graphics", "sfml-window", "sfml-audio", "sfml-system", "PocoUtil", "PocoFoundation", "thor", "RPGeom" }
+		links { "miniLOGlib", "pugitmx", "CEGUIBase-0", "CEGUIOpenGLRenderer-0", "sfml-graphics", "sfml-window", "sfml-audio", "sfml-system", "PocoUtil", "PocoFoundation", "thor", "Box2D", "falcon_engine" }
 
 	project "disandria-game"
 		kind "ConsoleApp"

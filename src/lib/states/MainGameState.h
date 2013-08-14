@@ -5,8 +5,6 @@
 
 class MainGameState : public StateBase
 {
-	public:
-		void setCurrentMap(std::string);
 	private:
 		std::string name();
 		bool onInit(RenderWindow*);

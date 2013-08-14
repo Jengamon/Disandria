@@ -2,14 +2,23 @@
 
 Disandria is an RPG game, whose storyline I will soon develop, and, once finished, I will release on RMN (rpgmaker.net).  
 This repository is simply the engine, also referred to as Disandria.  
-To build Disandria, you will need:
+To build Disandria, you will need to get (on your own):
 
-*  [The SFML library](http://www.sfml-dev.org "SFML")
-*  [The Poco C++ library](http://www.pocoproject.org "Poco")
-*  [The CEGUI-mk2 library (v0.8+)](http://www.cegui.org.uk "CEGUI-mk2 (0.8+)")
-*  [The Thor library (2.0)](http://www.bromeon.ch/libraries/thor/index.html "Thor 2.0")
+*  [The SFML library](http://www.sfml-dev.org "SFML") Version 2.0 or later required. Do **NOT** get Version 1.6. It will **NOT** compile. The coding standards changed between the two versions, so that causes an incompatibility with SFML-1.6 and SFML-2.0+.  
+*  [The Poco C++ library](http://www.pocoproject.org "Poco") 
+*  [The CEGUI-mk2 library](http://www.cegui.org.uk "CEGUI-mk2") CEGUI-mk2 (Version 0.8 or later...)  
+*  [The Thor library](http://www.bromeon.ch/libraries/thor/index.html "Thor") I'm not sure if Version 1.1 works with SFML-2.0 or SFML-2.1, but the best bet is to go with Thor 2.0.  
+*  [The Falcon Programming Language](http://www.falconpl.org "FalconPL") An wonderful project I stumbled across. Completely in C++. Easily integrated as an embeddable scripting language. A quite extensive standard library. The default scripting language of Disandria.  
 
-PugiXML is used in this project. I do not own nor do I hold any rights over PugiXML.  
+For those of you who want to use what I used, here are the version numbers:  
+SFML: 2.1  
+Poco: 1.4.6p1
+CEGUI: 0.8.2
+Thor: 2.0-dev
+FalconPL: 0.9.6.8 (Chimera)
+
+PugiXML is used in this project. The files for PugiXML are included in the folder src/pugixml.
+I do not own nor do I hold any rights over PugiXML.  
 For more information on this project, look over here: [The PugiXML library][pxml].
 
 [pxml]: http://www.pugixml.org "PugiXML"
@@ -30,8 +39,9 @@ There are some limitations to the engine:
   This is due to the algorithim it uses to calculate where to render the tiles.
 * Maps *must* be orthagonal.
   I've never used an isometric map. I don't know if my renderer can handle isometric maps, but try at your own downfall...
-* Maps *must* be in a folder with the *exact* filename of the map.
-  This is so the engine can find them, and so that when I add scripting, everything is all in the same folder, and everything won't be mixed with each other.
+* Maps *must* be in a folder with the *exact* filename of the map (without the .tmx).
+  This is so the engine can find them, and as I add scripting, everything is all in the same folder, and everything won't be mixed with each other. 
+* Also, the map file must have the extension .tmx. This is the default extension for Tiled **TMX** maps, so...
 
 ### Sound-related
 
@@ -62,25 +72,14 @@ There are some limitations to the engine:
 
 ### Scripting-related
 
-* The scripting language will be JavaScript, through Mozilla's SpiderMonkey 24.  
-  ...which is expected to be released November 2013. So you see why there is no scripting engine right now.
+* The default scripting language will be Falcon. I will add more in the future...
 
-### Image-related
-
-* Images must be RGBA-8. No CMYK stuff.
-
-## A bit of Information on the Projects inside the Project
+## A bit of Information on the Projects inside this Project
 
 ### PugiTMX
 
 PugiTMX is a TMX map parser, written in C++ (obviously), based on the PugiXML parser.  
 I wrote it to see if I could.
-
-### RPGeom
-
-This is a geometry/collision library specifically tailored toward RPGs.  
-The reasoning behind this is... nothing. A simple test to see if I could.
-By the way, RPGeom uses the [Cartesian coordinate system](http://en.wikipedia.org/wiki/Cartesian_coordinate_system "Cartesian coordinate system") with the topleft corner being the origin.
 
 
 **Thank you for your interest in Disandria!**

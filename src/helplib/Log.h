@@ -5,6 +5,7 @@
 #include <Poco/ConsoleChannel.h>
 #include <Poco/FileChannel.h>
 #include <Poco/SplitterChannel.h>
+#include <map>
 
 namespace PE
 {
@@ -24,14 +25,16 @@ namespace PE
 class Log
 {
 	public:
-		static void log(PE::Logging::Levels, std::string);
-		static void log(std::string);
+		static void log(PE::Logging::Levels, std::string, int = 0);
+		static void log(std::string, int = 0);
+		static int registerId(std::string);
 	private:
 		static Poco::AutoPtr<Poco::FileChannel> fChan;
 		static Poco::AutoPtr<Poco::ConsoleChannel> conChan;
 		static Poco::AutoPtr<Poco::SplitterChannel> sChan;
 		static void setup();
 		static bool stp;
+		static std::map<int,std::string> ids;
 };
 		
 

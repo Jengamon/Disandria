@@ -12,7 +12,7 @@
 #include "MapManager.h"
 #include "FontManager.h"
 #include "GameTimer.h"
-#include "LObjectManager.h"
+#include "script/FalconSAPI.h"
 
 class Disandria
 {
@@ -22,6 +22,7 @@ class Disandria
 	private:
 		int onCleanup();
 		RenderWindow* rwin;
+		FalconSAPI* sengine;
 		Poco::AutoPtr<Poco::Util::XMLConfiguration> xmlConf;
 };
 
