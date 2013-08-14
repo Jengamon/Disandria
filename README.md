@@ -12,10 +12,10 @@ To build Disandria, you will need to get (on your own):
 
 For those of you who want to use what I used, here are the version numbers:  
 SFML: 2.1  
-Poco: 1.4.6p1
-CEGUI: 0.8.2
-Thor: 2.0-dev
-FalconPL: 0.9.6.8 (Chimera)
+Poco: 1.4.6p1  
+CEGUI: 0.8.2  
+Thor: 2.0-dev  
+FalconPL: 0.9.6.8 (Chimera)  
 
 PugiXML is used in this project. The files for PugiXML are included in the folder src/pugixml.
 I do not own nor do I hold any rights over PugiXML.  
