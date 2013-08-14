@@ -13,7 +13,7 @@ class FString
 			return xan;
 		}
 
-		static std::string fromFalconString(Falcon::String str)
+		static std::string fromFalconString(Falcon::String* str)
 		{
 			std::string xan;
 			Falcon::AutoCString cstr(str);
