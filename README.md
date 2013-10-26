@@ -74,7 +74,7 @@ There are some limitations to the engine:
 
 ### Scripting-related
 
-* The default scripting language will be Falcon. I will add more in the future...
+* The default scripting language will be Falcon. I may add more in the future...
 
 ## A bit of Information on the Projects inside this Project
 
@@ -83,6 +83,14 @@ There are some limitations to the engine:
 PugiTMX is a TMX map parser, written in C++ (obviously), based on the PugiXML parser.  
 I wrote it to see if I could.
 
+## Changelog --Starting a Version 0.1a--
+
+Version 0.1a:  
+	-- Added Input Manager
+	-- Formatted code using astyle to kde standards (a.k.a. making the code look nice)
+	-- Started Falcon CEGUI module
+	-- Started Falcon DisandriaAPI
+	-- Redid Mapping Algorithm
 
 **Thank you for your interest in Disandria!**
 
