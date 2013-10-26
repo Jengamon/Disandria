@@ -6,10 +6,10 @@
 
 class Actor
 {
-	public:
-		Actor(disandria::Square*, sf::Vector2f);
-	private:
-		disandria::Square* squ;
+public:
+    Actor(disandria::Square*, sf::Vector2f);
+private:
+    disandria::Square* squ;
 };
 
 #endif // ACTOR_H

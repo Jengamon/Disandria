@@ -8,32 +8,31 @@
 
 namespace pugitmx
 {
-	struct TilePropertyKey
-	{
-		int id;
-		std::string propertyname;
-	};
+struct TilePropertyKey {
+    int id;
+    std::string propertyname;
+};
 
-	class Tileset
-	{
-		public:
-			Tileset() {};
-			Tileset(uint fgd, std::string nme, uint tlwd, uint tlht, Image srcim) : firstgid(fgd), name(nme), tilewidth(tlwd), tileheight(tlht), image(srcim) {};
-			uint getFirstGid() const;
-			std::string getName() const;
-			uint getTileWidth() const;
-			uint getTileHeight() const;
-			Image getImage() const;
-			void registerProperty(TilePropertyKey,std::string);
-			std::string getProperty(TilePropertyKey) const;
-		private:
-			uint firstgid;
-			std::string name;
-			uint tilewidth;
-			uint tileheight;
-			Image image;
-			std::map<std::string, std::string> properties;
-	};
+class Tileset
+{
+public:
+    Tileset() {};
+    Tileset(uint fgd, std::string nme, uint tlwd, uint tlht, Image srcim) : firstgid(fgd), name(nme), tilewidth(tlwd), tileheight(tlht), image(srcim) {};
+    uint getFirstGid() const;
+    std::string getName() const;
+    uint getTileWidth() const;
+    uint getTileHeight() const;
+    Image getImage() const;
+    void registerProperty(TilePropertyKey, std::string);
+    std::string getProperty(TilePropertyKey) const;
+private:
+    uint firstgid;
+    std::string name;
+    uint tilewidth;
+    uint tileheight;
+    Image image;
+    std::map<std::string, std::string> properties;
+};
 };
 
 #undef uint

@@ -4,5 +4,5 @@ using namespace pugitmx;
 
 int Tile::getGid() const
 {
-	return gid;
+    return gid;
 }

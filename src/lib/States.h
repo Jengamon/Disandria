@@ -3,15 +3,14 @@
 
 namespace disandria
 {
-	namespace States
-	{
-		enum State
-		{
-			VOID,
-			MAINMENU,
-			MAINGAME
-		};
-	};
+namespace States
+{
+enum State {
+    VOID,
+    MAINMENU,
+    MAINGAME
+};
+};
 };
 
 #endif // STATES_H

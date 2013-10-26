@@ -7,19 +7,19 @@
 
 namespace pugitmx
 {
-	class Parser
-	{
-		public:
-			static Map* parseMap(std::string);
-		private:
-			static Tileset* parseTileset(pugi::xml_node);
-			static Image* parseImage(pugi::xml_node);
-			static TileLayer* parseTileLayer(pugi::xml_node);
-			static Tile* parseTile(pugi::xml_node);
-			static Object* parseObject(pugi::xml_node);
-			static ObjectGroup* parseObjectGroup(pugi::xml_node);
-			static Polygon* parsePolygon(pugi::xml_node);
-	};
+class Parser
+{
+public:
+    static Map* parseMap(std::string);
+private:
+    static Tileset* parseTileset(pugi::xml_node);
+    static Image* parseImage(pugi::xml_node);
+    static TileLayer* parseTileLayer(pugi::xml_node);
+    static Tile* parseTile(pugi::xml_node);
+    static Object* parseObject(pugi::xml_node);
+    static ObjectGroup* parseObjectGroup(pugi::xml_node);
+    static Polygon* parsePolygon(pugi::xml_node);
+};
 };
 
 #endif // __PARSER_H_

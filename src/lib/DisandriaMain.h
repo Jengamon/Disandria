@@ -3,7 +3,7 @@
 
 #include <Poco/Foundation.h>
 #include <Poco/Util/XMLConfiguration.h>
-#include "RenderWindow.h"
+#include "RenderWindowManager.h"
 #include "GameManager.h"
 #include "MusicManager.h"
 #include "MenuManager.h"
@@ -16,14 +16,14 @@
 
 class Disandria
 {
-	public:
-		bool onInit();
-		int run();
-	private:
-		int onCleanup();
-		RenderWindow* rwin;
-		FalconSAPI* sengine;
-		Poco::AutoPtr<Poco::Util::XMLConfiguration> xmlConf;
+public:
+    bool onInit();
+    int run();
+private:
+    int onCleanup();
+    RenderWindow* rwin;
+    FalconSAPI* sengine;
+    Poco::AutoPtr<Poco::Util::XMLConfiguration> xmlConf;
 };
 
 #endif // DISANDRIA__MAIN

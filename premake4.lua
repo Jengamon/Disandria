@@ -27,6 +27,13 @@ solution "Disandria"
 		language "C++"
 		files { "src/pugitmx/**.cpp", "src/pugitmx/**.h" }
 		links { "pugixml", "miniLOGlib" }
+	--[[	
+	project "sneslib"
+		kind "SharedLib"
+		language "C++"
+		files { "src/sneslib/**.cpp", "src/sneslib/**.h" }
+		links { "sfml-graphics", "sfml-system" }
+	]]--
 
 	project "DisandriaLib"
 		kind "SharedLib"

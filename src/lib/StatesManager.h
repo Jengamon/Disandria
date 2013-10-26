@@ -6,11 +6,11 @@
 
 class StatesManager
 {
-	public:
-		static void checkCurrentState(RenderWindow*);
-		static void renderCurrentState(RenderWindow*);
-	private:
-		static StateBase* currentState;
+public:
+    static void checkCurrentState(RenderWindow*);
+    static void renderCurrentState(RenderWindow*);
+private:
+    static StateBase* currentState;
 };
 
 #endif // STATESMANAGER_H

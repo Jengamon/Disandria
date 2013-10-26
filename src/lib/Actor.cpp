@@ -2,5 +2,5 @@
 
 Actor::Actor(disandria::Square* square, sf::Vector2f locvec)
 {
-	squ = new disandria::Square(*square);
+    squ = new disandria::Square(*square);
 }

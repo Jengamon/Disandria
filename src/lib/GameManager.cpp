@@ -5,28 +5,28 @@ RenderWindow* GameManager::window = NULL;
 
 void GameManager::setGameName(std::string gn)
 {
-	gameName = gn;
+    gameName = gn;
 }
 
 std::string GameManager::getGameFolderName()
 {
-	if(gameName != "")
-		return gameName + "/";
-	else
-		return "";
-} 
+    if(gameName != "")
+        return gameName + "/";
+    else
+        return "";
+}
 
 void GameManager::setRenderWindow(RenderWindow* win)
 {
-	window = win;
+    window = win;
 }
 
 RenderWindow* GameManager::getRenderWindow()
 {
-	return window;
+    return window;
 }
 
 double GameManager::getEngineVersion()
 {
-	return 0.02;
+    return 0.02;
 }

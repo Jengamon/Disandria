@@ -4,20 +4,20 @@ using namespace pugitmx;
 
 std::string Image::getSourceString() const
 {
-	return source;
+    return source;
 }
 
 unsigned int Image::getWidth() const
 {
-	return width;
+    return width;
 }
 
 unsigned int Image::getHeight() const
 {
-	return height;
+    return height;
 }
 
 std::string Image::getTrans() const
 {
-	return trans;
+    return trans;
 }

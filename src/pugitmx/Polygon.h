@@ -5,15 +5,15 @@
 
 namespace pugitmx
 {
-	class Polygon
-	{
-		public:
-			Polygon() {}
-			Polygon(std::string pint) : points(pint) {}
-			std::string getPoints() const;
-		private:
-			std::string points;
-	};
+class Polygon
+{
+public:
+    Polygon() {}
+    Polygon(std::string pint) : points(pint) {}
+    std::string getPoints() const;
+private:
+    std::string points;
+};
 };
 
 #endif // __POLYGON_H_

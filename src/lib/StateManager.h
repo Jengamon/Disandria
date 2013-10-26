@@ -6,11 +6,11 @@
 
 class StateManager
 {
-	public:
-		static StateBase* getCurrentState();
-		static void setCurrentState(disandria::States::State);
-	private:
-		static disandria::States::State currentState;
+public:
+    static StateBase* getCurrentState();
+    static void setCurrentState(disandria::States::State);
+private:
+    static disandria::States::State currentState;
 };
 
 #endif // STATEMANAGER_H

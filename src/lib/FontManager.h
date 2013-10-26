@@ -6,11 +6,11 @@
 
 class FontManager
 {
-	public:
-		static sf::Font* createDefaultFont();
-		static void setDefaultFont(std::string);
-	private:
-		static std::string defaultFont;
+public:
+    static sf::Font* createDefaultFont();
+    static void setDefaultFont(std::string);
+private:
+    static std::string defaultFont;
 };
 
 #endif // FONTMANAGER_H

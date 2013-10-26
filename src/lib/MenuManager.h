@@ -5,8 +5,8 @@
 
 class MenuManager
 {
-	public:
-		static CEGUI::Window* registerMainMenu(CEGUI::Window*);
+public:
+    static CEGUI::Window* registerMainMenu(CEGUI::Window*);
 };
 
 #endif // MENUMANAGER_H

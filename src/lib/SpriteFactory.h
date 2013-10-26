@@ -6,9 +6,9 @@
 
 class SpriteFactory
 {
-	public:
-		static sf::Texture* createTexture(std::string);
-		static sf::Sprite createSprite(sf::Texture*);
+public:
+    static sf::Texture* createTexture(std::string);
+    static sf::Sprite createSprite(sf::Texture*);
 };
 
 #endif // SPRITEFACROY_H

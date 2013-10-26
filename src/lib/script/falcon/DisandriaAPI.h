@@ -5,11 +5,11 @@
 
 class DisandriaAPI
 {
-	public:
-		static void registerConstants(Falcon::Module*);
-		static void registerFunctions(Falcon::Module*);
-		static void registerClasses(Falcon::Module*);
-		static void registerSingletons(Falcon::Module*);
+public:
+    void registerConstants(Falcon::Module*);
+    void registerFunctions(Falcon::Module*);
+    void registerClasses(Falcon::Module*);
+    void registerSingletons(Falcon::Module*);
 };
 
 #endif // SCRIPT_FALCON_DISANDRIAAPI_H

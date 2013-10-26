@@ -6,15 +6,15 @@
 
 class MapManager
 {
-	public:
-		static void setRenderWindow(RenderWindow*);
-		static void setMap(Map*);
-		static void clearMap();
-		static void renderMap();
-	private:
-		static RenderWindow* win;
-		static Map* cmap;
+public:
+    static void setRenderWindow(RenderWindow*);
+    static void setMap(Map*);
+    static void clearMap();
+    static void renderMap();
+private:
+    static RenderWindow* win;
+    static Map* cmap;
 };
 
 #endif // MAPMANAGER_H
-	
+

@@ -5,9 +5,9 @@
 
 class ScriptAPI
 {
-	public:
-		static double VERSION;
-		virtual std::string languageID() = 0;
+public:
+    static double VERSION;
+    virtual std::string languageID() = 0;
 };
 
 #endif // SCRIPT_SCRIPTAPI_H

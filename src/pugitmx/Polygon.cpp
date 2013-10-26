@@ -4,5 +4,5 @@ using namespace pugitmx;
 
 std::string Polygon::getPoints() const
 {
-	return points;
+    return points;
 }
