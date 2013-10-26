@@ -86,11 +86,12 @@ I wrote it to see if I could.
 ## Changelog --Starting a Version 0.1a--
 
 Version 0.1a:  
-	-- Added Input Manager
-	-- Formatted code using astyle to kde standards (a.k.a. making the code look nice)
-	-- Started Falcon CEGUI module
-	-- Started Falcon DisandriaAPI
-	-- Redid Mapping Algorithm
+
+	-- Added Input Manager  
+	-- Formatted code using astyle to kde standards (a.k.a. making the code look nice)  
+	-- Started Falcon CEGUI module  
+	-- Started Falcon DisandriaAPI  
+	-- Redid Mapping Algorithm  
 
 **Thank you for your interest in Disandria!**
 
