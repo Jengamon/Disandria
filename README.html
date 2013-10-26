@@ -37,7 +37,9 @@ PugiTMX cannot currently parse TMX terrains, and I don't know what they do, so n
 <li>The engine currently does <em>not</em> support TMX image layers.
 PugiTMX cannot currently parse TMX image layers, and I don't know what they do, so no image layers either.</li>
 <li>The engine can <em>only</em> use tilesets with the same tile width and tile height as the map they are used on.
-This is due to the algorithim it uses to calculate where to render the tiles.</li>
+This is due to the algorithim it uses to calculate where to render the tiles. <br />
+<em>-- EDIT --</em> <br />
+I have redone the mapping algorithm, so that it now CAN render tiles with different widths and heights.</li>
 <li>Maps <em>must</em> be orthagonal.
 I've never used an isometric map. I don't know if my renderer can handle isometric maps, but try at your own downfall...</li>
 <li>Maps <em>must</em> be in a folder with the <em>exact</em> filename of the map (without the .tmx).

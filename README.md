@@ -36,7 +36,9 @@ There are some limitations to the engine:
 * The engine currently does *not* support TMX image layers.
   PugiTMX cannot currently parse TMX image layers, and I don't know what they do, so no image layers either.
 * The engine can *only* use tilesets with the same tile width and tile height as the map they are used on.
-  This is due to the algorithim it uses to calculate where to render the tiles.
+  This is due to the algorithim it uses to calculate where to render the tiles.  
+  *-- EDIT --*  
+  I have redone the mapping algorithm, so that it now CAN render tiles with different widths and heights.
 * Maps *must* be orthagonal.
   I've never used an isometric map. I don't know if my renderer can handle isometric maps, but try at your own downfall...
 * Maps *must* be in a folder with the *exact* filename of the map (without the .tmx).
