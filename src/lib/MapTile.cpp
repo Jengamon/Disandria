@@ -20,11 +20,17 @@ sf::Image* MapTile::renderTile()
     }
     createdImage = new sf::Image;
     createdImage->create(width, height);
-    createdImage->copy(*tileImg, 0, 0);
+    if(tileImg != NULL) {
+        createdImage->copy(*tileImg, 0, 0);
+    }
     if(actorOnTile != NULL) {
         //TODO: Insert actor rendering code here.
     }
-    return createdImage;
+    if(tileImg != NULL) {
+        return createdImage;
+    } else {
+        return NULL;
+    }
 }
 
 MapTile::~MapTile()

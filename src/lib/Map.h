@@ -21,10 +21,10 @@ public:
     pugitmx::Map* returnMap() const;
     sf::Image* renderMap();
     sf::Shader* getShader();
+    void createMap();
     void setShader(sf::Shader*);
     void clearShader();
 private:
-    sf::Image* renderTiles();
     pugitmx::Map* imap;
     std::string imapName;
     std::list<disandria::Tileset*> tilesets;
@@ -33,6 +33,11 @@ private:
     std::map<int, MapTile*> tiles;
     sf::Shader* mapShader;
     bool change;
+    sf::Image* createTileLayer(pugitmx::TileLayer&);
+    void clearTileLayer();
+    sf::Image* renderTiles();
+    disandria::Tileset* findTileTileset(pugitmx::Tile&);
+    sf::Vector2i findTilesetTileLocation(pugitmx::Tile&, disandria::Tileset&);
 };
 
 #endif // MAP_H

@@ -8,6 +8,7 @@ Map::Map()
     imap = new pugitmx::Map(1.0, "orthogonal", 0, 0, 0, 0);
     imageLoader.setReleaseStrategy(thor::Resources::AutoRelease);
     change = true;
+    createMap();
 }
 
 Map::Map(std::string mapFileName)
@@ -16,6 +17,7 @@ Map::Map(std::string mapFileName)
     imap = pugitmx::Parser::parseMap(GameManager::getGameFolderName() + returnMapPathWithMap());
     imageLoader.setReleaseStrategy(thor::Resources::AutoRelease);
     change = true;
+    createMap();
 }
 
 std::string Map::returnMapPath()
@@ -63,35 +65,9 @@ sf::Image* Map::renderMap()
     if(change && imapName != "") {
 
         for(std::list<pugitmx::TileLayer>::iterator iter = imap->returnTileLayersIteratorB(); iter != imap->returnTileLayersIteratorE(); iter++) {
-            int currentTile = 0;
-            for(std::list<pugitmx::Tile>::iterator tliter = iter->grabTilesIteratorB(); tliter != iter->grabTilesIteratorE(); tliter++) {
-                pugitmx::Tile* tile = &*tliter;
-                disandria::Tileset* tileset = NULL;
-                for(std::list<disandria::Tileset*>::iterator tlsts = tilesets.begin(); tlsts != tilesets.end(); tlsts++) {
-                    if((*tlsts)->firstgid > tile->getGid()) {
-                        break;
-                    }
-                    tileset = *tlsts;
-                }
-                int picture_x = 0;
-                int picture_y = 0;
-                for(int il = 0; il < (tile->getGid() - (tileset->firstgid)); il++) {
-                    picture_x++;
-                    if(picture_x >= (int(tileset->img->getSize().x) / tileset->tilewidth)) {
-                        picture_x = 0;
-                        picture_y++;
-                        if(picture_y >= (int(tileset->img->getSize().y) / tileset->tileheight)) {
-                            break;
-                        }
-                    }
-                }
-                sf::Image* newMapTileImage = new sf::Image;
-                newMapTileImage->create(tileset->tilewidth, tileset->tileheight);
-                newMapTileImage->copy(*tileset->img, 0, 0, sf::IntRect(picture_x * tileset->tilewidth, picture_y * tileset->tileheight, tileset->tilewidth, tileset->tileheight));
-                //TODO: Add actor rendering code here
-                tiles[currentTile++] = new MapTile(newMapTileImage, tileset->tilewidth, tileset->tileheight);
-                newMapTileImage = NULL;
-            }
+            createTileLayer(*iter);
+            renderTiles();
+            clearTileLayer();
         }
         change = false;
         return renderTiles();
@@ -113,14 +89,84 @@ void Map::setShader(sf::Shader* shd)
     mapShader = shd;
 }
 
-sf::Image* Map::renderTiles()
+disandria::Tileset* Map::findTileTileset(pugitmx::Tile& tile)
+{
+    disandria::Tileset* tileset = NULL;
+    for(std::list<disandria::Tileset*>::iterator tlsts = tilesets.begin(); tlsts != tilesets.end(); tlsts++) {
+        if((*tlsts)->firstgid > tile.getGid()) {
+            break;
+        }
+        tileset = *tlsts;
+    }
+    return tileset;
+}
+
+sf::Vector2i Map::findTilesetTileLocation(pugitmx::Tile& tile, disandria::Tileset& tileset)
+{
+    int picture_x = 0;
+    int picture_y = 0;
+    for(int il = 0; il < (tile.getGid() - (tileset.firstgid)); il++) {
+        picture_x++;
+        if(picture_x >= (int(tileset.img->getSize().x) / tileset.tilewidth)) {
+            picture_x = 0;
+            picture_y++;
+            if(picture_y >= (int(tileset.img->getSize().y) / tileset.tileheight)) {
+                break;
+            }
+        }
+    }
+    return sf::Vector2i(picture_x, picture_y);
+}
+
+sf::Image* Map::createTileLayer(pugitmx::TileLayer& tly)
+{
+    int currentTile = 0;
+    for(std::list<pugitmx::Tile>::iterator tliter = tly.grabTilesIteratorB(); tliter != tly.grabTilesIteratorE(); tliter++) {
+        pugitmx::Tile* tile = &*tliter;
+        disandria::Tileset* tileset = findTileTileset(*tile);
+        sf::Vector2i loc;
+        bool genLoc = false;
+        if(tileset != NULL)
+            loc = findTilesetTileLocation(*tile, *tileset);
+        else
+            genLoc = true;
+        sf::Image* newMapTileImage = new sf::Image;
+        if(genLoc) {
+            newMapTileImage->create(imap->getTileWidth(), imap->getTileHeight(), sf::Color::Black);
+            tiles[currentTile++] = new MapTile(NULL, imap->getTileWidth(), imap->getTileHeight());
+        } else {
+            newMapTileImage->create(tileset->tilewidth, tileset->tileheight);
+            newMapTileImage->copy(*tileset->img, 0, 0, sf::IntRect(loc.x * tileset->tilewidth, loc.y * tileset->tileheight, tileset->tilewidth, tileset->tileheight));
+            tiles[currentTile++] = new MapTile(newMapTileImage, tileset->tilewidth, tileset->tileheight);
+        }
+        //TODO: Add actor rendering code here
+        newMapTileImage = NULL;
+    }
+}
+
+void Map::clearTileLayer()
+{
+    for(std::map<int, MapTile*>::iterator iter = tiles.begin(); iter != tiles.end(); iter++) {
+        if(iter->second != NULL)
+            delete iter->second;
+    }
+    tiles.clear();
+}
+
+void Map::createMap()
 {
     mapPicture.create(imap->getWidth() * imap->getTileWidth(), imap->getHeight() * imap->getTileHeight());
+}
+
+sf::Image* Map::renderTiles()
+{
     for(std::map<int, MapTile*>::iterator iter = tiles.begin(); iter != tiles.end(); iter++) {
         int renderPosInt = iter->first;
         MapTile* tileToRender = iter->second;
         sf::Vector2i renderPos(renderPosInt % imap->getWidth(), renderPosInt / imap->getHeight());
-        mapPicture.copy(*tileToRender->renderTile(), renderPos.x * imap->getTileWidth(), renderPos.y * imap->getTileHeight());
+        if(tileToRender->renderTile() != NULL) {
+            mapPicture.copy(*tileToRender->renderTile(), renderPos.x * imap->getTileWidth(), renderPos.y * imap->getTileHeight());
+        }
     }
     return &mapPicture;
 }
@@ -133,9 +179,5 @@ void Map::clearShader()
 
 Map::~Map()
 {
-    for(std::map<int, MapTile*>::iterator iter = tiles.begin(); iter != tiles.end(); iter++) {
-        if(iter->second != NULL)
-            delete iter->second;
-    }
-    tiles.clear();
+    clearTileLayer();
 }

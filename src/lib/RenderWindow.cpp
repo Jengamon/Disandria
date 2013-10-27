@@ -31,9 +31,6 @@ RenderWindow::RenderWindow(int width, int height, std::string name) : sf::Render
     if(parser->isPropertyPresent("SchemaDefaultResourceGroup"))
         parser->setProperty("SchemaDefaultResourceGroup", "schemas");
 
-    FalconScriptModule& script_module = FalconScriptModule::create();
-    CEGUI::System::getSingleton().setScriptingModule(&script_module);
-    CEGUI::System::getSingleton().executeScriptFile("init_gui.fal", "falcon_scripts");
     // Remove and put to script ASAP
     loadScheme("TaharezLook");
     loadFont("DejaVuSans-14");
