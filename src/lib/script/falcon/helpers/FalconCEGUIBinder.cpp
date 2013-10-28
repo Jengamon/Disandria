@@ -3,9 +3,9 @@
 FalconCEGUIBinder::FalconCEGUIBinder(Falcon::VMachine* vm, std::string name) : cvm(NULL), lck(NULL)
 {
     if(vm != NULL) {
-        Falcon::Item* func = vm->findGlobalSymbol(name.c_str());
+        Falcon::Item* func = vm->findGlobalItem(name.c_str());
         if(func != NULL && func->isCallable()) {
-            lck = new GarbageLock(*func);
+            lck = new Falcon::GarbageLock(*func);
             cvm = vm;
         }
     }
