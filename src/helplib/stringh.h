@@ -42,6 +42,14 @@ public:
         str >> std::oct >> ret;
         return ret;
     }
+	
+	static int fromDecimal(std::string a) {
+        std::stringstream str;
+        int ret;
+        str << a;
+        str >> std::dec >> ret;
+        return ret;
+    }
 };
 
 #endif // __STRINGH_H_
