@@ -1,4 +1,5 @@
 #include "FalconCEGUIBinder.h"
+#include "../../../../helplib/Log.h"
 
 FalconCEGUIBinder::FalconCEGUIBinder(Falcon::VMachine* vm, std::string name) : cvm(NULL), lck(NULL)
 {
@@ -14,5 +15,13 @@ FalconCEGUIBinder::FalconCEGUIBinder(Falcon::VMachine* vm, std::string name) : c
 bool FalconCEGUIBinder::operator()(const CEGUI::EventArgs& args)
 {
     if(cvm != NULL) {
+        cvm->pushParameter(Falcon::String(" x is awesome! "));
+        cvm->callItem(lck->item(), 1);
+        if(cvm->regA().isBoolean()) {
+            return cvm->regA().asBoolean();
+        } else {
+            Log::log(PE::Logging::WARNING, "CEGUI bound callable item did not return a boolean. Assuming true...");
+            return true;
+        }
     }
 }
