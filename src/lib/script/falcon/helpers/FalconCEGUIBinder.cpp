@@ -25,3 +25,9 @@ bool FalconCEGUIBinder::operator()(const CEGUI::EventArgs& args)
         }
     }
 }
+
+FalconCEGUIBinder::~FalconCEGUIBinder()
+{
+    cvm = NULL;
+    delete lck;
+}

@@ -10,6 +10,7 @@ class FalconCEGUIBinder
 public:
     FalconCEGUIBinder(Falcon::VMachine*, std::string);
     bool operator()(const CEGUI::EventArgs&);
+    ~FalconCEGUIBinder();
 private:
     Falcon::VMachine* cvm;
     Falcon::GarbageLock* lck;

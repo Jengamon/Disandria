@@ -39,7 +39,7 @@ solution "Disandria"
 		kind "SharedLib"
 		language "C++"
 		files { "src/lib/**.cpp", "src/lib/**.h" }
-		links { "miniLOGlib", "pugitmx", "CEGUIBase-0", "CEGUIOpenGLRenderer-0", "sfml-graphics", "sfml-window", "sfml-audio", "sfml-system", "PocoUtil", "PocoFoundation", "thor", "Box2D", "falcon_engine" }
+		links { "miniLOGlib", "pugitmx", "CEGUIBase-0", "CEGUIOpenGLRenderer-0", "sfml-graphics", "sfml-window", "sfml-audio", "sfml-system", "PocoUtil", "PocoFoundation", "thor", "box2d", "falcon_engine" }
 
 	project "disandria-game"
 		kind "ConsoleApp"

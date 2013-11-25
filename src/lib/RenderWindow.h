@@ -7,7 +7,6 @@
 #include <Thor/Input.hpp>
 #include <CEGUI/CEGUI.h>
 #include <CEGUI/RendererModules/OpenGL/GLRenderer.h>
-#include <CEGUI/ScriptingModules/LuaScriptModule/CEGUILua.h>
 #include "InputManager.h"
 #include "../helplib/stringh.h"
 
