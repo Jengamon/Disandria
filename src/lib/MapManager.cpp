@@ -1,6 +1,7 @@
 #include "MapManager.h"
 #include "GameManager.h"
 #include "../helplib/Log.h"
+#include <cassert>
 
 RenderWindow* MapManager::win = NULL;
 Map* MapManager::cmap = NULL;
@@ -19,7 +20,7 @@ void MapManager::setMap(Map* _map)
 void MapManager::clearMap()
 {
     delete cmap;
-    cmap = new Map;
+    cmap = NULL;
 }
 
 void MapManager::renderMap()
@@ -28,13 +29,12 @@ void MapManager::renderMap()
     thor::BigTexture tex;
     if(cmap != NULL) {
         sf::Image* mapImage = cmap->renderMap();
-        if(mapImage != NULL) {
-            tex.loadFromImage(*mapImage);
-            tex.setSmooth(true);
-            spr.setTexture(tex);
-            spr.setOrigin(spr.getLocalBounds().width / 2, spr.getLocalBounds().height / 2);
-            spr.setPosition(win->getSize().x / 2, win->getSize().y / 2);
-            win->draw(spr);
-        }
+        assert(mapImage != NULL);
+        tex.loadFromImage(*mapImage);
+        tex.setSmooth(true);
+        spr.setTexture(tex);
+        spr.setOrigin(spr.getLocalBounds().width / 2, spr.getLocalBounds().height / 2);
+        spr.setPosition(win->getSize().x / 2, win->getSize().y / 2);
+        win->draw(spr);
     }
 }

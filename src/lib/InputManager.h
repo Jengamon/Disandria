@@ -2,11 +2,12 @@
 #define DISANDRIA_INPUTMANAGER_H
 
 #include <Thor/Input.hpp>
+#include <functional>
 #include "../helplib/stringh.h"
 
 namespace thor
 {
-typedef void(*ActionCallback)(thor::ActionContext<std::string>);
+using ActionCallback = std::function<void(thor::ActionContext<std::string>)>;
 }
 
 class InputManager

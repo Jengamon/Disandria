@@ -23,10 +23,7 @@ void MapLayer::genImage()
     int currentTile = 0;
     for(auto tliter = xmlInfo.grabTilesIteratorB(); tliter != xmlInfo.grabTilesIteratorE(); tliter++) {
         pugitmx::Tile* tile = &*tliter;
-        Log::log(PE::Logging::WARNING, String<int>::toString(tile->getGid()));
         disandria::Tileset* tileset = tlman->retrieveTilesetByGid(tile->getGid());
-        if(tileset != NULL)
-            Log::log(PE::Logging::WARNING, String<int>::toString(tileset->firstgid));
         sf::Vector2i loc;
         bool genLoc = false;
         if(tileset != NULL)

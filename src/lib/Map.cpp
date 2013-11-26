@@ -46,7 +46,7 @@ sf::Image* Map::renderMap()
                 NString::fromHex(color.substr(4, 2))));
         });
     }
-
+    mapPicture.create(imap->getWidth() * imap->getTileWidth(), imap->getHeight() * imap->getTileHeight());
     for(std::list<pugitmx::TileLayer>::iterator iter = imap->returnTileLayersIteratorB(); iter != imap->returnTileLayersIteratorE(); iter++) {
         createTileLayer(*iter);
     }
