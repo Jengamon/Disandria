@@ -8,7 +8,7 @@ void TilesetManager::addTileset(std::string name, unsigned int firstgid, unsigne
     tlst->tilewidth = tlwidth;
     tlst->tileheight = tlheight;
     tlst->img = imageLoader.acquire(thor::Resources::fromFile<sf::Image>(loc));
-    if(hndlim != NULL) {
+    if(hndlim) {
         hndlim(tlst->img.get());
     }
     tilesets[name] = tlst;
