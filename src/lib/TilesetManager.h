@@ -3,15 +3,19 @@
 
 #include <map>
 #include <string>
+#include <functional>
 #include <SFML/Graphics.hpp>
 #include <Thor/Resources.hpp>
 #include "Tileset.h"
 
-using handleImage = void(*)(sf::Image*);
+using handleImage = std::function<void(sf::Image*)>;
 
 class TilesetManager
 {
 public:
+    TilesetManager() {
+        imageLoader.setReleaseStrategy(thor::Resources::AutoRelease);
+    }
     void addTileset(std::string, unsigned int, unsigned int, unsigned int, std::string, handleImage = NULL);
     disandria::Tileset* retrieveTilesetByName(std::string);
     disandria::Tileset* retrieveTilesetByGid(unsigned int);

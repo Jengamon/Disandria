@@ -11,19 +11,18 @@
 class MapLayer
 {
 public:
-    MapLayer(unsigned int wd, unsigned int ht, pugitmx::TileLayer xml, unsigned int mtlwd, unsigned int mtlht, TilesetManager* man) : width(wd), height(ht), xmlInfo(xml), maptilewidth(mtlwd), maptileheight(mtlht), tlman(man) {
+    MapLayer(pugitmx::TileLayer xml, unsigned int mtlwd, unsigned int mtlht, TilesetManager* man) : xmlInfo(xml), maptilewidth(mtlwd), maptileheight(mtlht), tlman(man), genIm(NULL) {
         assert(man != NULL);
     }
     sf::Image* renderLayer();
     ~MapLayer();
 private:
-    unsigned int width;
-    unsigned int height;
     unsigned int maptilewidth;
     unsigned int maptileheight;
     TilesetManager* tlman;
     pugitmx::TileLayer xmlInfo;
     std::map<int, MapTile*> tiles;
+    sf::Image* genIm;
     static sf::Vector2i findTileLocationInTileset(unsigned int, disandria::Tileset&);
     void genImage();
 };

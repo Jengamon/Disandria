@@ -14,7 +14,7 @@ To build Disandria, you will need to get (on your own):</p>
 
 <p>For those of you who want to use what I used, here are the version numbers: <br />
 SFML: 2.1 <br />
-Poco: 1.4.6p1 <br />
+Poco: 1.4.6p2 <br />
 CEGUI: 0.8.2 <br />
 Thor: 2.0-dev <br />
 FalconPL: 0.9.6.8 (Chimera)  </p>
@@ -28,23 +28,16 @@ For more information on this project, look over here: <a href="http://www.pugixm
 <h3>Map-related</h3>
 
 <ul>
-<li>You can only use Tiled TMX maps in their <em>XML</em> format. <br />
-This is different from the default settings. In order to change this, you must
-open the Tiled Map Editor, then go to Edit->Preferences, then click the item box beside
-"Store tile layer data as:", then choose "XML".</li>
+<li>You can only use Tiled TMX maps in their <em>XML</em> format.  </li>
 <li>The engine currently does <em>not</em> support TMX terrains. <br />
 PugiTMX cannot currently parse TMX terrains, and I don't know what they do, so no terrains right now.</li>
 <li>The engine currently does <em>not</em> support TMX image layers.
 PugiTMX cannot currently parse TMX image layers, and I don't know what they do, so no image layers either.</li>
-<li>The engine can <em>only</em> use tilesets with the same tile width and tile height as the map they are used on.
-This is due to the algorithim it uses to calculate where to render the tiles. <br />
-<em>-- EDIT --</em> <br />
-I have redone the mapping algorithm, so that it now CAN render tiles with different widths and heights.</li>
 <li>Maps <em>must</em> be orthagonal.
 I've never used an isometric map. I don't know if my renderer can handle isometric maps, but try at your own downfall...</li>
 <li>Maps <em>must</em> be in a folder with the <em>exact</em> filename of the map (without the .tmx).
 This is so the engine can find them, and as I add scripting, everything is all in the same folder, and everything won't be mixed with each other. </li>
-<li>Also, the map file must have the extension .tmx. This is the default extension for Tiled <strong>TMX</strong> maps, so...</li>
+<li>Also, the map file must have the extension .tmx. This is the default extension for Tiled <strong>TMX</strong> XML maps, so...</li>
 </ul>
 
 <h3>Sound-related</h3>
@@ -88,18 +81,7 @@ This is so the engine can find them, and as I add scripting, everything is all i
 <h3>PugiTMX</h3>
 
 <p>PugiTMX is a TMX map parser, written in C++ (obviously), based on the PugiXML parser. <br />
-I wrote it to see if I could.</p>
-
-<h2>Changelog --Starting a Version 0.1a--</h2>
-
-<p>Version 0.1a:  </p>
-
-<pre><code>-- Added Input Manager  
--- Formatted code using astyle to kde standards (a.k.a. making the code look nice)  
--- Started Falcon CEGUI module  
--- Started Falcon DisandriaAPI  
--- Redid Mapping Algorithm
-</code></pre>
+I wrote it to see if I could. </p>
 
 <p><strong>Thank you for your interest in Disandria!</strong></p>
 

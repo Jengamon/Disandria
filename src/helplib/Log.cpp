@@ -17,7 +17,7 @@ void Log::setup()
         fChan->setProperty("compress", "true");
         fChan->setProperty("archive", "number");
         fChan->setProperty("purgeCount", "50");
-        fChan->setProperty("rotation", "2000 K");
+        fChan->setProperty("rotation", "200000000 K");
 
         sChan->addChannel(fChan);
         sChan->addChannel(conChan);

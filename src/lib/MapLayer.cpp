@@ -1,19 +1,21 @@
 #include "MapLayer.h"
+#include "../helplib/Log.h"
+#include "../helplib/stringh.h"
 
 sf::Image* MapLayer::renderLayer()
 {
     genImage();
-    sf::Image* im = new sf::Image;
-    im->create(xmlInfo.getWidth() * maptilewidth, xmlInfo.getHeight() * maptileheight);
+    genIm = new sf::Image;
+    genIm->create(xmlInfo.getWidth() * maptilewidth, xmlInfo.getHeight() * maptileheight);
     for(auto iter = tiles.begin(); iter != tiles.end(); iter++) {
         int renderPosInt = iter->first;
         MapTile* tileToRender = iter->second;
-        sf::Vector2i renderPos(renderPosInt % width, renderPosInt / height);
+        sf::Vector2i renderPos(renderPosInt % xmlInfo.getWidth(), renderPosInt / xmlInfo.getHeight());
         if(tileToRender->renderTile() != NULL) {
-            im->copy(*tileToRender->renderTile(), renderPos.x * maptilewidth, renderPos.y * maptileheight);
+            genIm->copy(*tileToRender->renderTile(), renderPos.x * maptilewidth, renderPos.y * maptileheight);
         }
     }
-    return im;
+    return genIm;
 }
 
 void MapLayer::genImage()
@@ -21,13 +23,17 @@ void MapLayer::genImage()
     int currentTile = 0;
     for(auto tliter = xmlInfo.grabTilesIteratorB(); tliter != xmlInfo.grabTilesIteratorE(); tliter++) {
         pugitmx::Tile* tile = &*tliter;
+        Log::log(PE::Logging::WARNING, String<int>::toString(tile->getGid()));
         disandria::Tileset* tileset = tlman->retrieveTilesetByGid(tile->getGid());
+        if(tileset != NULL)
+            Log::log(PE::Logging::WARNING, String<int>::toString(tileset->firstgid));
         sf::Vector2i loc;
         bool genLoc = false;
         if(tileset != NULL)
             loc = findTileLocationInTileset(tile->getGid(), *tileset);
         else
             genLoc = true;
+
         sf::Image* newMapTileImage = new sf::Image;
         if(genLoc) {
             tiles[currentTile++] = new MapTile(NULL, maptilewidth, maptileheight);

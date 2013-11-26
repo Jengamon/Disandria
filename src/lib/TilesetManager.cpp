@@ -29,8 +29,8 @@ disandria::Tileset* TilesetManager::retrieveTilesetByGid(unsigned int gid)
     disandria::Tileset* tileset = NULL;
     for(auto tlsts = tilesets.begin(); tlsts != tilesets.end(); tlsts++) {
         assert(tlsts->second != NULL);
-        if(tlsts->second->firstgid > gid) {
-            break;
+        if(tlsts->second->firstgid > gid || (tileset != NULL && tlsts->second->firstgid < tileset->firstgid)) {
+            continue;
         }
         tileset = tlsts->second;
     }

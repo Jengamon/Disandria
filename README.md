@@ -12,7 +12,7 @@ To build Disandria, you will need to get (on your own):
 
 For those of you who want to use what I used, here are the version numbers:  
 SFML: 2.1  
-Poco: 1.4.6p1  
+Poco: 1.4.6p2   
 CEGUI: 0.8.2  
 Thor: 2.0-dev  
 FalconPL: 0.9.6.8 (Chimera)  
@@ -28,22 +28,15 @@ There are some limitations to the engine:
 ### Map-related
 
 * You can only use Tiled TMX maps in their *XML* format.  
-  This is different from the default settings. In order to change this, you must
-  open the Tiled Map Editor, then go to Edit->Preferences, then click the item box beside
-  "Store tile layer data as:", then choose "XML".
 * The engine currently does *not* support TMX terrains.  
   PugiTMX cannot currently parse TMX terrains, and I don't know what they do, so no terrains right now.
 * The engine currently does *not* support TMX image layers.
   PugiTMX cannot currently parse TMX image layers, and I don't know what they do, so no image layers either.
-* The engine can *only* use tilesets with the same tile width and tile height as the map they are used on.
-  This is due to the algorithim it uses to calculate where to render the tiles.  
-  *-- EDIT --*  
-  I have redone the mapping algorithm, so that it now CAN render tiles with different widths and heights.
 * Maps *must* be orthagonal.
   I've never used an isometric map. I don't know if my renderer can handle isometric maps, but try at your own downfall...
 * Maps *must* be in a folder with the *exact* filename of the map (without the .tmx).
   This is so the engine can find them, and as I add scripting, everything is all in the same folder, and everything won't be mixed with each other. 
-* Also, the map file must have the extension .tmx. This is the default extension for Tiled **TMX** maps, so...
+* Also, the map file must have the extension .tmx. This is the default extension for Tiled **TMX** XML maps, so...
 
 ### Sound-related
 
@@ -81,17 +74,7 @@ There are some limitations to the engine:
 ### PugiTMX
 
 PugiTMX is a TMX map parser, written in C++ (obviously), based on the PugiXML parser.  
-I wrote it to see if I could.
-
-## Changelog --Starting a Version 0.1a--
-
-Version 0.1a:  
-
-	-- Added Input Manager  
-	-- Formatted code using astyle to kde standards (a.k.a. making the code look nice)  
-	-- Started Falcon CEGUI module  
-	-- Started Falcon DisandriaAPI  
-	-- Redid Mapping Algorithm  
+I wrote it to see if I could. 
 
 **Thank you for your interest in Disandria!**
 
