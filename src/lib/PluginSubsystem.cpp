@@ -15,5 +15,5 @@ void PluginSubsystem::defineOptions(OptionSet& opst)
 
 const char* PluginSubsystem::name() const
 {
-	return "Disandria PluginSubsystem";
+    return "Disandria PluginSubsystem";
 }

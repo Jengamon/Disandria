@@ -11,10 +11,10 @@ using ScriptPluginManifest = Poco::Manifest<ScriptAPI>;
 
 class PluginSubsystem : public Poco::Util::Subsystem
 {
-		void initialize(Poco::Util::Application&);
-		void uninitialize();
-		void defineOptions(Poco::Util::OptionSet&);
-		const char* name() const;
+    void initialize(Poco::Util::Application&);
+    void uninitialize();
+    void defineOptions(Poco::Util::OptionSet&);
+    const char* name() const;
 };
 
 #endif // __PLUGINSUBSYSTEM_DISANDRIA_H

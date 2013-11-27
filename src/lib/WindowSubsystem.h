@@ -6,10 +6,10 @@
 
 class WindowSubsystem : public Poco::Util::Subsystem
 {
-		void initialize(Poco::Util::Application&);
-		void uninitialize();
-		void defineOptions(Poco::Util::OptionSet&);
-		const char* name() const;
+    void initialize(Poco::Util::Application&);
+    void uninitialize();
+    void defineOptions(Poco::Util::OptionSet&);
+    const char* name() const;
 };
 
 #endif // __DISANDRIA_WINDOWSUBSYSTEM_H

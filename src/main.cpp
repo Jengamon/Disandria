@@ -3,8 +3,8 @@
 
 int main(int argc, char* argv[])
 {
-	DisandriaApp app;
-	app.addSubsystem(new WindowSubsystem);
-	app.init(argc, argv);
-	return app.run();
+    DisandriaApp app;
+    app.addSubsystem(new WindowSubsystem);
+    app.init(argc, argv);
+    return app.run();
 }

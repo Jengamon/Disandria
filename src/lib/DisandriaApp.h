@@ -6,18 +6,18 @@
 
 class DisandriaApp : public Poco::Util::Application
 {
-	private:
-		void initialize(Poco::Util::Application&);
-		void reinitialize(Poco::Util::Application&);
-		void uninitialize();
-		void defineOptions(Poco::Util::OptionSet&);
-		int main(const std::vector<std::string>& args);
-		const char* name() const;
-		void handleVersion(const std::string&, const std::string&);
-		void handleHelp(const std::string&, const std::string&);
-		void displayHelp();
-	/* Members */	
-		RenderWindow* rwin;
+private:
+    void initialize(Poco::Util::Application&);
+    void reinitialize(Poco::Util::Application&);
+    void uninitialize();
+    void defineOptions(Poco::Util::OptionSet&);
+    int main(const std::vector<std::string>& args);
+    const char* name() const;
+    void handleVersion(const std::string&, const std::string&);
+    void handleHelp(const std::string&, const std::string&);
+    void displayHelp();
+    /* Members */
+    RenderWindow* rwin;
 };
 
 #endif // __DISANDRIAAPP_DISANDRIA_H

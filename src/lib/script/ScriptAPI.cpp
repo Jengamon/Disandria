@@ -2,6 +2,6 @@
 
 void ScriptAPI::reset()
 {
-	destroyBindings();
-	createBindings();
+    destroyBindings();
+    createBindings();
 }
