@@ -1,2 +1,7 @@
 #include "ScriptAPI.h"
-double ScriptAPI::VERSION = 0.1;
+
+void ScriptAPI::reset()
+{
+	destroyBindings();
+	createBindings();
+}

@@ -5,14 +5,14 @@ This repository is simply the engine, also referred to as Disandria.
 To build Disandria, you will need to get (on your own):
 
 *  [The SFML library](http://www.sfml-dev.org "SFML") Version 2.0 or later required. Do **NOT** get Version 1.6. It will **NOT** compile. The coding standards changed between the two versions, so that causes an incompatibility with SFML-1.6 and SFML-2.0+.  
-*  [The Poco C++ library](http://www.pocoproject.org "Poco") 
+*  [The Poco C++ library](http://www.pocoproject.org "Poco (Requires the COMPLETE edition)") 
 *  [The CEGUI-mk2 library](http://www.cegui.org.uk "CEGUI-mk2") CEGUI-mk2 (Version 0.8 or later...)  
 *  [The Thor library](http://www.bromeon.ch/libraries/thor/index.html "Thor") I'm not sure if Version 1.1 works with SFML-2.0 or SFML-2.1, but the best bet is to go with Thor 2.0.  
 *  [The Falcon Programming Language](http://www.falconpl.org "FalconPL") An wonderful project I stumbled across. Completely in C++. Easily integrated as an embeddable scripting language. A quite extensive standard library. The default scripting language of Disandria.  
 
 For those of you who want to use what I used, here are the version numbers:  
 SFML: 2.1  
-Poco: 1.4.6p2   
+Poco: 1.4.6p2 Complete   
 CEGUI: 0.8.2  
 Thor: 2.0-dev  
 FalconPL: 0.9.6.8 (Chimera)  

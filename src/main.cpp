@@ -1,11 +1,10 @@
-#include "lib/DisandriaMain.h"
-#include "helplib/Log.h"
+#include "lib/DisandriaApp.h"
+#include "lib/WindowSubsystem.h"
 
-int main()
+int main(int argc, char* argv[])
 {
-    Disandria main;
-    if(!main.onInit()) {
-        Log::log("Disandria failed to initialize. Look above for reasons.");
-    }
-    return main.run();
+	DisandriaApp app;
+	app.addSubsystem(new WindowSubsystem);
+	app.init(argc, argv);
+	return app.run();
 }

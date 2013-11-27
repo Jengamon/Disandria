@@ -45,4 +45,4 @@ solution "Disandria"
 		kind "ConsoleApp"
 		language "C++"
 		files { "src/main.cpp" }
-		links { "miniLOGlib", "DisandriaLib", "pugitmx", "pugixml", "thor" }
+		links { "miniLOGlib", "DisandriaLib", "PocoUtil", "pugitmx", "pugixml", "thor" }
