@@ -23,6 +23,7 @@ void DisandriaApp::initialize(Application& self)
         loc = config().getString("game[@location]", "nil");
         if(loc == "nil") {
             logger().error("Project not specified.");
+            displayHelp();
             exit(-1);
         }
     }
