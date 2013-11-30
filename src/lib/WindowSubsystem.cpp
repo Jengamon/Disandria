@@ -59,7 +59,7 @@ void WindowSubsystem::defineOptions(OptionSet& opst)
         .binding("project.sys.width"));
 
     opst.addOption(
-        Option("height", "t", "Set window height (\"Tall\"ness")
+        Option("height", "t", "Set window height (\"tall\"ness)")
         .required(false)
         .argument("size")
         .repeatable(false)

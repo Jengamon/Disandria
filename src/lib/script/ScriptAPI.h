@@ -4,6 +4,7 @@
 #define DSCRIPT_API 0.2
 #include <string>
 #include <fstream>
+#include <Poco/Any.h>
 
 #define SubmitType_STRING 1
 #define SubmitType_FILE 2
@@ -26,10 +27,19 @@ public:
      * C) All of the above
      */
     virtual int scriptRequests() = 0;
-    /* Should be obvious by their names */
-    virtual void scriptByString(std::string&) = 0;
-    virtual void scriptByFilename(std::string&) = 0;
-    virtual void scriptByFile(std::ifstream&) = 0;
+    /* Should be obvious by their names 
+     * They have a defult implementation that does nothing,
+     * so feel free to override one or all of the functions.
+     * 
+     * Script engine MUST handle errors gracefully, and expect NO special casting
+     * from the engine, which means NO extra external API except the functions
+     * listed in ScriptAPI, as script API's MUST be decendants of ScriptAPI,
+     * as that's how the engine thinks of them. Even FalconSAPI, which is built in,
+     * get no special treatment, but handles things gracefully.
+     */
+    virtual void scriptByString(std::string);
+    virtual void scriptByFilename(std::string);
+    virtual void scriptByFile(std::ifstream&);
     /* Destroy any bindings (NOTHING ELSE, because reset() calls destroyBindings(), then createBindings(),
      * and still expects the system to be still useable)*/
     virtual void destroyBindings() = 0;

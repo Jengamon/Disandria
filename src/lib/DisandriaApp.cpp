@@ -13,6 +13,8 @@
 #include "FontManager.h"
 #include "GameTimer.h"
 #include "GameManager.h"
+#include "script/ScriptAPILibrary.h"
+
 using namespace Poco::Util;
 
 void DisandriaApp::initialize(Application& self)
@@ -28,6 +30,7 @@ void DisandriaApp::initialize(Application& self)
         }
     }
     GameManager::setGameName(loc);
+    logger().notice(GameManager::getGameFolderName());
     Poco::AutoPtr<XMLConfiguration> xmlConf;
     try {
         xmlConf = new XMLConfiguration(GameManager::getGameFolderName() + "project.proj");
@@ -39,11 +42,21 @@ void DisandriaApp::initialize(Application& self)
     config().setString("project.name", xmlConf->getString("project[@name]", ""));
     config().setInt("project.window.width", xmlConf->getInt("project.window.width[@value]", 0));
     config().setInt("project.window.height", xmlConf->getInt("project.window.height[@value]", 0));
+    config().setString("project.script.lang", xmlConf->getString("project.script.lang[@value]", ""));
 
     StateManager::setCurrentState(disandria::States::MAINMENU);
     FontManager::setDefaultFont(xmlConf->getString("project.common.font[@name]"));
 
     Application::initialize(self);
+    /* Example of a (partially) proper way to use ScriptAPILibrary and ScriptAPI
+		ScriptAPI* api = ScriptAPILibrary::instance->getAPI("Falcon");
+		api->initialize();
+		api->createBindings();
+		api->scriptByFilename("main");
+		api->destroyBindings();
+		api->uninitialize();
+		api = NULL;
+    */
     rwin = RenderWindowManager::getRenderWindow("ROOT");
 }
 

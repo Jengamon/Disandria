@@ -1,11 +1,12 @@
 #include "GameManager.h"
+#include <Poco/Path.h>
 
 std::string GameManager::gameName = "";
 RenderWindow* GameManager::window = NULL;
 
 void GameManager::setGameName(std::string gn)
 {
-    gameName = gn;
+    gameName = Poco::Path(gn).absolute().toString();
 }
 
 std::string GameManager::getGameFolderName()
@@ -28,5 +29,5 @@ RenderWindow* GameManager::getRenderWindow()
 
 double GameManager::getEngineVersion()
 {
-    return 0.02;
+    return 0.2;
 }
