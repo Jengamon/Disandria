@@ -17,6 +17,8 @@ CEGUI: 0.8.2
 Thor: 2.0-dev  
 FalconPL: 0.9.6.8 (Chimera)  
 
+You will also need a C++11(otherwise known as C++0x)-compiliant compiler.
+
 PugiXML is used in this project. The files for PugiXML are included in the folder src/pugixml.
 I do not own nor do I hold any rights over PugiXML.  
 For more information on this project, look over here: [The PugiXML library][pxml].

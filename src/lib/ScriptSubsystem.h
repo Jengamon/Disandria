@@ -6,14 +6,14 @@
 
 class ScriptSubsystem : public Poco::Util::Subsystem
 {
-	private:
-		void initialize(Poco::Util::Application&);
-		void uninitialize();
-		void defineOptions(Poco::Util::OptionSet&);
-		const char* name() const;
+private:
+    void initialize(Poco::Util::Application&);
+    void uninitialize();
+    void defineOptions(Poco::Util::OptionSet&);
+    const char* name() const;
     /* Members */
-	public:
-		static ScriptAPI* scriptAPI;
+public:
+    static ScriptAPI* scriptAPI;
 };
 
 #endif // __DISANDRIA_SCRIPTSUBSYSTEM_H

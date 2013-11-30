@@ -3,10 +3,10 @@
 
 FALCON_FUNC dfsapi_GameManager_getGameFolderName(Falcon::VMachine* vm)
 {
-	vm->retval(Falcon::String(GameManager::getGameFolderName().c_str()));
+    vm->retval(Falcon::String(GameManager::getGameFolderName().c_str()));
 }
 
 FALCON_FUNC dfsapi_GameManager_getEngineVersion(Falcon::VMachine* vm)
 {
-	vm->retval(GameManager::getEngineVersion());
+    vm->retval(GameManager::getEngineVersion());
 }

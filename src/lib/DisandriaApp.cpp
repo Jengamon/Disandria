@@ -30,7 +30,6 @@ void DisandriaApp::initialize(Application& self)
         }
     }
     GameManager::setGameName(loc);
-    logger().notice(GameManager::getGameFolderName());
     Poco::AutoPtr<XMLConfiguration> xmlConf;
     try {
         xmlConf = new XMLConfiguration(GameManager::getGameFolderName() + "project.proj");
@@ -49,13 +48,13 @@ void DisandriaApp::initialize(Application& self)
 
     Application::initialize(self);
     /* Example of a (partially) proper way to use ScriptAPILibrary and ScriptAPI
-		ScriptAPI* api = ScriptAPILibrary::instance->getAPI("Falcon");
-		api->initialize();
-		api->createBindings();
-		api->scriptByFilename("main");
-		api->destroyBindings();
-		api->uninitialize();
-		api = NULL;
+        ScriptAPI* api = ScriptAPILibrary::instance->getAPI("Falcon");
+        api->initialize();
+        api->createBindings();
+        api->scriptByFilename("main");
+        api->destroyBindings();
+        api->uninitialize();
+        api = NULL;
     */
     rwin = RenderWindowManager::getRenderWindow("ROOT");
 }
@@ -103,7 +102,6 @@ void DisandriaApp::defineOptions(OptionSet& opst)
 
 int DisandriaApp::main(const std::vector<std::string>& args)
 {
-    std::cout << config().getString("system.osName") << std::endl;
     while(rwin->isOpen()) {
         sf::Event event;
         while(rwin->pollEvent(event)) {

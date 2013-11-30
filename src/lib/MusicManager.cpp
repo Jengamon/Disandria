@@ -16,11 +16,11 @@ sf::Music* MusicManager::createMusic(std::string name, std::string str)
     if(!msc->openFromFile(loadPrefix + str)) {
         Log::log("Failed to open " + loadPrefix + str);
     }
-    
+
     if(!(music.find(name) == music.end())) {
-		delete music[name];
-	}
-	music[name] = msc;
+        delete music[name];
+    }
+    music[name] = msc;
     return msc;
 }
 
@@ -32,8 +32,8 @@ sf::SoundBuffer* MusicManager::createSound(std::string name, std::string str)
         Log::log("Failed to open " + loadPrefix + str);
     }
     if(!(sound.find(name) == sound.end())) {
-		delete sound[name];
-	}
+        delete sound[name];
+    }
     sound[name] = sndbf;
     return sndbf;
 }

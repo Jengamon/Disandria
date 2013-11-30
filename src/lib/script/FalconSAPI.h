@@ -6,16 +6,16 @@
 
 class FalconSAPI : public ScriptAPI
 {
-	public:
-		void initialize();
-		void createBindings();
-		int scriptRequests();
-		void scriptByFilename(std::string);
-		void destroyBindings();
-		void uninitialize();
-	private:
-		Falcon::VMachine* vm;
-		Falcon::ModuleLoader* modloader;
+public:
+    void initialize();
+    void createBindings();
+    int scriptRequests();
+    void scriptByFilename(std::string);
+    void destroyBindings();
+    void uninitialize();
+private:
+    Falcon::VMachine* vm;
+    Falcon::ModuleLoader* modloader;
 };
 
 #endif // __DISANDRIA_FALCONSAPI_H

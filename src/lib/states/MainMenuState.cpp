@@ -31,7 +31,7 @@ void MainMenuState::onRender(RenderWindow* win)
 void MainMenuState::onCleanup(RenderWindow* win)
 {
     win->displayWindow(NULL);
-    MusicManager::getMusicPointer("menuMusic")->stop();
+    //MusicManager::getMusicPointer("menuMusic")->stop();
     MusicManager::deleteMusic("menuMusic");
     ImageManager::deleteImage("mainMenu");
 }

@@ -27,10 +27,10 @@ public:
      * C) All of the above
      */
     virtual int scriptRequests() = 0;
-    /* Should be obvious by their names 
+    /* Should be obvious by their names
      * They have a defult implementation that does nothing,
      * so feel free to override one or all of the functions.
-     * 
+     *
      * Script engine MUST handle errors gracefully, and expect NO special casting
      * from the engine, which means NO extra external API except the functions
      * listed in ScriptAPI, as script API's MUST be decendants of ScriptAPI,
