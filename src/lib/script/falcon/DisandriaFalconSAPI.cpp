@@ -60,7 +60,7 @@ void DisandriaFalconSAPI::addClasses(Falcon::Module* mod)
     mod->addClassMethod(sfMusic, "setPitch", &dfsapi_sf_Music::setPitch);
     mod->addClassMethod(sfMusic, "getVolume", &dfsapi_sf_Music::getVolume);
     mod->addClassMethod(sfMusic, "setVolume", &dfsapi_sf_Music::setVolume);
-    
+
     /* sf::SoundBuffer */
     Falcon::Symbol* sfSoundBuffer = mod->addClass("sfSoundBuffer", &dfsapi_sf_SoundBuffer::init);
     sfSoundBuffer->setWKS(true);
@@ -69,7 +69,7 @@ void DisandriaFalconSAPI::addClasses(Falcon::Module* mod)
     mod->addClassMethod(sfSoundBuffer, "getDuration", &dfsapi_sf_SoundBuffer::getDuration);
     mod->addClassMethod(sfSoundBuffer, "getChannelCount", &dfsapi_sf_SoundBuffer::getChannelCount);
     mod->addClassMethod(sfSoundBuffer, "getSampleRate", &dfsapi_sf_SoundBuffer::getSampleRate);
-    
+
     /* sf::Sound */
     Falcon::Symbol* sfSound = mod->addClass("sfSound", &dfsapi_sf_Sound::init)->addParam("soundBuffer");
     sfSound->setWKS(true);

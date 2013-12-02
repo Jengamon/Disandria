@@ -13,13 +13,13 @@ public:
 
     dfsapi_sf_Sound(const Falcon::CoreClass*, sf::Sound*);
     dfsapi_sf_Sound(const dfsapi_sf_Sound&);
-    
+
     ~dfsapi_sf_Sound();
 
     virtual Falcon::CoreObject* clone() const;
     virtual bool setProperty(const Falcon::String&, const Falcon::Item&);
     virtual bool getProperty(const Falcon::String&, Falcon::Item&) const;
-    
+
     const std::shared_ptr<sf::Sound> sound() const {
         return snd;
     }
@@ -29,7 +29,7 @@ public:
 
     /* sf::Sound methods */
     static FALCON_FUNC setBuffer(Falcon::VMachine*);
-	static FALCON_FUNC getBuffer(Falcon::VMachine*);
+    static FALCON_FUNC getBuffer(Falcon::VMachine*);
     static FALCON_FUNC play(Falcon::VMachine*);
     static FALCON_FUNC pause(Falcon::VMachine*);
     static FALCON_FUNC stop(Falcon::VMachine*);

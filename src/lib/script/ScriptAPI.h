@@ -51,7 +51,7 @@ public:
     virtual void reset();
     /*
      *  File extension to use.
-     * 	Must be implemented for any combination with SubmitType_FILE and SubmitType_STRING
+     *  Must be implemented for any combination with SubmitType_FILE and SubmitType_STRING
      */
     virtual std::string extension();
 };

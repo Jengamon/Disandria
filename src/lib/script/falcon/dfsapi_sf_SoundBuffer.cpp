@@ -14,14 +14,14 @@ Falcon::CoreObject* dfsapi_sf_SoundBuffer::factory(const Falcon::CoreClass* orig
         return new dfsapi_sf_SoundBuffer(origin, new sf::SoundBuffer);
 }
 
-dfsapi_sf_SoundBuffer::dfsapi_sf_SoundBuffer(const Falcon::CoreClass* generator, sf::SoundBuffer* _sndbuf) : Falcon::CoreObject(generator), sndbuf(_sndbuf) 
+dfsapi_sf_SoundBuffer::dfsapi_sf_SoundBuffer(const Falcon::CoreClass* generator, sf::SoundBuffer* _sndbuf) : Falcon::CoreObject(generator), sndbuf(_sndbuf)
 {
-	poco_assert(_sndbuf != NULL);
+    poco_assert(_sndbuf != NULL);
 }
 
-dfsapi_sf_SoundBuffer::dfsapi_sf_SoundBuffer(const dfsapi_sf_SoundBuffer& other) : Falcon::CoreObject(other), sndbuf(other.sndbuf) 
+dfsapi_sf_SoundBuffer::dfsapi_sf_SoundBuffer(const dfsapi_sf_SoundBuffer& other) : Falcon::CoreObject(other), sndbuf(other.sndbuf)
 {
-	poco_assert(other.sndbuf != NULL);
+    poco_assert(other.sndbuf != NULL);
 }
 
 Falcon::CoreObject* dfsapi_sf_SoundBuffer::clone() const
@@ -41,30 +41,29 @@ bool dfsapi_sf_SoundBuffer::getProperty(const Falcon::String& key, Falcon::Item&
 
 FALCON_FUNC dfsapi_sf_SoundBuffer::loadFromFile(Falcon::VMachine* vm)
 {
-	dfsapi_sf_SoundBuffer* self = static_cast<dfsapi_sf_SoundBuffer*>(vm->self().asObject());
-	Falcon::Item* rpath = vm->param(0);
-	if(rpath == NULL || !rpath->isString())
-	{
-		throw new Falcon::ParamError(Falcon::ErrorParam(Falcon::e_inv_params, __LINE__).extra("String"));
-	}
-	
-	vm->retval(self->sndbuf->loadFromFile(Falcon::AutoCString(rpath->asString()).c_str()));
+    dfsapi_sf_SoundBuffer* self = static_cast<dfsapi_sf_SoundBuffer*>(vm->self().asObject());
+    Falcon::Item* rpath = vm->param(0);
+    if(rpath == NULL || !rpath->isString()) {
+        throw new Falcon::ParamError(Falcon::ErrorParam(Falcon::e_inv_params, __LINE__).extra("String"));
+    }
+
+    vm->retval(self->sndbuf->loadFromFile(Falcon::AutoCString(rpath->asString()).c_str()));
 }
 
 FALCON_FUNC dfsapi_sf_SoundBuffer::getDuration(Falcon::VMachine* vm)
 {
-	dfsapi_sf_SoundBuffer* self = static_cast<dfsapi_sf_SoundBuffer*>(vm->self().asObject());
-	vm->retval(self->sndbuf->getDuration().asSeconds());
+    dfsapi_sf_SoundBuffer* self = static_cast<dfsapi_sf_SoundBuffer*>(vm->self().asObject());
+    vm->retval(self->sndbuf->getDuration().asSeconds());
 }
 
 FALCON_FUNC dfsapi_sf_SoundBuffer::getChannelCount(Falcon::VMachine* vm)
 {
-	dfsapi_sf_SoundBuffer* self = static_cast<dfsapi_sf_SoundBuffer*>(vm->self().asObject());
-	vm->retval((Falcon::int64)self->sndbuf->getChannelCount());
+    dfsapi_sf_SoundBuffer* self = static_cast<dfsapi_sf_SoundBuffer*>(vm->self().asObject());
+    vm->retval((Falcon::int64)self->sndbuf->getChannelCount());
 }
 
 FALCON_FUNC dfsapi_sf_SoundBuffer::getSampleRate(Falcon::VMachine* vm)
 {
-	dfsapi_sf_SoundBuffer* self = static_cast<dfsapi_sf_SoundBuffer*>(vm->self().asObject());
-	vm->retval((Falcon::int64)self->sndbuf->getSampleRate());
+    dfsapi_sf_SoundBuffer* self = static_cast<dfsapi_sf_SoundBuffer*>(vm->self().asObject());
+    vm->retval((Falcon::int64)self->sndbuf->getSampleRate());
 }

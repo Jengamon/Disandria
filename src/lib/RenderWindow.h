@@ -13,7 +13,6 @@
 class RenderWindow : public sf::RenderWindow
 {
 public:
-	static void init();
     RenderWindow(int, int, std::string);
     void startRendering();
     void renderGUI();

@@ -6,12 +6,11 @@ void dfsapi_sf_Sound::init(Falcon::VMachine* vm)
 {
     dfsapi_sf_Sound* self = Falcon::dyncast<dfsapi_sf_Sound*>(vm->self().asObject());
     Falcon::Item* rsndbuf = vm->param(0);
-    if(rsndbuf != NULL && rsndbuf->isObject())
-    {
-		self->lck = new Falcon::GarbageLock(*rsndbuf);
-		dfsapi_sf_SoundBuffer* sndbuf = Falcon::dyncast<dfsapi_sf_SoundBuffer*>(rsndbuf->asObject());
-		self->sound()->setBuffer(*sndbuf->soundbuffer().get());
-	}
+    if(rsndbuf != NULL && rsndbuf->isObject()) {
+        self->lck = new Falcon::GarbageLock(*rsndbuf);
+        dfsapi_sf_SoundBuffer* sndbuf = Falcon::dyncast<dfsapi_sf_SoundBuffer*>(rsndbuf->asObject());
+        self->sound()->setBuffer(*sndbuf->soundbuffer().get());
+    }
 }
 
 Falcon::CoreObject* dfsapi_sf_Sound::factory(const Falcon::CoreClass* origin, void* data, bool bDeser)
@@ -28,8 +27,8 @@ dfsapi_sf_Sound::dfsapi_sf_Sound(const dfsapi_sf_Sound& other) : Falcon::CoreObj
 
 dfsapi_sf_Sound::~dfsapi_sf_Sound()
 {
-	if(lck != NULL)
-		delete lck;
+    if(lck != NULL)
+        delete lck;
 }
 
 Falcon::CoreObject* dfsapi_sf_Sound::clone() const
@@ -50,27 +49,26 @@ bool dfsapi_sf_Sound::getProperty(const Falcon::String& key, Falcon::Item& ret) 
 /* Falconizing sf::Sound methods */
 FALCON_FUNC dfsapi_sf_Sound::setBuffer(Falcon::VMachine* vm)
 {
-	dfsapi_sf_Sound* self = static_cast<dfsapi_sf_Sound*>(vm->self().asObject());
-	Falcon::Item* rsndbuf = vm->param(0);
-	if(rsndbuf == NULL || !rsndbuf->isObject())
-	{
-		throw new Falcon::ParamError(Falcon::ErrorParam(Falcon::e_inv_params, __LINE__).extra("sfSoundBuffer"));
-	}
-	
-	self->lck = new Falcon::GarbageLock(*rsndbuf);
-	dfsapi_sf_SoundBuffer* sndbuf = Falcon::dyncast<dfsapi_sf_SoundBuffer*>(rsndbuf->asObject());
-	self->snd->setBuffer(*sndbuf->soundbuffer());
-	vm->retnil();
+    dfsapi_sf_Sound* self = static_cast<dfsapi_sf_Sound*>(vm->self().asObject());
+    Falcon::Item* rsndbuf = vm->param(0);
+    if(rsndbuf == NULL || !rsndbuf->isObject()) {
+        throw new Falcon::ParamError(Falcon::ErrorParam(Falcon::e_inv_params, __LINE__).extra("sfSoundBuffer"));
+    }
+
+    self->lck = new Falcon::GarbageLock(*rsndbuf);
+    dfsapi_sf_SoundBuffer* sndbuf = Falcon::dyncast<dfsapi_sf_SoundBuffer*>(rsndbuf->asObject());
+    self->snd->setBuffer(*sndbuf->soundbuffer());
+    vm->retnil();
 }
 
 FALCON_FUNC dfsapi_sf_Sound::getBuffer(Falcon::VMachine* vm)
 {
-	dfsapi_sf_Sound* self = static_cast<dfsapi_sf_Sound*>(vm->self().asObject());
-	const sf::SoundBuffer* sndbuf = self->snd->getBuffer();
-	Falcon::Item* sfSoundBufferClassItem = vm->findWKI("sfSoundBuffer");
-	Falcon::CoreClass* sfSoundBufferClass = sfSoundBufferClassItem->asClass();
-	std::cout << sndbuf << std::endl;
-	vm->retval(new dfsapi_sf_SoundBuffer(sfSoundBufferClass, const_cast<sf::SoundBuffer*>(sndbuf)));
+    dfsapi_sf_Sound* self = static_cast<dfsapi_sf_Sound*>(vm->self().asObject());
+    const sf::SoundBuffer* sndbuf = self->snd->getBuffer();
+    Falcon::Item* sfSoundBufferClassItem = vm->findWKI("sfSoundBuffer");
+    Falcon::CoreClass* sfSoundBufferClass = sfSoundBufferClassItem->asClass();
+    std::cout << sndbuf << std::endl;
+    vm->retval(new dfsapi_sf_SoundBuffer(sfSoundBufferClass, const_cast<sf::SoundBuffer*>(sndbuf)));
 }
 
 FALCON_FUNC dfsapi_sf_Sound::play(Falcon::VMachine* vm)

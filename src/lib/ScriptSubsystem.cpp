@@ -27,35 +27,28 @@ void ScriptSubsystem::initialize(Application& app)
 
     scriptAPI->initialize();
     scriptAPI->createBindings();
-    if(scriptAPI->scriptRequests() & SubmitType_FILENAME)
-    {
-		scriptAPI->scriptByFilename("main");
-	}
-	else
-	{
-		std::ifstream in(GameManager::getGameFolderName() + "main." + scriptAPI->extension());
-		if(scriptAPI->scriptRequests() & SubmitType_FILE)
-		{
-			scriptAPI->scriptByFile(in);
-		}
-		else
-		{
-			std::string contents;
-			std::string line;
-			while(getline(in, line))
-			{
-				contents += line;
-			}
-			scriptAPI->scriptByString(contents);
-		}
-		in.close();
-	}
+    if(scriptAPI->scriptRequests() & SubmitType_FILENAME) {
+        scriptAPI->scriptByFilename("main");
+    } else {
+        std::ifstream in(GameManager::getGameFolderName() + "main." + scriptAPI->extension());
+        if(scriptAPI->scriptRequests() & SubmitType_FILE) {
+            scriptAPI->scriptByFile(in);
+        } else {
+            std::string contents;
+            std::string line;
+            while(getline(in, line)) {
+                contents += line;
+            }
+            scriptAPI->scriptByString(contents);
+        }
+        in.close();
+    }
 }
 
-void ScriptSubsystem::uninitialize() 
+void ScriptSubsystem::uninitialize()
 {
-	scriptAPI->destroyBindings();
-	scriptAPI->uninitialize();
+    scriptAPI->destroyBindings();
+    scriptAPI->uninitialize();
 }
 
 void ScriptSubsystem::defineOptions(OptionSet& opst)

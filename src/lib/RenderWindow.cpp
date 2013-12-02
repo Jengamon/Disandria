@@ -2,16 +2,12 @@
 #include "GameManager.h"
 #include "script/CEGUI/FalconScriptingModule.h"
 
-void RenderWindow::init()
-{
-}
-
 RenderWindow::RenderWindow(int width, int height, std::string name) : sf::RenderWindow(sf::VideoMode(width, height), name, sf::Style::Close | sf::Style::Titlebar)
 {
     elapsedclock = new sf::Clock;
     inpMan = new InputManager;
     glEnable(GL_TEXTURE_2D);
-    
+
     CEGUI::OpenGLRenderer& renderer = CEGUI::OpenGLRenderer::bootstrapSystem();
     CEGUI::DefaultResourceProvider* rp = static_cast<CEGUI::DefaultResourceProvider*>(CEGUI::System::getSingleton().getResourceProvider());
 
@@ -34,16 +30,16 @@ RenderWindow::RenderWindow(int width, int height, std::string name) : sf::Render
     CEGUI::XMLParser* parser = CEGUI::System::getSingleton().getXMLParser();
     if(parser->isPropertyPresent("SchemaDefaultResourceGroup"))
         parser->setProperty("SchemaDefaultResourceGroup", "schemas");
-        
+
     CEGUI::System::getSingleton().setScriptingModule(FalconScriptingModule::create());
     CEGUI::System::getSingleton().executeScriptFile("gui", "falcon_scripts");
-    
+
     this->setVerticalSyncEnabled(true);
     this->setFramerateLimit(60);
 
-	// Remove and put to script ASAP
+    // Remove and put to script ASAP
     loadScheme("TaharezLook");
-    loadFont("DejaVuSans-14");
+    loadFont("Inconsolata-14");
     setArrowandTooltipScheme("TaharezLook");
     // --END--
     inpMan->setupMap();

@@ -4,7 +4,4 @@
 #include <falcon/engine.h>
 #include "../../RenderWindow.h"
 
-
-
-
 #endif // __DISANDRIA_DFSAPI_RENDERWINDOW_H

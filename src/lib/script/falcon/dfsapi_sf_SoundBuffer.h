@@ -24,7 +24,7 @@ public:
     std::shared_ptr<sf::SoundBuffer> soundbuffer() {
         return sndbuf;
     }
-    
+
     static FALCON_FUNC loadFromFile(Falcon::VMachine*);
     static FALCON_FUNC getDuration(Falcon::VMachine*);
     static FALCON_FUNC getChannelCount(Falcon::VMachine*);

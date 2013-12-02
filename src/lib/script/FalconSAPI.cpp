@@ -54,5 +54,5 @@ void FalconSAPI::uninitialize()
 
 void FalconSAPI::reset()
 {
-	vm->reset();
+    vm->reset();
 }
