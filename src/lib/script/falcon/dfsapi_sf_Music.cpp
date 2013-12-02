@@ -4,9 +4,6 @@
 void dfsapi_sf_Music::init(Falcon::VMachine* vm)
 {
     dfsapi_sf_Music* self = Falcon::dyncast<dfsapi_sf_Music*>(vm->self().asObject());
-    std::shared_ptr<sf::Music> msc(new sf::Music);
-    self->music() = msc;
-    return;
 }
 
 Falcon::CoreObject* dfsapi_sf_Music::factory(const Falcon::CoreClass* origin, void* data, bool bDeser)

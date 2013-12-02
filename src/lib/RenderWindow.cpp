@@ -1,14 +1,18 @@
 #include "RenderWindow.h"
 #include "GameManager.h"
+#include "script/CEGUI/FalconScriptingModule.h"
+
+void RenderWindow::init()
+{
+}
+
 RenderWindow::RenderWindow(int width, int height, std::string name) : sf::RenderWindow(sf::VideoMode(width, height), name, sf::Style::Close | sf::Style::Titlebar)
 {
     elapsedclock = new sf::Clock;
     inpMan = new InputManager;
     glEnable(GL_TEXTURE_2D);
+    
     CEGUI::OpenGLRenderer& renderer = CEGUI::OpenGLRenderer::bootstrapSystem();
-    this->setVerticalSyncEnabled(true);
-    this->setFramerateLimit(60);
-
     CEGUI::DefaultResourceProvider* rp = static_cast<CEGUI::DefaultResourceProvider*>(CEGUI::System::getSingleton().getResourceProvider());
 
     rp->setResourceGroupDirectory("schemes", GameManager::getGameFolderName() + "gui/schemes/");
@@ -25,13 +29,19 @@ RenderWindow::RenderWindow(int width, int height, std::string name) : sf::Render
     CEGUI::Scheme::setDefaultResourceGroup("schemes");
     CEGUI::WidgetLookManager::setDefaultResourceGroup("looknfeels");
     CEGUI::WindowManager::setDefaultResourceGroup("layouts");
-    CEGUI::ScriptModule::setDefaultResourceGroup("lua_scripts");
+    CEGUI::ScriptModule::setDefaultResourceGroup("falcon_scripts");
 
     CEGUI::XMLParser* parser = CEGUI::System::getSingleton().getXMLParser();
     if(parser->isPropertyPresent("SchemaDefaultResourceGroup"))
         parser->setProperty("SchemaDefaultResourceGroup", "schemas");
+        
+    CEGUI::System::getSingleton().setScriptingModule(FalconScriptingModule::create());
+    CEGUI::System::getSingleton().executeScriptFile("gui", "falcon_scripts");
+    
+    this->setVerticalSyncEnabled(true);
+    this->setFramerateLimit(60);
 
-    // Remove and put to script ASAP
+	// Remove and put to script ASAP
     loadScheme("TaharezLook");
     loadFont("DejaVuSans-14");
     setArrowandTooltipScheme("TaharezLook");

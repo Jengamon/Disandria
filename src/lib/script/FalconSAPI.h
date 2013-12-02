@@ -13,6 +13,7 @@ public:
     void scriptByFilename(std::string);
     void destroyBindings();
     void uninitialize();
+    void reset();
 private:
     Falcon::VMachine* vm;
     Falcon::ModuleLoader* modloader;

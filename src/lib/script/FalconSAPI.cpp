@@ -49,4 +49,10 @@ void FalconSAPI::uninitialize()
     delete modloader;
     vm->finalize();
     vm = NULL;
+    Falcon::Engine::Shutdown();
+}
+
+void FalconSAPI::reset()
+{
+	vm->reset();
 }

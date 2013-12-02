@@ -22,7 +22,7 @@ void WindowSubsystem::initialize(Application& app)
         if(height == 0)
             app.logger().error("Invalid window height.");
     }
-
+	
     if(RenderWindowManager::registerRenderWindow(0, RenderWindowManager::Params::createParam(width, height, app.config().getString("project.name")))) {
         if(!RenderWindowManager::linkRegisterToString("ROOT", 0)) {
             app.logger().error("Root window could not be set to ROOT.");
@@ -32,7 +32,7 @@ void WindowSubsystem::initialize(Application& app)
         app.logger().error("Root window could not be created.");
         exit(-1);
     }
-
+    
     RenderWindow* rwin = RenderWindowManager::getRenderWindow("ROOT");
 
     GameManager::setRenderWindow(rwin);

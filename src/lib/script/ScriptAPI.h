@@ -4,7 +4,6 @@
 #define DSCRIPT_API 0.2
 #include <string>
 #include <fstream>
-#include <Poco/Any.h>
 
 #define SubmitType_STRING 1
 #define SubmitType_FILE 2
@@ -50,6 +49,11 @@ public:
      * DO NOT IGNORE. When called, Disandria expects the language to be COMPLETELY reset.
      */
     virtual void reset();
+    /*
+     *  File extension to use.
+     * 	Must be implemented for any combination with SubmitType_FILE and SubmitType_STRING
+     */
+    virtual std::string extension();
 };
 
 #endif // SCRIPT_SCRIPTAPI_H
