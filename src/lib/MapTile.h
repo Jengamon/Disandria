@@ -4,6 +4,9 @@
 #include "Actor.h"
 #include <SFML/Graphics.hpp>
 
+/**
+ * @todo Write documentation. I mean, come on, it's a tiny little class.
+ */
 class MapTile
 {
 public:

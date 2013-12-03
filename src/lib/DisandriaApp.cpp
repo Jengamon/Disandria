@@ -1,6 +1,7 @@
 #include "DisandriaApp.h"
 #include <Poco/Util/HelpFormatter.h>
 #include <iostream>
+#include <sstream>
 #include <cstdlib>
 #include <Poco/Foundation.h>
 #include <Poco/Util/XMLConfiguration.h>
@@ -125,7 +126,8 @@ int DisandriaApp::main(const std::vector<std::string>& args)
 
 void DisandriaApp::handleVersion(const std::string& name, const std::string& value)
 {
-    this->logger().notice("Disandria v.0.1");
+	std::stringstream version; version << GameManager::getEngineVersion();
+    this->logger().notice("Disandria v." + version.str());
     stopOptionsProcessing();
     exit(-1);
 }

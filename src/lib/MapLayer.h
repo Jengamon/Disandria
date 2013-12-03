@@ -11,10 +11,31 @@
 class MapLayer
 {
 public:
+	/**
+	 * @brief Create a MapLayer
+	 * @param xml TileLayer to based MapLayer off of
+	 * @param mtlwd Map tile width
+	 * @param mtlht Map tile height
+	 * @param man Pointer to TilesetManager, where tilesets have been preloaded.
+	 * 
+	 * Creates a MapLayer, which renders a pugitmx::TileLayer
+	 */
     MapLayer(pugitmx::TileLayer xml, unsigned int mtlwd, unsigned int mtlht, TilesetManager* man) : xmlInfo(xml), maptilewidth(mtlwd), maptileheight(mtlht), tlman(man), genIm(NULL) {
         assert(man != NULL);
     }
+    
+    /**
+     * @brief Render a MapLayer
+     * 
+     * Render the MapLayer to an Image
+     */
     sf::Image* renderLayer();
+    
+    /**
+     * @brief Cleanup
+     * 
+     * Clean up MapLayer, so that memory isn't wasted
+     */
     ~MapLayer();
 private:
     unsigned int maptilewidth;

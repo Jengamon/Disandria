@@ -10,6 +10,9 @@
 #include "InputManager.h"
 #include "../helplib/stringh.h"
 
+/**
+ * @todo Stop looking at this and write the documentation!
+ */
 class RenderWindow : public sf::RenderWindow
 {
 public:

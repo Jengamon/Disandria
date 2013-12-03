@@ -1,5 +1,5 @@
 #include "TilesetManager.h"
-#include <cassert>
+#include <Poco/Foundation.h>
 
 void TilesetManager::addTileset(std::string name, unsigned int firstgid, unsigned int tlwidth, unsigned int tlheight, std::string loc, handleImage hndlim)
 {
@@ -18,7 +18,7 @@ disandria::Tileset* TilesetManager::retrieveTilesetByName(std::string name)
 {
     auto tlst = tilesets.find(name);
     if(tlst != tilesets.end()) {
-        assert(tlst->second != NULL);
+        poco_assert(tlst->second != NULL);
         return tlst->second;
     }
     return NULL;
@@ -28,7 +28,7 @@ disandria::Tileset* TilesetManager::retrieveTilesetByGid(unsigned int gid)
 {
     disandria::Tileset* tileset = NULL;
     for(auto tlsts = tilesets.begin(); tlsts != tilesets.end(); tlsts++) {
-        assert(tlsts->second != NULL);
+        poco_assert(tlsts->second != NULL);
         if(tlsts->second->firstgid > gid || (tileset != NULL && tlsts->second->firstgid < tileset->firstgid)) {
             continue;
         }
