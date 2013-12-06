@@ -26,9 +26,6 @@ public:
     }
 
     static FALCON_FUNC loadFromFile(Falcon::VMachine*);
-    static FALCON_FUNC getDuration(Falcon::VMachine*);
-    static FALCON_FUNC getChannelCount(Falcon::VMachine*);
-    static FALCON_FUNC getSampleRate(Falcon::VMachine*);
 private:
     std::shared_ptr<sf::SoundBuffer> sndbuf;
 };

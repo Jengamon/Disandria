@@ -1,8 +1,9 @@
 #include "DisandriaFalconSAPI.h"
 
-/* Bindings to Disandria C++ classes */
+/* Bindings to Disandria C++ classes (or C++ functions) */
 #include "dfsapi_GameManager.h"
 #include "dfsapi_RenderWindow.h"
+#include "dfsapi_functions.h"
 
 /* Bindings to SFML C++ classes (underlying library of Disandria) */
 #include "dfsapi_sf_Music.h"
@@ -35,7 +36,6 @@ void DisandriaFalconSAPI::addConstants(Falcon::Module* mod)
 
 void DisandriaFalconSAPI::addMethods(Falcon::Module* mod)
 {
-
 }
 
 void DisandriaFalconSAPI::addClasses(Falcon::Module* mod)
@@ -66,9 +66,6 @@ void DisandriaFalconSAPI::addClasses(Falcon::Module* mod)
     sfSoundBuffer->setWKS(true);
     sfSoundBuffer->getClassDef()->factory(&dfsapi_sf_SoundBuffer::factory);
     mod->addClassMethod(sfSoundBuffer, "loadFromFile", &dfsapi_sf_SoundBuffer::loadFromFile);
-    mod->addClassMethod(sfSoundBuffer, "getDuration", &dfsapi_sf_SoundBuffer::getDuration);
-    mod->addClassMethod(sfSoundBuffer, "getChannelCount", &dfsapi_sf_SoundBuffer::getChannelCount);
-    mod->addClassMethod(sfSoundBuffer, "getSampleRate", &dfsapi_sf_SoundBuffer::getSampleRate);
 
     /* sf::Sound */
     Falcon::Symbol* sfSound = mod->addClass("sfSound", &dfsapi_sf_Sound::init)->addParam("soundBuffer");

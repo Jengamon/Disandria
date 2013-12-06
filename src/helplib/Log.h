@@ -5,7 +5,13 @@
 #include <Poco/ConsoleChannel.h>
 #include <Poco/FileChannel.h>
 #include <Poco/SplitterChannel.h>
+#include <Poco/Platform.h>
 #include <map>
+
+#ifdef POCO_OS_FAMILY_WINDOWS
+	#undef ERROR
+	#undef VOID
+#endif
 
 namespace PE
 {

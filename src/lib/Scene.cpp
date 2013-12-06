@@ -1,9 +1,9 @@
 #include "Scene.h"
 #include "../helplib/Log.h"
 
-void Scene::addImage(ImageSpec spec)
+void Scene::addImage(sf::Sprite spr)
 {
-    imageList.push_back(spec);
+    imageList.push_back(spr);
 }
 
 void Scene::setShader(sf::Shader* shd)

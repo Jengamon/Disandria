@@ -7,18 +7,11 @@
 #include <Thor/Graphics.hpp>
 #include "RenderWindow.h"
 
-struct ImageSpec {
-    ImageSpec(unsigned int _x, unsigned int _y, sf::Image* img = NULL) : x(_x), y(_y), imagePointer(img) {}
-    sf::Image* imagePointer;
-    unsigned int x;
-    unsigned int y;
-};
-
 class Scene
 {
 public:
     Scene(std::string ident, unsigned int _width, unsigned int _height) : identifier(ident), width(_width), height(_height) {}
-    void addImage(ImageSpec spec);
+    void addSprite(sf::Sprite spr);
     void setShader(sf::Shader*);
     void deleteShader();
     void clearList();
@@ -28,7 +21,7 @@ private:
     unsigned int width;
     unsigned int height;
     std::string identifier;
-    std::list<ImageSpec> imageList;
+    std::list<sf::Sprite> imageList;
     std::list<Scene*> sceneList;
     sf::Shader* currentShader;
 };

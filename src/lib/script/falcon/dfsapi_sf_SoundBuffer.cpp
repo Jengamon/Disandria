@@ -1,5 +1,6 @@
 #include "dfsapi_sf_SoundBuffer.h"
 #include <Poco/Foundation.h>
+#include <iostream>
 
 void dfsapi_sf_SoundBuffer::init(Falcon::VMachine* vm)
 {
@@ -31,12 +32,26 @@ Falcon::CoreObject* dfsapi_sf_SoundBuffer::clone() const
 
 bool dfsapi_sf_SoundBuffer::setProperty(const Falcon::String& prop, const Falcon::Item& value)
 {
+	if(prop == "duration" ||
+		prop == "channelCount" ||
+		prop == "sampleRate")
+		throw new Falcon::AccessError(Falcon::ErrorParam(Falcon::e_prop_ro).extra(prop));
     return false;
 }
 
 bool dfsapi_sf_SoundBuffer::getProperty(const Falcon::String& key, Falcon::Item& ret) const
 {
-    return defaultProperty(key, ret);
+	if(key == "duration")
+		ret = sndbuf->getDuration().asSeconds();
+	else if(key == "channelCount")
+		ret = (Falcon::int64)sndbuf->getChannelCount();
+	else if(key == "sampleRate")
+		ret = (Falcon::int64)sndbuf->getSampleRate();
+	else if(key == "sampleCount")
+		ret = (Falcon::int64)sndbuf->getSampleCount();
+	else
+		return defaultProperty(key, ret);
+	return true;
 }
 
 FALCON_FUNC dfsapi_sf_SoundBuffer::loadFromFile(Falcon::VMachine* vm)
@@ -48,22 +63,4 @@ FALCON_FUNC dfsapi_sf_SoundBuffer::loadFromFile(Falcon::VMachine* vm)
     }
 
     vm->retval(self->sndbuf->loadFromFile(Falcon::AutoCString(rpath->asString()).c_str()));
-}
-
-FALCON_FUNC dfsapi_sf_SoundBuffer::getDuration(Falcon::VMachine* vm)
-{
-    dfsapi_sf_SoundBuffer* self = static_cast<dfsapi_sf_SoundBuffer*>(vm->self().asObject());
-    vm->retval(self->sndbuf->getDuration().asSeconds());
-}
-
-FALCON_FUNC dfsapi_sf_SoundBuffer::getChannelCount(Falcon::VMachine* vm)
-{
-    dfsapi_sf_SoundBuffer* self = static_cast<dfsapi_sf_SoundBuffer*>(vm->self().asObject());
-    vm->retval((Falcon::int64)self->sndbuf->getChannelCount());
-}
-
-FALCON_FUNC dfsapi_sf_SoundBuffer::getSampleRate(Falcon::VMachine* vm)
-{
-    dfsapi_sf_SoundBuffer* self = static_cast<dfsapi_sf_SoundBuffer*>(vm->self().asObject());
-    vm->retval((Falcon::int64)self->sndbuf->getSampleRate());
 }

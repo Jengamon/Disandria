@@ -1,0 +1,8 @@
+#ifndef __DISANDRIA_MAPRESOURCE_H
+#define __DISANDRIA_MAPRESOURCE_H
+
+class MapResource
+{
+};
+
+#endif // __DISANDRIA_MAPRESOURCE_H

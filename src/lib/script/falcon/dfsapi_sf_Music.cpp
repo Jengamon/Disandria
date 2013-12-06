@@ -101,13 +101,10 @@ FALCON_FUNC dfsapi_sf_Music::setPlayingOffset(Falcon::VMachine* vm)
     dfsapi_sf_Music* self = static_cast<dfsapi_sf_Music*>(vm->self().asObject());
     Falcon::Item* playingOffset = vm->param(0);
     double plyOff = 0;
-    if(playingOffset == NULL || !playingOffset->isNumeric()) {
-        if(playingOffset == NULL || !playingOffset->isInteger())
-            throw new Falcon::ParamError(Falcon::ErrorParam(Falcon::e_inv_params, __LINE__).extra("Ordinal"));
-        else
-            plyOff = playingOffset->asInteger();
-    } else
-        plyOff = playingOffset->asNumeric();
+   if(playingOffset == NULL || !playingOffset->isOrdinal()) 
+		throw new Falcon::ParamError(Falcon::ErrorParam(Falcon::e_inv_params, __LINE__).extra("Ordinal"));
+    else
+        plyOff = playingOffset->forceNumeric();
 
     sf::Time tmOffset = sf::seconds(plyOff);
     self->msc->setPlayingOffset(tmOffset);
@@ -144,13 +141,10 @@ FALCON_FUNC dfsapi_sf_Music::setPitch(Falcon::VMachine* vm)
     dfsapi_sf_Music* self = static_cast<dfsapi_sf_Music*>(vm->self().asObject());
     Falcon::Item* rpitch = vm->param(0);
     double pitch = 0;
-    if(rpitch == NULL || !rpitch->isNumeric()) {
-        if(rpitch == NULL || !rpitch->isInteger())
-            throw new Falcon::ParamError(Falcon::ErrorParam(Falcon::e_inv_params, __LINE__).extra("Numeric"));
-        else
-            pitch = rpitch->asInteger();
-    } else
-        pitch = rpitch->asNumeric();
+    if(rpitch == NULL || !rpitch->isOrdinal())
+        throw new Falcon::ParamError(Falcon::ErrorParam(Falcon::e_inv_params, __LINE__).extra("Ordinal"));
+    else
+        pitch = rpitch->forceNumeric();
 
     self->msc->setPitch(pitch);
     vm->retnil();
@@ -167,13 +161,10 @@ FALCON_FUNC dfsapi_sf_Music::setVolume(Falcon::VMachine* vm)
     dfsapi_sf_Music* self = static_cast<dfsapi_sf_Music*>(vm->self().asObject());
     Falcon::Item* rvolume = vm->param(0);
     double volume = 0;
-    if(rvolume == NULL || !rvolume->isNumeric()) {
-        if(rvolume == NULL || !rvolume->isInteger())
-            throw new Falcon::ParamError(Falcon::ErrorParam(Falcon::e_inv_params, __LINE__).extra("Numeric"));
-        else
-            volume = rvolume->asInteger();
-    } else
-        volume = rvolume->asNumeric();
+     if(rvolume == NULL || !rvolume->isOrdinal())
+        throw new Falcon::ParamError(Falcon::ErrorParam(Falcon::e_inv_params, __LINE__).extra("Numeric"));
+    else
+        volume = rvolume->forceNumeric();
 
     self->msc->setVolume(volume);
     vm->retnil();

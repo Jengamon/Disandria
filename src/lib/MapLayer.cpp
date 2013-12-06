@@ -4,17 +4,20 @@
 
 sf::Image* MapLayer::renderLayer()
 {
-    genImage();
-    genIm = new sf::Image;
-    genIm->create(xmlInfo.getWidth() * maptilewidth, xmlInfo.getHeight() * maptileheight);
-    for(auto iter = tiles.begin(); iter != tiles.end(); iter++) {
-        int renderPosInt = iter->first;
-        MapTile* tileToRender = iter->second;
-        sf::Vector2i renderPos(renderPosInt % xmlInfo.getWidth(), renderPosInt / xmlInfo.getHeight());
-        if(tileToRender->renderTile() != NULL) {
-            genIm->copy(*tileToRender->renderTile(), renderPos.x * maptilewidth, renderPos.y * maptileheight);
-        }
-    }
+	if(genIm == NULL)
+	{
+		genImage();
+		genIm = new sf::Image;
+		genIm->create(xmlInfo.getWidth() * maptilewidth, xmlInfo.getHeight() * maptileheight);
+		for(auto iter = tiles.begin(); iter != tiles.end(); iter++) {
+			int renderPosInt = iter->first;
+			MapTile* tileToRender = iter->second;
+			sf::Vector2i renderPos(renderPosInt % xmlInfo.getWidth(), renderPosInt / xmlInfo.getHeight());
+			if(tileToRender->renderTile() != NULL) {
+				genIm->copy(*tileToRender->renderTile(), renderPos.x * maptilewidth, renderPos.y * maptileheight);
+			}
+		}
+	}
     return genIm;
 }
 

@@ -1,6 +1,7 @@
 #include "Map.h"
 #include "GameManager.h"
 #include "../helplib/Log.h"
+#include <Poco/Path.h>
 
 Map::Map()
 {
@@ -16,12 +17,12 @@ Map::Map(std::string mapFileName)
 
 std::string Map::returnMapPath()
 {
-    return ("maps/" + imapName + "/");
+    return Poco::Path("maps/" + imapName + "/").toString();
 }
 
 std::string Map::returnMapPathWithMap()
 {
-    return ("maps/" + imapName + "/" + imapName + ".tmx");
+    return Poco::Path("maps/" + imapName + "/", imapName + ".tmx").toString();
 }
 
 std::string Map::returnMapName()
