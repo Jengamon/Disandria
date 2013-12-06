@@ -21,7 +21,7 @@ private:
     unsigned int width;
     unsigned int height;
     std::string identifier;
-    std::list<sf::Sprite> imageList;
+    std::list<sf::Sprite> spriteList;
     std::list<Scene*> sceneList;
     sf::Shader* currentShader;
 };

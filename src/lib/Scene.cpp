@@ -1,9 +1,9 @@
 #include "Scene.h"
 #include "../helplib/Log.h"
 
-void Scene::addImage(sf::Sprite spr)
+void Scene::addSprite(sf::Sprite spr)
 {
-    imageList.push_back(spr);
+    spriteList.push_back(spr);
 }
 
 void Scene::setShader(sf::Shader* shd)
@@ -13,9 +13,6 @@ void Scene::setShader(sf::Shader* shd)
 
 void Scene::clearList()
 {
-    for(std::list<ImageSpec>::iterator iter = imageList.begin(); iter != imageList.end(); iter++) {
-        delete iter->imagePointer;
-    }
     imageList.clear();
 }
 
