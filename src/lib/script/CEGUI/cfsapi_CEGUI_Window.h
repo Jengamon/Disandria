@@ -4,7 +4,7 @@
 #include <memory>
 #include <falcon/engine.h>
 #include <CEGUI/CEGUI.h>
-
+/*
 class cfsapi_CEGUI_Window : public Falcon::CoreObject
 {
 	public:
@@ -24,5 +24,5 @@ class cfsapi_CEGUI_Window : public Falcon::CoreObject
 	private:
 		std::shared_ptr<CEGUI::Window> win;
 };
-
+*/
 #endif // __DISANDRIA_CFSAPI_CEGUI_WINDOW_H

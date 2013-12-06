@@ -1,7 +1,7 @@
 #ifndef __DISANDRIA_CEGUIFALCONBINDING_H
 #define __DISANDRIA_CEGUIFALCONBINDING_H
 
-#include <falcon/falcon.h>
+#include <falcon/engine.h>
 #include <CEGUI/CEGUI.h>
 
 class CEGUIFalconBinding
