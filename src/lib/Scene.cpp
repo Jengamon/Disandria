@@ -13,7 +13,7 @@ void Scene::setShader(sf::Shader* shd)
 
 void Scene::clearList()
 {
-    for(std::list<ImageSpec>::iterator iter = imageList.begin(); iter != imageList.end(); iter++) {
+    for(std::list<sf::Sprite>::iterator iter = imageList.begin(); iter != imageList.end(); iter++) {
         delete iter->imagePointer;
     }
     imageList.clear();
@@ -36,7 +36,7 @@ sf::Image* Scene::render()
 {
     sf::Image* sceneImage = new sf::Image;
     sceneImage->create(width, height);
-    for(std::list<ImageSpec>::iterator iter = imageList.begin(); iter != imageList.end(); iter++) {
+    for(std::list<sf::Sprite>::iterator iter = imageList.begin(); iter != imageList.end(); iter++) {
         if(iter->imagePointer != NULL) {
             sceneImage->copy(*iter->imagePointer, iter->x, iter->y);
         }
