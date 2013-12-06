@@ -13,7 +13,7 @@ bool FalconInterpreter::operator()(const CEGUI::EventArgs& args) const
 			Falcon::AutoCString edesc(err->toString());
 			std::cerr << edesc.c_str() << std::endl;
 			err->decref();
-			return;
+			return false;
 		}
         Falcon::Item& ret = vm->regA();
         return ret.isBoolean() ? ret.asBoolean() : true;
