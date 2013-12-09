@@ -59,7 +59,7 @@ FALCON_FUNC dfsapi_sf_SoundBuffer::loadFromFile(Falcon::VMachine* vm)
     dfsapi_sf_SoundBuffer* self = static_cast<dfsapi_sf_SoundBuffer*>(vm->self().asObject());
     Falcon::Item* rpath = vm->param(0);
     if(rpath == NULL || !rpath->isString()) {
-        throw new Falcon::ParamError(Falcon::ErrorParam(Falcon::e_inv_params, __LINE__).extra("String"));
+        throw new Falcon::ParamError(Falcon::ErrorParam(Falcon::e_inv_params, __LINE__).extra("S"));
     }
 
     vm->retval(self->sndbuf->loadFromFile(Falcon::AutoCString(rpath->asString()).c_str()));

@@ -1,6 +1,7 @@
 #include "FalconSAPI.h"
 #include "../GameManager.h"
 #include "falcon/DisandriaFalconSAPI.h"
+#include "CEGUI/CEGUIFalconBinding.h"
 #include <iostream>
 
 void FalconSAPI::initialize()
@@ -11,6 +12,7 @@ void FalconSAPI::initialize()
     modloader->addFalconPath();
     vm->link(Falcon::core_module_init());
     vm->link(DisandriaFalconSAPI::createBinding());
+    vm->link(CEGUIFalconBinding::createBinding());
 }
 
 void FalconSAPI::createBindings()
@@ -46,6 +48,7 @@ void FalconSAPI::uninitialize()
 {
     vm->unlink(Falcon::core_module_init());
     vm->unlink(DisandriaFalconSAPI::createBinding());
+    vm->unlink(CEGUIFalconBinding::createBinding());
     delete modloader;
     vm->finalize();
     vm = NULL;

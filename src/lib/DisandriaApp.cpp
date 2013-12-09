@@ -6,7 +6,6 @@
 #include <Poco/Foundation.h>
 #include <Poco/Util/XMLConfiguration.h>
 #include "RenderWindowManager.h"
-#include "MusicManager.h"
 #include "MenuManager.h"
 #include "MapManager.h"
 #include "ImageManager.h"

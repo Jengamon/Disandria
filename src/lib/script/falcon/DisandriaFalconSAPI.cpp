@@ -4,6 +4,7 @@
 #include "dfsapi_GameManager.h"
 #include "dfsapi_RenderWindow.h"
 #include "dfsapi_functions.h"
+#include "dfsapi_DisandriaObjectShare.h"
 
 /* Bindings to SFML C++ classes (underlying library of Disandria) */
 #include "dfsapi_sf_Music.h"
@@ -36,6 +37,7 @@ void DisandriaFalconSAPI::addConstants(Falcon::Module* mod)
 
 void DisandriaFalconSAPI::addMethods(Falcon::Module* mod)
 {
+	mod->addExtFunc("exitDisandria", &closeSystem);
 }
 
 void DisandriaFalconSAPI::addClasses(Falcon::Module* mod)
@@ -94,4 +96,12 @@ void DisandriaFalconSAPI::addSingletons(Falcon::Module* mod)
     Falcon::Symbol* gameManagerClass = gameManagerSingleton->getInstance();
     mod->addClassMethod(gameManagerClass, "getGameFolderName", &dfsapi_GameManager_getGameFolderName);
     mod->addClassMethod(gameManagerClass, "getEngineVersion", &dfsapi_GameManager_getEngineVersion);
+    
+    /* DisandriaObjectShare */
+    Falcon::Symbol* disandriaObjectShareSingleton = mod->addSingleton("DisandriaObjectShare");
+    Falcon::Symbol* disandriaObjectShareClass = disandriaObjectShareSingleton->getInstance();
+    mod->addClassMethod(disandriaObjectShareClass, "addObject", &dfsapi_DisandriaObjectShare::addObject);
+    mod->addClassMethod(disandriaObjectShareClass, "getObject", &dfsapi_DisandriaObjectShare::getObject);
+    mod->addClassMethod(disandriaObjectShareClass, "removeObject", &dfsapi_DisandriaObjectShare::removeObject);
+    mod->addClassMethod(disandriaObjectShareClass, "isObjectAvailable", &dfsapi_DisandriaObjectShare::isObjectAvailable);
 }

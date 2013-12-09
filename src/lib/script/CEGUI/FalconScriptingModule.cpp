@@ -2,6 +2,7 @@
 #include "FalconInterpreter.h"
 #include "../../GameManager.h"
 #include "../falcon/DisandriaFalconSAPI.h"
+#include "CEGUIFalconBinding.h"
 #include <iostream>
 
 FalconScriptingModule* FalconScriptingModule::create(Falcon::VMachine* vm)
@@ -21,6 +22,7 @@ FalconScriptingModule::FalconScriptingModule(Falcon::VMachine* vm) : d_vm(vm), d
         d_vm = new Falcon::VMachine;
         d_vm->link(Falcon::core_module_init());
         d_vm->link(DisandriaFalconSAPI::createBinding());
+        d_vm->link(CEGUIFalconBinding::createBinding());
     }
     setModuleIdentifierString();
 }
@@ -65,14 +67,14 @@ int FalconScriptingModule::executeScriptGlobal(const CEGUI::String& function_nam
 
 void FalconScriptingModule::executeString(const CEGUI::String& str)
 {
-    Falcon::ModuleLoader mod(*d_ml);
+   /* Falcon::ModuleLoader mod(*d_ml);
     Falcon::Module* modl = mod.loadSource(str.c_str());
     Falcon::Runtime rt(&mod);
     Falcon::VMachine* vm = new Falcon::VMachine;
     vm->link(&rt);
     vm->launch();
     vm->unlink(&rt);
-    vm->finalize();
+    vm->finalize();*/
 }
 
 bool FalconScriptingModule::executeScriptedEventHandler(const CEGUI::String& handler_name, const CEGUI::EventArgs& e)

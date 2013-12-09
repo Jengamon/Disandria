@@ -6,6 +6,5 @@
 // Main menu
 bool MAINMENU_startButton(const CEGUI::EventArgs&);
 bool MAINMENU_loadButton(const CEGUI::EventArgs&);
-bool MAINMENU_endButton(const CEGUI::EventArgs&);
 
 #endif // MENU_H

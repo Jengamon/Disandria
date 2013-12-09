@@ -103,7 +103,7 @@ FALCON_FUNC dfsapi_sf_Sound::setPlayingOffset(Falcon::VMachine* vm)
     Falcon::Item* playingOffset = vm->param(0);
     double plyOff = 0;
     if(playingOffset == NULL || !playingOffset->isOrdinal()) 
-		throw new Falcon::ParamError(Falcon::ErrorParam(Falcon::e_inv_params, __LINE__).extra("Ordinal"));
+		throw new Falcon::ParamError(Falcon::ErrorParam(Falcon::e_inv_params, __LINE__).extra("N"));
     else
         plyOff = playingOffset->forceNumeric();
 
@@ -123,7 +123,7 @@ FALCON_FUNC dfsapi_sf_Sound::setLoop(Falcon::VMachine* vm)
     dfsapi_sf_Sound* self = static_cast<dfsapi_sf_Sound*>(vm->self().asObject());
     Falcon::Item* rloop = vm->param(0);
     if(rloop == NULL || !rloop->isBoolean()) {
-        throw new Falcon::ParamError(Falcon::ErrorParam(Falcon::e_inv_params, __LINE__).extra("Boolean"));
+        throw new Falcon::ParamError(Falcon::ErrorParam(Falcon::e_inv_params, __LINE__).extra("B"));
     }
 
     bool loop = rloop->asBoolean();
@@ -143,7 +143,7 @@ FALCON_FUNC dfsapi_sf_Sound::setPitch(Falcon::VMachine* vm)
     Falcon::Item* rpitch = vm->param(0);
     double pitch = 0;
     if(rpitch == NULL || !rpitch->isOrdinal())
-        throw new Falcon::ParamError(Falcon::ErrorParam(Falcon::e_inv_params, __LINE__).extra("Ordinal"));
+        throw new Falcon::ParamError(Falcon::ErrorParam(Falcon::e_inv_params, __LINE__).extra("N"));
     else
         pitch = rpitch->forceNumeric();
 
@@ -163,7 +163,7 @@ FALCON_FUNC dfsapi_sf_Sound::setVolume(Falcon::VMachine* vm)
     Falcon::Item* rvolume = vm->param(0);
     double volume = 0;
     if(rvolume == NULL || !rvolume->isOrdinal())
-        throw new Falcon::ParamError(Falcon::ErrorParam(Falcon::e_inv_params, __LINE__).extra("Numeric"));
+        throw new Falcon::ParamError(Falcon::ErrorParam(Falcon::e_inv_params, __LINE__).extra("N"));
     else
         volume = rvolume->forceNumeric();
 
