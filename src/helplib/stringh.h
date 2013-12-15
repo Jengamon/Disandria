@@ -52,4 +52,16 @@ public:
     }
 };
 
+class BString
+{
+	public:
+		static bool fromStringText(std::string a) {
+			std::stringstream str;
+			bool x;
+			str << a;
+			str >> std::boolalpha >> x;
+			return x;
+		}
+};
+
 #endif // __STRINGH_H_

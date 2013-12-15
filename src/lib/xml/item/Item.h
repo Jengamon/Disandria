@@ -1,8 +1,8 @@
-#ifndef __PLUGINSUBSYSTEM_DISANDRIA_H
-#define __PLUGINSUBSYSTEM_DISANDRIA_H
+#ifndef __DISANDRIA_ITEM_H
+#define __DISANDRIA_ITEM_H
 
 /*
- * PluginSubsystem.h
+ * Item.h
  * This file is part of Disandria
  *
  * Copyright (C) 2013 - Bob Hostern
@@ -21,22 +21,13 @@
  * along with Disandria. If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-
-#include <Poco/Util/Subsystem.h>
-#include <Poco/ClassLoader.h>
-#include <Poco/Manifest.h>
-#include "script/ScriptAPI.h"
-
-using ScriptPluginLoader = Poco::ClassLoader<ScriptAPI>;
-using ScriptPluginManifest = Poco::Manifest<ScriptAPI>;
-
-class PluginSubsystem : public Poco::Util::Subsystem
+#include "../BaseObject.h"
+class Item : public BaseObject
 {
-    void initialize(Poco::Util::Application&);
-    void uninitialize();
-    void defineOptions(Poco::Util::OptionSet&);
-    const char* name() const;
+	public:
+		Object::Type type() {
+			return Object::ITEM;
+		}
 };
 
-#endif // __PLUGINSUBSYSTEM_DISANDRIA_H
+#endif // __DISANDRIA_ITEM_H

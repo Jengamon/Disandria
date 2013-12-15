@@ -68,6 +68,10 @@ void DisandriaFalconSAPI::addClasses(Falcon::Module* mod)
     sfSoundBuffer->setWKS(true);
     sfSoundBuffer->getClassDef()->factory(&dfsapi_sf_SoundBuffer::factory);
     mod->addClassMethod(sfSoundBuffer, "loadFromFile", &dfsapi_sf_SoundBuffer::loadFromFile);
+    mod->addClassProperty(sfSoundBuffer, "duration");
+    mod->addClassProperty(sfSoundBuffer, "channelCount");
+    mod->addClassProperty(sfSoundBuffer, "sampleRate");
+    mod->addClassProperty(sfSoundBuffer, "sampleCount");
 
     /* sf::Sound */
     Falcon::Symbol* sfSound = mod->addClass("sfSound", &dfsapi_sf_Sound::init)->addParam("soundBuffer");

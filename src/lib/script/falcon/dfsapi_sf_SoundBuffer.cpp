@@ -34,7 +34,8 @@ bool dfsapi_sf_SoundBuffer::setProperty(const Falcon::String& prop, const Falcon
 {
 	if(prop == "duration" ||
 		prop == "channelCount" ||
-		prop == "sampleRate")
+		prop == "sampleRate" ||
+		prop == "sampleCount")
 		throw new Falcon::AccessError(Falcon::ErrorParam(Falcon::e_prop_ro).extra(prop));
     return false;
 }

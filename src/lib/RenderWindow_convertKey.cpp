@@ -72,6 +72,14 @@ CEGUI::Key::Scan RenderWindow::convertKey(sf::Keyboard::Key& key)
         return CEGUI::Key::Numpad5;
     case Keyboard::BackSpace:
         return CEGUI::Key::Backspace;
+    case Keyboard::Up:
+		return CEGUI::Key::ArrowUp;
+	case Keyboard::Down:
+		return CEGUI::Key::ArrowDown;
+	case Keyboard::Left:
+		return CEGUI::Key::ArrowLeft;
+	case Keyboard::Right:
+		return CEGUI::Key::ArrowRight;
     default:
         return CEGUI::Key::Unknown;
     }

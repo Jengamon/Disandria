@@ -1,9 +1,15 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="generator" content="ReText 4.1.0">
+<title>README</title>
+</head>
+<body>
 <h1>Welcome to Disandria!</h1>
-
-<p>Disandria is an RPG game, whose storyline I will soon develop, and, once finished, I will release on RMN (rpgmaker.net). <br />
-This repository is simply the engine, also referred to as Disandria. <br />
+<p>Disandria is an RPG game, whose storyline I will soon develop, and, once finished, I will release on RMN (rpgmaker.net).<br>
+This repository is simply the engine, also referred to as Disandria.<br>
 To build Disandria, you will need to get (on your own):</p>
-
 <ul>
 <li><a href="http://www.sfml-dev.org" title="SFML">The SFML library</a> Version 2.0 or later required. Do <strong>NOT</strong> get Version 1.6. It will <strong>NOT</strong> compile. The coding standards changed between the two versions, so that causes an incompatibility with SFML-1.6 and SFML-2.0+.  </li>
 <li><a href="http://www.pocoproject.org" title="Poco (Requires the COMPLETE edition)">The Poco C++ library</a> </li>
@@ -11,42 +17,34 @@ To build Disandria, you will need to get (on your own):</p>
 <li><a href="http://www.bromeon.ch/libraries/thor/index.html" title="Thor">The Thor library</a> I'm not sure if Version 1.1 works with SFML-2.0 or SFML-2.1, but the best bet is to go with Thor 2.0.  </li>
 <li><a href="http://www.falconpl.org" title="FalconPL">The Falcon Programming Language</a> An wonderful project I stumbled across. Completely in C++. Easily integrated as an embeddable scripting language. A quite extensive standard library. The default scripting language of Disandria.  </li>
 </ul>
-
-<p>For those of you who want to use what I used, here are the version numbers: <br />
-SFML: 2.1 <br />
-Poco: 1.4.6p2 Complete <br />
-CEGUI: 0.8.2 <br />
-Thor: 2.0-dev <br />
+<p>For those of you who want to use what I used, here are the version numbers:<br>
+SFML: 2.1<br>
+Poco: 1.4.6p2 Complete <br>
+CEGUI: 0.8.2<br>
+Thor: 2.0-dev<br>
 FalconPL: 0.9.6.8 (Chimera)  </p>
-
 <p>You will also need a C++11(otherwise known as C++0x)-compiliant compiler.</p>
-
 <p>PugiXML is used in this project. The files for PugiXML are included in the folder src/pugixml.
-I do not own nor do I hold any rights over PugiXML. <br />
+I do not own nor do I hold any rights over PugiXML.<br>
 For more information on this project, look over here: <a href="http://www.pugixml.org" title="PugiXML">The PugiXML library</a>.</p>
-
 <p>There are some limitations to the engine:</p>
-
 <h3>Map-related</h3>
-
 <ul>
 <li>You can only use Tiled TMX maps in their <em>XML</em> format.  </li>
-<li>The engine currently does <em>not</em> support TMX terrains. <br />
-PugiTMX cannot currently parse TMX terrains, and I don't know what they do, so no terrains right now.</li>
+<li>The engine currently does <em>not</em> support TMX terrains.<br>
+  PugiTMX cannot currently parse TMX terrains, and I don't know what they do, so no terrains right now.</li>
 <li>The engine currently does <em>not</em> support TMX image layers.
-PugiTMX cannot currently parse TMX image layers, and I don't know what they do, so no image layers either.</li>
+  PugiTMX cannot currently parse TMX image layers, and I don't know what they do, so no image layers either.</li>
 <li>Maps <em>must</em> be orthagonal.
-I've never used an isometric map. I don't know if my renderer can handle isometric maps, but try at your own downfall...</li>
+  I've never used an isometric map. I don't know if my renderer can handle isometric maps, but try at your own downfall...</li>
 <li>Maps <em>must</em> be in a folder with the <em>exact</em> filename of the map (without the .tmx).
-This is so the engine can find them, and as I add scripting, everything is all in the same folder, and everything won't be mixed with each other. </li>
+  This is so the engine can find them, and as I add scripting, everything is all in the same folder, and everything won't be mixed with each other. </li>
 <li>Also, the map file must have the extension .tmx. This is the default extension for Tiled <strong>TMX</strong> XML maps, so...</li>
 </ul>
-
 <h3>Sound-related</h3>
-
 <ul>
-<li><p>The audio formats the engine supports are:</p>
-
+<li>
+<p>The audio formats the engine supports are:</p>
 <pre><code>- ogg 
 - wav
 - flac
@@ -69,22 +67,18 @@ This is so the engine can find them, and as I add scripting, everything is all i
 - wve
 - mpc2k
 - rf64
-</code></pre></li>
+</code></pre>
+</li>
 </ul>
-
 <h3>Scripting-related</h3>
-
 <ul>
 <li>The default scripting language will be Falcon. I may add more in the future...</li>
 </ul>
-
 <h2>A bit of Information on the Projects inside this Project</h2>
-
 <h3>PugiTMX</h3>
-
-<p>PugiTMX is a TMX map parser, written in C++ (obviously), based on the PugiXML parser. <br />
+<p>PugiTMX is a TMX map parser, written in C++ (obviously), based on the PugiXML parser.<br>
 I wrote it to see if I could. </p>
-
 <p><strong>Thank you for your interest in Disandria!</strong></p>
-
 <p><em>~~ Bob Hostern</em></p>
+</body>
+</html>
