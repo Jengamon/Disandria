@@ -7,8 +7,6 @@
 
 using namespace Poco::Util;
 
-ScriptAPI* ScriptSubsystem::scriptAPI = NULL;
-
 void ScriptSubsystem::initialize(Application& app)
 {
     std::string scriptLang = app.config().getString("project.sys.script.lang", "");
@@ -22,33 +20,13 @@ void ScriptSubsystem::initialize(Application& app)
     ScriptAPILibrary::instance = new ScriptAPILibrary;
     ScriptAPILibrary::instance->addAPI("Falcon", new FalconSAPI);
 
-    scriptAPI = ScriptAPILibrary::instance->getAPI(scriptLang);
-    poco_assert(scriptAPI != NULL);
-
-    scriptAPI->initialize();
-    scriptAPI->createBindings();
-    if(scriptAPI->scriptRequests() & SubmitType_FILENAME) {
-        scriptAPI->scriptByFilename("main");
-    } else {
-        std::ifstream in(GameManager::getGameFolderName() + "main." + scriptAPI->extension());
-        if(scriptAPI->scriptRequests() & SubmitType_FILE) {
-            scriptAPI->scriptByFile(in);
-        } else {
-            std::string contents;
-            std::string line;
-            while(getline(in, line)) {
-                contents += line;
-            }
-            scriptAPI->scriptByString(contents);
-        }
-        in.close();
-    }
+    ScriptAPILibrary::instance->scriptAPI = ScriptAPILibrary::instance->getAPI(scriptLang);
+    ScriptAPILibrary::instance->initialize();
 }
 
 void ScriptSubsystem::uninitialize()
 {
-    scriptAPI->destroyBindings();
-    scriptAPI->uninitialize();
+    ScriptAPILibrary::instance->cleanup();
 }
 
 void ScriptSubsystem::defineOptions(OptionSet& opst)

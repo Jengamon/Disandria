@@ -24,6 +24,12 @@ public:
      * Pretty, huh?
      */
     void clearAPI();
+
+    void runScript(std::string);
+    void initialize();
+    void cleanup();
+
+    ScriptAPI* scriptAPI;
     static ScriptAPILibrary* instance;
 private:
     std::map<std::string, ScriptAPI*> scriptLibrary;

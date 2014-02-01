@@ -4,20 +4,19 @@
 
 sf::Image* MapLayer::renderLayer()
 {
-	if(genIm == NULL)
-	{
-		genImage();
-		genIm = new sf::Image;
-		genIm->create(xmlInfo.getWidth() * maptilewidth, xmlInfo.getHeight() * maptileheight);
-		for(auto iter = tiles.begin(); iter != tiles.end(); iter++) {
-			int renderPosInt = iter->first;
-			MapTile* tileToRender = iter->second;
-			sf::Vector2i renderPos(renderPosInt % xmlInfo.getWidth(), renderPosInt / xmlInfo.getHeight());
-			if(tileToRender->renderTile() != NULL) {
-				genIm->copy(*tileToRender->renderTile(), renderPos.x * maptilewidth, renderPos.y * maptileheight);
-			}
-		}
-	}
+    if(genIm == NULL) {
+        genImage();
+        genIm = new sf::Image;
+        genIm->create(xmlInfo.getWidth() * maptilewidth, xmlInfo.getHeight() * maptileheight);
+        for(auto iter = tiles.begin(); iter != tiles.end(); iter++) {
+            int renderPosInt = iter->first;
+            MapTile* tileToRender = iter->second;
+            sf::Vector2i renderPos(renderPosInt % xmlInfo.getWidth(), renderPosInt / xmlInfo.getWidth());
+            if(tileToRender->renderTile() != NULL) {
+                genIm->copy(*tileToRender->renderTile(), renderPos.x * maptilewidth, renderPos.y * maptileheight);
+            }
+        }
+    }
     return genIm;
 }
 
@@ -36,7 +35,9 @@ void MapLayer::genImage()
 
         sf::Image* newMapTileImage = new sf::Image;
         if(genLoc) {
-            tiles[currentTile++] = new MapTile(NULL, maptilewidth, maptileheight);
+            newMapTileImage->create(maptilewidth, maptileheight);
+            newMapTileImage->createMaskFromColor(sf::Color(0, 0, 0));
+            tiles[currentTile++] = new MapTile(newMapTileImage, maptilewidth, maptileheight);
         } else {
             newMapTileImage->create(tileset->tilewidth, tileset->tileheight);
             newMapTileImage->copy(*tileset->img, 0, 0, sf::IntRect(loc.x * tileset->tilewidth, loc.y * tileset->tileheight, tileset->tilewidth, tileset->tileheight));

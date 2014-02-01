@@ -69,7 +69,7 @@ sf::Image* Map::createTileLayer(pugitmx::TileLayer& tly)
 {
     MapLayer tlyr(tly, imap->getTileWidth(), imap->getTileHeight(), &tlstman);
     sf::Image* im = tlyr.renderLayer();
-    mapPicture.copy(*im, 0, 0);
+    mapPicture.copy(*im, 0, 0, sf::IntRect(0, 0, 0, 0), true);
     delete im;
 }
 

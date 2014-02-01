@@ -9,8 +9,8 @@
 #include <map>
 
 #ifdef POCO_OS_FAMILY_WINDOWS
-	#undef ERROR
-	#undef VOID
+#undef ERROR
+#undef VOID
 #endif
 
 namespace PE

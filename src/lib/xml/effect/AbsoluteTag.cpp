@@ -2,15 +2,15 @@
 
 AbsoluteTag::AbsoluteTag(double val)
 {
-	value = val;
+    value = val;
 }
 
 std::string AbsoluteTag::id()
 {
-	return "ABSOLUTE";
+    return "ABSOLUTE";
 }
 
 double AbsoluteTag::getValue()
 {
-	return value;
+    return value;
 }

@@ -22,8 +22,8 @@ void MapManager::setMap(Map* _map)
 
 void MapManager::clearMap()
 {
-	if(cmap != NULL)
-		delete cmap;
+    if(cmap != NULL)
+        delete cmap;
     cmap = NULL;
 }
 
@@ -32,12 +32,11 @@ void MapManager::renderMap()
     thor::BigSprite spr;
     thor::BigTexture tex;
     if(cmap != NULL) {
-		if(changed)
-		{
-			mapImage = cmap->renderMap();
-			changed = false;
-		}
-		poco_assert(mapImage != NULL);
+        if(changed) {
+            mapImage = cmap->renderMap();
+            changed = false;
+        }
+        poco_assert(mapImage != NULL);
         tex.loadFromImage(*mapImage);
         tex.setSmooth(true);
         spr.setTexture(tex);

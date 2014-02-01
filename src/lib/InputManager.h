@@ -36,12 +36,13 @@ class InputManager
 {
 public:
     void addActionCallback(std::string evtnm, thor::Action act, thor::ActionCallback func);
+    void addAction(std::string evtnm, thor::Action act);
+    void addCallback(std::string evtnm, thor::ActionCallback func);
     void removeActionCallback(std::string id);
     void removeAllActionCallbacks();
     void setupMap();
-    thor::ActionMap<std::string>* getActionMap();
-    thor::ActionMap<std::string>::CallbackSystem* getCallbackSystem();
-private:
+    void update(sf::Window&);
+protected:
     thor::ActionMap<std::string> actionMap;
     thor::ActionMap<std::string>::CallbackSystem callbackSystem;
 };

@@ -102,6 +102,7 @@ void DisandriaApp::defineOptions(OptionSet& opst)
 
 int DisandriaApp::main(const std::vector<std::string>& args)
 {
+    ScriptAPILibrary::instance->runScript("main");
     while(rwin->isOpen()) {
         sf::Event event;
         while(rwin->pollEvent(event)) {
@@ -125,7 +126,7 @@ int DisandriaApp::main(const std::vector<std::string>& args)
 
 void DisandriaApp::handleVersion(const std::string& name, const std::string& value)
 {
-	std::stringstream version; version << GameManager::getEngineVersion();
+    std::stringstream version; version << GameManager::getEngineVersion();
     this->logger().notice("Disandria v." + version.str());
     stopOptionsProcessing();
     exit(-1);

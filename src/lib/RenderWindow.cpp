@@ -1,6 +1,9 @@
 #include "RenderWindow.h"
 #include "GameManager.h"
-#include "script/CEGUI/FalconScriptingModule.h"
+#ifdef FALCON1
+#else
+#include "script/falcon/falcon/CEGUI/FalconScriptingModule.h"
+#endif
 
 RenderWindow::RenderWindow(int width, int height, std::string name) : sf::RenderWindow(sf::VideoMode(width, height), name, sf::Style::Close | sf::Style::Titlebar)
 {
@@ -31,7 +34,10 @@ RenderWindow::RenderWindow(int width, int height, std::string name) : sf::Render
     if(parser->isPropertyPresent("SchemaDefaultResourceGroup"))
         parser->setProperty("SchemaDefaultResourceGroup", "schemas");
 
+#ifdef FALCON1
+#else
     CEGUI::System::getSingleton().setScriptingModule(FalconScriptingModule::create());
+#endif
     CEGUI::System::getSingleton().executeScriptFile("gui", "falcon_scripts");
 
     this->setVerticalSyncEnabled(true);
@@ -42,7 +48,7 @@ RenderWindow::RenderWindow(int width, int height, std::string name) : sf::Render
     loadFont("Inconsolata-14");
     setArrowandTooltipScheme("TaharezLook");
     // --END--
-    inpMan->setupMap();
+    setupMap();
 }
 
 void RenderWindow::resetView()
@@ -71,24 +77,14 @@ void RenderWindow::displayWindow(CEGUI::Window* win)
 {
     CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(win);
 }
-
-void RenderWindow::addActionCallback(std::string evtnm, thor::Action act, thor::ActionCallback func)
-{
-    inpMan->addActionCallback(evtnm, act, func);
-}
-
-void RenderWindow::removeActionCallback(std::string id)
-{
-    inpMan->removeActionCallback(id);
-}
-
+#include <iostream>
 void RenderWindow::handleEvent(sf::Event& event)
 {
-    inpMan->getActionMap()->pushEvent(event);
-    if(inpMan->getActionMap()->isActive("QUIT"))
+    actionMap.pushEvent(event);
+    if(actionMap.isActive("QUIT"))
         this->close();
 
-    inpMan->getActionMap()->invokeCallbacks(*inpMan->getCallbackSystem(), this);
+    actionMap.invokeCallbacks(callbackSystem, this);
 
     CEGUI::GUIContext& context = CEGUI::System::getSingleton().getDefaultGUIContext();
     sf::Vector2i mousep = sf::Mouse::getPosition(*this);
@@ -110,6 +106,7 @@ void RenderWindow::handleEvent(sf::Event& event)
     float elapsedTime = elapsedclock->restart().asSeconds();
     CEGUI::System::getSingleton().injectTimePulse(elapsedTime);
     context.injectTimePulse(elapsedTime);
+    actionMap.clearEvents();
 }
 
 RenderWindow::~RenderWindow()

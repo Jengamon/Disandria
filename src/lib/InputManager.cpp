@@ -1,4 +1,5 @@
 #include "InputManager.h"
+#include <iostream>
 
 void InputManager::setupMap()
 {
@@ -7,10 +8,24 @@ void InputManager::setupMap()
 
 void InputManager::addActionCallback(std::string evtnm, thor::Action act, thor::ActionCallback func)
 {
-    if(evtnm != "QUIT") {
-        actionMap[evtnm] = act;
-        callbackSystem.connect(evtnm, func);
-    }
+    addAction(evtnm, act);
+    addCallback(evtnm, func);
+}
+
+void InputManager::addAction(std::string evtnm, thor::Action act)
+{
+    actionMap[evtnm] = act;
+}
+
+void InputManager::addCallback(std::string evtnm, thor::ActionCallback func)
+{
+    std::cout << evtnm << std::endl;
+    callbackSystem.connect(evtnm, func);
+}
+
+void InputManager::update(sf::Window& win)
+{
+    actionMap.update(win);
 }
 
 void InputManager::removeActionCallback(std::string id)
@@ -26,14 +41,4 @@ void InputManager::removeAllActionCallbacks()
     actionMap.clearActions();
     callbackSystem.clearAllConnections();
     setupMap();
-}
-
-thor::ActionMap<std::string>* InputManager::getActionMap()
-{
-    return &actionMap;
-}
-
-thor::ActionMap<std::string>::CallbackSystem* InputManager::getCallbackSystem()
-{
-    return &callbackSystem;
 }

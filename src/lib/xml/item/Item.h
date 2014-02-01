@@ -24,10 +24,10 @@
 #include "../BaseObject.h"
 class Item : public BaseObject
 {
-	public:
-		Object::Type type() {
-			return Object::ITEM;
-		}
+public:
+    Object::Type type() {
+        return Object::ITEM;
+    }
 };
 
 #endif // __DISANDRIA_ITEM_H

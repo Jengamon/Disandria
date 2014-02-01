@@ -1,22 +1,12 @@
-#ifndef __DISANDRIA_FALCONSAPI_H
-#define __DISANDRIA_FALCONSAPI_H
+#ifndef __DISANDRIA_REDIRECT_FALCONSAPI_H
+#define __DISANDRIA_REDIRECT_FALCONSAPI_H
 
-#include <falcon/engine.h>
-#include "ScriptAPI.h"
+#ifdef FALCON1
+#warning Using incomplete Falcon 1.0 SAPI module
+#include "falcon/falcon1/FalconSAPI.h"
+#else
+#warning Using incomplete Falcon 0.9.6.8 SAPI module
+#include "falcon/falcon/FalconSAPI.h"
+#endif
 
-class FalconSAPI : public ScriptAPI
-{
-public:
-    void initialize();
-    void createBindings();
-    int scriptRequests();
-    void scriptByFilename(std::string);
-    void destroyBindings();
-    void uninitialize();
-    void reset();
-private:
-    Falcon::VMachine* vm;
-    Falcon::ModuleLoader* modloader;
-};
-
-#endif // __DISANDRIA_FALCONSAPI_H
+#endif // __DISANDRIA_REDIRECT_FALCONSAPI_H

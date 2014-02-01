@@ -14,7 +14,7 @@ void MapTile::renderActor(Actor* actor)
 
 bool MapTile::hasActor()
 {
-	return actorOnTile == NULL;
+    return actorOnTile == NULL;
 }
 
 sf::Image* MapTile::renderTile()
